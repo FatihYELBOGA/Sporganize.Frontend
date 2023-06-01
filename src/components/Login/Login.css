@@ -1,0 +1,75 @@
+.login-page {
+  display: flex;
+  background-color: whitesmoke;
+}
+
+.login-image-part {
+  width: 40%;
+}
+
+.login-img {
+  width: 100%;
+  height: auto;
+}
+
+.login-form-part {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 4%;
+}
+
+.login-form-header {
+  color: darkgreen;
+  font-size: 350%;
+  font-weight: bolder;
+}
+
+.login-form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
+  height: 8%;
+}
+
+.login-form-group label {
+  color: dimgray;
+  font-weight: 500;
+  height: 40%;
+}
+
+.login-form-group input {
+  width: 100%;
+  height: 60%;
+  border: 1px solid green;
+  border-radius: 4px;
+}
+
+.login-button {
+  width: 20%;
+  height: 5%;
+  background-color: darkgreen;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 120%;
+  border-radius: 6px;
+  box-shadow: 4px 5px 4px dimgray;
+}
+
+.login-button:active {
+  background-color: dimgray;
+}
+
+.sign-up {
+  padding-top: 3%;
+  color: dimgray;
+}
+
+.sign-up a {
+  color: #1E7B38;
+}
