@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
+import Navbar from './components/Navbar/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route exact path='/' element={<Login />}  />
+            <Route exact path='/' element={<Navbar />}  />
           </Routes>
         </BrowserRouter>
       </div>
