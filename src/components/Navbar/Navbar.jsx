@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom'; 
 import { getTopNav } from './navbars';
 import './Navbar.css';
 
@@ -9,17 +9,22 @@ const Navbar = () => {
   const [toggleIcon, setToggleIcon] = useState('toggler__icon');
   const [selectedItem, setSelectedItem] = useState(null); 
 
+  const location = useLocation(); 
   useEffect(() => {
     setNavItems(getTopNav());
   }, []);
 
+  useEffect(() => { 
+    const currentPath = location.pathname;
+    const currentItem = navItems.find(item => item.href === currentPath);
+    if (currentItem) {
+      setSelectedItem(currentItem.id);
+    }
+  }, [location, navItems]); 
+
   const onToggle = () => {
     setCollapse(prevCollapse => prevCollapse === 'nav__menu' ? 'nav__menu nav__collapse' : 'nav__menu');
     setToggleIcon(prevToggleIcon => prevToggleIcon === 'toggler__icon' ? 'toggler__icon toggle' : 'toggler__icon');
-  };
-
-  const handleNavItemClick = (id) => { 
-    setSelectedItem(id);
   };
 
   return (
@@ -38,7 +43,7 @@ const Navbar = () => {
           </div>
           <ul className={collapse}>
             {navItems.map((item) => (
-              <li key={item.id} className="nav__item" onClick={() => handleNavItemClick(item.id)}> 
+              <li key={item.id} className="nav__item"> 
                 <NavLink to={item.href} className="nav__link" style={{ color: selectedItem === item.id ? 'black' : '' }} activeClassName="nav__link--active">
                   {item.label}
                 </NavLink>

@@ -3,10 +3,11 @@ import './App.css';
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
 import Navbar from './components/Navbar/Navbar'
+import Profile from './components/Profile/profile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(true); 
   const [signUp, setSignUp] = useState(false);
 
   if (login) {
@@ -15,7 +16,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route exact path='/' element={<Navbar />}  />
-          </Routes>
+            <Route path="/profile" element={<Profile />} />
+             </Routes>
         </BrowserRouter>
       </div>
     );

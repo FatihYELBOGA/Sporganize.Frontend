@@ -33,9 +33,6 @@ li {
     padding-right: 15px;
   }
 }
-
-/* Navbar */
-
 .nav__wrapper {
   background: #BDBDBD ;
 }
@@ -52,6 +49,7 @@ li {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  
 }
 
 .nav__brand {
@@ -97,6 +95,7 @@ li {
     position: fixed;
     background: #BDBDBD;
     flex-direction: column;
+    padding-top: 30px;
     align-items: center;
     justify-content: start;
     margin-right:0px;
