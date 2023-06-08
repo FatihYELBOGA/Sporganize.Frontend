@@ -1,0 +1,72 @@
+.appointment-card {
+  background-color: black;
+  color: white;
+  width: 35%;
+  opacity: 0.8;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1% 2%;
+  gap: 10px;
+}
+
+.appointment-title {
+  font-size: 150%;
+}
+
+.appointment-user-username {
+  font-size: 120%;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.appointment-user {
+  color: greenyellow;
+  padding: 5px;
+  width: 100%;
+  padding: 0;
+}
+
+.appointment-user-details {
+  display: flex;
+  justify-content: space-around;
+}
+
+.appointment-desc {
+  width: 90%;
+}
+
+.appointment-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.appointment-reason {
+  padding: 4px;
+}
+
+.appointment-branch {
+  border: 2px orangered solid;
+  border-radius: 15px;
+  padding: 4px;
+  color: orangered;
+  width: fit-content;
+}
+
+.appointment-accepted-users summary {
+  cursor: pointer;
+}
+
+.appointment-accepted-user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.appointment-accepted-user-username {
+  text-decoration: underline;
+  font-size: 110%;
+  color: greenyellow;
+}

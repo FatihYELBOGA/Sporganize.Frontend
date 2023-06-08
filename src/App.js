@@ -4,21 +4,17 @@ import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/profile';
+import MyAppointments from "./components/UserAppointments/MyAppointments"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [login, setLogin] = useState(true); 
+  const [login, setLogin] = useState(true);
   const [signUp, setSignUp] = useState(false);
 
   if (login) {
     return (
       <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route exact path='/' element={<Navbar />}  />
-            <Route path="/profile" element={<Profile />} />
-             </Routes>
-        </BrowserRouter>
+        <MyAppointments/>
       </div>
     );
   }
