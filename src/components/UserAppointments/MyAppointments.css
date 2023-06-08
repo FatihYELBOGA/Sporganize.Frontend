@@ -1,7 +1,7 @@
 .appointment-card {
   background-color: black;
   color: white;
-  width: 35%;
+  width: 45%;
   opacity: 0.8;
   border-radius: 10px;
   display: flex;
@@ -69,4 +69,13 @@
   text-decoration: underline;
   font-size: 110%;
   color: greenyellow;
+}
+
+.all-appointments {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;  
+  gap: 5%;
+  padding: 3%;
 }

@@ -33,7 +33,7 @@ const Sidebar = () => {
         width: '240px',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: '260px',
+          width: '20%',
           boxSizing: 'border-box',
           top: '75px',
           height: '100%',

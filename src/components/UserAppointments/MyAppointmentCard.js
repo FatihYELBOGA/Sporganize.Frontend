@@ -1,8 +1,6 @@
-import { useState } from "react"
 import './MyAppointments.css'
 
 function MyAppointmentsCard ({ appointment }) {
-  const acceptedUsers = appointment.acceptedUsers;
 
   return (
     <div className="appointment-card">
