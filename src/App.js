@@ -21,9 +21,9 @@ function App() {
           <Routes> 
              
              <Route path="/Sidebar" element={<Sidebar/>}/>
-            
             <Route path="/profile" element={<Profile />} />
             <Route path="/MyTeams" element={<MyTeams />} />
+            <Route path="/MyAppointments" element={<MyAppointments />} />
           </Routes>
         </div>
       </BrowserRouter>

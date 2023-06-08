@@ -46,7 +46,7 @@ const Navbar = () => {
               <li key={item.id} className="nav__item"> 
                 <NavLink to={item.href} className="nav__link" style={{ color: selectedItem === item.id ? 'black' : '' }} activeClassName="nav__link--active">
                   {item.label}
-                </NavLink>
+                </NavLink>  
               </li>
             ))}
           </ul>

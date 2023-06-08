@@ -4,11 +4,12 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const menuItems = [
   { id: 1, label: 'Account', href: '/profile' },
-  { id: 2, label: 'My Appointments', href: '/appointments' },
-  { id: 3, label: 'My Friends', href: '/friends' },
-  { id: 4, label: 'My Teams', href: '/MyTeams' },
-  { id: 5, label: 'My Reservations', href: '/reservation' },
-  { id: 6, label: 'My Tournaments', href: '/tournaments' },
+  { id: 2, label: 'My Posts', href: '/MyPosts' },
+  { id: 3, label: 'My Appointments', href: '/MyAppointments' },
+  { id: 4, label: 'My Friends', href: '/MyFriends' },
+  { id: 5, label: 'My Teams', href: '/MyTeams' },
+  { id: 6, label: 'My Reservations', href: '/MyReservations' },
+  { id: 7, label: 'My Tournaments', href: '/MyTournaments' },
 ];
 
 const Sidebar = () => {
@@ -74,7 +75,7 @@ const Sidebar = () => {
             },
           }}
         >
-          <ListItemText primary="Logout" style={{ color: '#000', textAlign: 'center' }} />
+          <ListItemText primary="Logout" style={{ color: 'darkred', textAlign: 'center', fontWeight: 'bold' }} />
         </ListItem>
       </List>
     </Drawer>

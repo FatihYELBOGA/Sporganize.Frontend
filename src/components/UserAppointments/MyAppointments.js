@@ -1,4 +1,5 @@
 import MyAppointmentsCard from "./MyAppointmentCard"
+import Layout from "../Sidebar/Layout"
 
 function MyAppointments () {
   const testAppointment = {
@@ -28,7 +29,10 @@ function MyAppointments () {
   }
 
   return (
-    <MyAppointmentsCard appointment={testAppointment} />
+    <Layout>
+        <MyAppointmentsCard appointment={testAppointment} />
+    </Layout>
+   
   )
 }
 
