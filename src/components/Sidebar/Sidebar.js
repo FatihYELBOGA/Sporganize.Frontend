@@ -4,11 +4,11 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 const menuItems = [
   { id: 1, label: 'Account', href: '/profile' },
-  { id: 2, label: 'My Friends', href: '/friends' },
-  { id: 3, label: 'My Team', href: '/team' },
-  { id: 4, label: 'My Reservation', href: '/reservation' },
-  { id: 5, label: 'My Tournaments', href: '/tournaments' },
-  { id: 6, label: 'My Appointments', href: '/appointments' },
+  { id: 2, label: 'My Appointments', href: '/appointments' },
+  { id: 3, label: 'My Friends', href: '/friends' },
+  { id: 4, label: 'My Teams', href: '/MyTeams' },
+  { id: 5, label: 'My Reservations', href: '/reservation' },
+  { id: 6, label: 'My Tournaments', href: '/tournaments' },
 ];
 
 const Sidebar = () => {
@@ -35,6 +35,7 @@ const Sidebar = () => {
           width: '260px',
           boxSizing: 'border-box',
           top: '75px',
+          height: '100%',
           backgroundColor: '#E8EAE0',
         },
       }}
@@ -47,31 +48,33 @@ const Sidebar = () => {
             component={RouterLink}
             to={item.href}
             selected={location.pathname === item.href}
-            sx={{
+            style={{
               display: 'flex',
               justifyContent: 'center',
-              backgroundColor: item.href === '/profile' ? '#9CCC65' : 'transparent',
+              backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
+              marginBottom: '20px', 
               '&:hover': {
-                backgroundColor: item.href === '/profile' ? '#9CCC65' : '#647C31',
+                backgroundColor: location.pathname === item.href ? '#647C31' : 'rgba(100, 124, 49, 0.5)',
               },
             }}
           >
-            <ListItemText primary={item.label} sx={{ color: '#000', textAlign: 'center' }} />
+            <ListItemText primary={item.label} style={{ color: '#000', textAlign: 'center' }} />
           </ListItem>
         ))}
         <ListItem
           button
           onClick={handleLogout}
-          sx={{
+          style={{
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'transparent',
+            marginBottom: '10px',
             '&:hover': {
-              backgroundColor: '#647C31',
+              backgroundColor: 'rgba(100, 124, 49, 0.5)',
             },
           }}
         >
-          <ListItemText primary="Logout" sx={{ color: '#000', textAlign: 'center' }} />
+          <ListItemText primary="Logout" style={{ color: '#000', textAlign: 'center' }} />
         </ListItem>
       </List>
     </Drawer>

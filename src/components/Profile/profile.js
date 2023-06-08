@@ -1,14 +1,13 @@
 import React from 'react';
-import Sidebar from '../Sidebar/Sidebar';
-import Navbar from '../Navbar/Navbar';
+import Layout from '../Sidebar/Layout';
+;
 
 const Profile = () => {
     return (
-        <div>
-            <Navbar />
-            <Sidebar />
-        </div>
-    )
-}
+        <Layout>
+            
+        </Layout>
+    );
+};
 
 export default Profile;

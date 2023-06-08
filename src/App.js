@@ -3,9 +3,10 @@ import './App.css';
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
 import Navbar from './components/Navbar/Navbar'
+import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/profile';
 import MyAppointments from "./components/UserAppointments/MyAppointments"
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Route imported
 
 function App() {
   const [login, setLogin] = useState(true);
@@ -13,19 +14,30 @@ function App() {
 
   if (login) {
     return (
-      <div className="App">
-        <MyAppointments/>
-      </div>
+      <BrowserRouter> 
+        <Navbar/>
+        <div className="App">
+          <Routes> 
+             
+             <Route path="/Sidebar" element={<Sidebar/>}/>
+            
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     );
   }
+  
   if (signUp) {
     return (
-    <BrowserRouter>
-      <Routes>
-        <Route exact path='/' element={<SignUp />}  />
-      </Routes>
-    </BrowserRouter>
-  );
+      <BrowserRouter>
+        <div className="App">
+          <Routes>
+            <Route exact path='/' element={<SignUp />}  />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
 
