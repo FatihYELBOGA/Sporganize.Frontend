@@ -6,7 +6,8 @@ import Navbar from './components/Navbar/Navbar'
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/profile';
 import MyAppointments from "./components/UserAppointments/MyAppointments"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Route imported
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import MyTeams from './components/MyTeams/MyTeams';
 
 function App() {
   const [login, setLogin] = useState(true);
@@ -22,6 +23,7 @@ function App() {
              <Route path="/Sidebar" element={<Sidebar/>}/>
             
             <Route path="/profile" element={<Profile />} />
+            <Route path="/MyTeams" element={<MyTeams />} />
           </Routes>
         </div>
       </BrowserRouter>
