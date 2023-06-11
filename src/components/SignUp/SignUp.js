@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import "./SignUp.css";
 import signUpPicture from "../../pictures/signUp.jpg"
+import { useNavigate } from "react-router-dom";
 
 function SignUp () {
+
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -43,7 +47,10 @@ function SignUp () {
     e.preventDefault()
   }
 
-  const handleLogin = (e) => {}
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate("/")
+  }
 
   return (
     <div className="sign-up-page">
