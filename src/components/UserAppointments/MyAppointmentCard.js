@@ -1,6 +1,6 @@
 import './MyAppointments.css'
 
-function MyAppointmentsCard ({ appointment }) {
+function MyAppointmentsCard ({ appointment, displayUsers }) {
 
   return (
     <div className="appointment-card">
@@ -15,24 +15,25 @@ function MyAppointmentsCard ({ appointment }) {
         </div>
       </details>
 
-      <div className="appointment-desc">{appointment.desc}</div>
+      <div className="appointment-desc">{appointment.description}</div>
 
       <div className="appointment-row">
-        <div className="appointment-reason">{appointment.reason}</div>
+        <div className="appointment-reason">{appointment.appointmentReason}</div>
         <div className="appointment-branch">{appointment.branch}</div>
       </div>
 
       <div className="appointment-row">
+        {displayUsers ? 
         <details className="appointment-accepted-users">
-          <summary>Accepted Users</summary>
-          {appointment.acceptedUsers.map(acceptedUser => 
+          <summary>Requests</summary>
+          {appointment.acceptedUsers.map((acceptedUser) => (
             <div className="appointment-accepted-user">
-              <div className="appointment-accepted-user-username">{acceptedUser.username}</div>
-              <div className="appointment-accepted-user-email">{acceptedUser.email}</div>
-              <div className="appointment-accepted-user-phone">{acceptedUser.phone}</div>
-              <div className="appointment-accepted-user-gender">{acceptedUser.gender}</div>
-            </div>)}
-        </details>
+              <div className="appointment-accepted-user-username">{acceptedUser.acceptedUser.username}</div>
+              <div className="appointment-accepted-user-email">{acceptedUser.acceptedUseremail}</div>
+              <div className="appointment-accepted-user-phone">{acceptedUser.acceptedUser.phone}</div>
+              <div className="appointment-accepted-user-gender">{acceptedUser.acceptedUser.gender}</div>
+            </div>))}
+        </details> : <div />}
         <div className="appointment-location">{appointment.location.street} {appointment.location.district}/{appointment.location.province}</div>
       </div>
       

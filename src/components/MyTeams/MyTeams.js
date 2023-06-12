@@ -1,11 +1,10 @@
 import React from 'react';
-import Layout from '../Sidebar/Layout';
 
 const MyTeams = () => {
     return (
-        <Layout>
-            
-        </Layout>
+        <div>
+
+        </div>
     );
 };
 

@@ -4,6 +4,7 @@ import { getTopNav } from './navbars';
 import './Navbar.css';
 
 const Navbar = () => {
+
   const [navItems, setNavItems] = useState([]);
   const [collapse, setCollapse] = useState('nav__menu');
   const [toggleIcon, setToggleIcon] = useState('toggler__icon');

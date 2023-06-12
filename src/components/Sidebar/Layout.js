@@ -2,12 +2,10 @@ import React from 'react';
 import Sidebar from "./Sidebar";
 
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
     return (
         <div style={{ display: 'flex' }}>
-           
-            <Sidebar />
-             {children}
+            <Sidebar setUserId={props.setUserId} setRole={props.setRole} />
         </div>
     );
 };

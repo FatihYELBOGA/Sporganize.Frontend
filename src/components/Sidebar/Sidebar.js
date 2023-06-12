@@ -13,7 +13,9 @@ const menuItems = [
   { id: 7, label: 'My Tournaments', href: '/my-tournaments' },
 ];
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+
+  const {setUserId, setRole} = props;
 
   const navigate = useNavigate();
   
@@ -25,6 +27,8 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
+    setUserId(0);
+    setRole(null);
     navigate("/");
     console.log("User has logged out.");
   };

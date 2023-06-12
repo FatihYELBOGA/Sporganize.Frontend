@@ -3,7 +3,7 @@ import Layout from '../Sidebar/Layout';
 
 const Profile = (props) => {
     return (
-        <Layout props = {props} />
+        <Layout setUserId={props.setUserId} setRole={props.setRole} />
     );
 };
 
