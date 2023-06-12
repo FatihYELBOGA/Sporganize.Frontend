@@ -1,6 +1,7 @@
 import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
   { id: 1, label: 'Account', href: '/account' },
@@ -13,6 +14,9 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
+
+  const navigate = useNavigate();
+  
   const [drawerOpen, setDrawerOpen] = useState(true);
   const location = useLocation();
 
@@ -21,6 +25,7 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
+    navigate("/");
     console.log("User has logged out.");
   };
 

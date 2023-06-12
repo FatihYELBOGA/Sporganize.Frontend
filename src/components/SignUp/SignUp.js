@@ -8,15 +8,17 @@ function SignUp () {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [date, setDate] = useState("");
   const [password, setPassword] = useState("");
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value)
+  }
+
+  const handleMiddeName = (e) => {
+    setMiddleName(e.target.value)
   }
 
   const handleLastName = (e) => {
@@ -27,24 +29,32 @@ function SignUp () {
     setUsername(e.target.value)
   }
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleDate = (e) => {
-    setDate(e.target.value)
-  };
-
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    fetch("https://sporganize.azurewebsites.net/register",
+    {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+      },
+      body : JSON.stringify({
+        firstName : firstName,
+        middleName : middleName,
+        lastName : lastName,
+        username : username,
+        password : password
+      }),    
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      navigate("/");
+    })
+    .catch((err) => console.log(err))
   }
 
   const handleLogin = (e) => {
@@ -63,12 +73,17 @@ function SignUp () {
         <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
             <label>First Name</label>
-            <input type="text" value={firstName} onChange={handleFirstName} placeholder="Enes" required/>
+            <input type="text" value={firstName} onChange={handleFirstName} placeholder="Merve" required/>
+          </div>
+          
+          <div className="sign-up-form-group">
+            <label>Middle Name</label>
+            <input type="text" value={middleName} onChange={handleMiddeName} placeholder="Nur" required/>
           </div>
 
           <div className="sign-up-form-group">
             <label>Last Name</label>
-            <input type="text" value={lastName} onChange={handleLastName} placeholder="Demirel" required/>
+            <input type="text" value={lastName} onChange={handleLastName} placeholder="OZAN" required/>
           </div>
         </fieldset>
 
@@ -77,39 +92,12 @@ function SignUp () {
             <label>Username</label>
             <input type="text" value={username} onChange={handleUsername} placeholder="demirelenes" required/>
           </div>
-
-          <div className="sign-up-form-group">
-            <label>E-Mail</label>
-            <input type="email" value={email} onChange={handleEmail} placeholder="enesdemirel@sporganize.com" required/>
-          </div>
-        </fieldset>
-
-        <fieldset className="sign-up-double-group">
-          <div className="sign-up-form-group">
-            <label>Phone Number</label>
-            <input type="tel" value={phone} onChange={handlePhone} placeholder="(123) 456 78 90" required/>
-          </div>
-
-          <div className="sign-up-form-group">
-            <label>Birth Date</label>
-            <input type="date" value={date} onChange={handleDate} required/>
-          </div>
         </fieldset>
 
         <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
             <label>Password</label>
             <input type="password" value={password} onChange={handlePassword} placeholder="*********" required/>
-          </div>
-
-          <div className="sign-up-form-group">
-            <label>Gender</label>
-            <div className="sign-up-gender-form">
-              <label htmlFor="male">MALE</label>
-              <input type="radio" id="male" name="gender" value="MALE" required/>
-              <label htmlFor="female">FEMALE</label>
-              <input type="radio" id="female" name="gender" value="FEMALE" required/>
-            </div>
           </div>
         </fieldset>
         

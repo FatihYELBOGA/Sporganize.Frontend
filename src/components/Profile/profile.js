@@ -1,11 +1,9 @@
 import React from 'react';
 import Layout from '../Sidebar/Layout';
 
-const Profile = () => {
+const Profile = (props) => {
     return (
-        <Layout>
-            
-        </Layout>
+        <Layout props = {props} />
     );
 };
 
