@@ -4,13 +4,13 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { id: 1, label: 'Account', href: '/account' },
-  { id: 2, label: 'My Posts', href: '/my-posts' },
-  { id: 3, label: 'My Appointments', href: '/my-appointments' },
-  { id: 4, label: 'My Friends', href: '/my-friends' },
-  { id: 5, label: 'My Teams', href: '/myT-teams' },
-  { id: 6, label: 'My Reservations', href: '/my-reservations' },
-  { id: 7, label: 'My Tournaments', href: '/my-tournaments' },
+  { id: 1, label: 'Account', href: '/Profile' },
+  { id: 2, label: 'My Posts', href: '/MyPosts' },
+  { id: 3, label: 'My Appointments', href: '/MyAppointments' },
+  { id: 4, label: 'My Friends', href: '/MyFriends' },
+  { id: 5, label: 'My Teams', href: '/MyTeams' },
+  { id: 6, label: 'My Reservations', href: '/MyReservations' },
+  { id: 7, label: 'My Tournaments', href: '/MyTournaments' },
 ];
 
 const Sidebar = (props) => {

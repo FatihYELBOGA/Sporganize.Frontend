@@ -127,3 +127,6 @@ li {
   padding: 10px 20px;
   margin-right: 10px;
 }
+.nav__link:hover {
+  color: black;
+}
