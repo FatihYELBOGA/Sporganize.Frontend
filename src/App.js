@@ -14,7 +14,7 @@ import MyFriends from './components/MyFriends/MyFriends';
 import MyTeams from './components/MyTeams/MyTeams';
 import MyReservations from './components/MyReservations/MyReservations';
 import MyTournaments from './components/MyTournaments/MyTournaments'
-import MyAppointments from './components/MyAppointments/MyAppointments';
+import MyAppointments from './components/UserAppointments/MyAppointments';
 import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {

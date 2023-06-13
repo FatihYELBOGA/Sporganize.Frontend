@@ -39,12 +39,12 @@ const Sidebar = (props) => {
       anchor="left"
       open={drawerOpen}
       sx={{
-        width: '240px',
+        width: '20%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: '20%',
           boxSizing: 'border-box',
-          top: '73px',
+          top: '10%',
           height: '100%',
           backgroundColor: '#E8EAE0',
         },
@@ -62,7 +62,7 @@ const Sidebar = (props) => {
               display: 'flex',
               justifyContent: 'center',
               backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
-              marginBottom: '20px', 
+              marginBottom: '8%',
               '&:hover': {
                 backgroundColor: location.pathname === item.href ? '#647C31' : 'rgba(100, 124, 49, 0.5)',
               },
@@ -78,7 +78,7 @@ const Sidebar = (props) => {
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'transparent',
-            marginBottom: '10px',
+            marginBottom: '2%', 
             '&:hover': {
               backgroundColor: 'rgba(100, 124, 49, 0.5)',
             },
