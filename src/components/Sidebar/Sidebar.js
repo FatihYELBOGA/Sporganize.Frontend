@@ -4,13 +4,13 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { id: 1, label: 'Account', href: '/account' },
-  { id: 2, label: 'My Posts', href: '/my-posts' },
-  { id: 3, label: 'My Appointments', href: '/my-appointments' },
-  { id: 4, label: 'My Friends', href: '/my-friends' },
-  { id: 5, label: 'My Teams', href: '/myT-teams' },
-  { id: 6, label: 'My Reservations', href: '/my-reservations' },
-  { id: 7, label: 'My Tournaments', href: '/my-tournaments' },
+  { id: 1, label: 'Account', href: '/Profile' },
+  { id: 2, label: 'My Posts', href: '/MyPosts' },
+  { id: 3, label: 'My Appointments', href: '/MyAppointments' },
+  { id: 4, label: 'My Friends', href: '/MyFriends' },
+  { id: 5, label: 'My Teams', href: '/MyTeams' },
+  { id: 6, label: 'My Reservations', href: '/MyReservations' },
+  { id: 7, label: 'My Tournaments', href: '/MyTournaments' },
 ];
 
 const Sidebar = (props) => {
@@ -39,12 +39,12 @@ const Sidebar = (props) => {
       anchor="left"
       open={drawerOpen}
       sx={{
-        width: '240px',
+        width: '20%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: '20%',
           boxSizing: 'border-box',
-          top: '73px',
+          top: '10%',
           height: '100%',
           backgroundColor: '#E8EAE0',
         },
@@ -62,7 +62,7 @@ const Sidebar = (props) => {
               display: 'flex',
               justifyContent: 'center',
               backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
-              marginBottom: '20px', 
+              marginBottom: '8%',
               '&:hover': {
                 backgroundColor: location.pathname === item.href ? '#647C31' : 'rgba(100, 124, 49, 0.5)',
               },
@@ -78,7 +78,7 @@ const Sidebar = (props) => {
             display: 'flex',
             justifyContent: 'center',
             backgroundColor: 'transparent',
-            marginBottom: '10px',
+            marginBottom: '2%', 
             '&:hover': {
               backgroundColor: 'rgba(100, 124, 49, 0.5)',
             },

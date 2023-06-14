@@ -3,7 +3,7 @@ const topNav = [
     { id: 2, label: 'Reservations', href: '/reservations' },
     { id: 3, label: 'Teams', href: '/teams' },
     { id: 4, label: 'Tournaments', href: '/tournaments' },
-    { id: 5, label: 'Profile', href: '/profile' },
+    { id: 5, label: 'Profile', href: '/Profile' },
   ];
   
   export const getTopNav = () => {
