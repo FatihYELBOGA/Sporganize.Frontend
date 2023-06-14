@@ -11,7 +11,7 @@ const MyAppointments = (props) => {
     const getMyAppointments = () => {
         fetch("https://sporganize.azurewebsites.net/users/appointments/"+userId)
         .then((res) =>
-            res.json() )
+            res.json())
         .then(
             (result) => {
                 console.log(result);
