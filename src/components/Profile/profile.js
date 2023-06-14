@@ -5,7 +5,6 @@ import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Layout from '../Sidebar/Layout';
-import Sidebar from '../Sidebar/Sidebar';
 
 // Here we are simulating provinces, districts and streets data
 const addressData = {
@@ -42,7 +41,6 @@ const Profile = (props) => {
 
   return (
     <Layout setUserId={props.setUserId} setRole={props.setRole}>
-      <Sidebar />
       <Formik
         initialValues={initialValues}
         onSubmit={handleFormSubmit}

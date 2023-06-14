@@ -12,7 +12,6 @@ function Homepage(){
             res.json() )
         .then(
             (result) => {
-                console.log(result);
                 setAppointments(result);
             },
             (error) => {
