@@ -7,7 +7,7 @@ import SignUp from './components/SignUp/SignUp'
 import Home from './components/Homepage/Homepage'
 import Reservations from './components/Reservations/Reservations'
 import Teams from './components/Teams/Teams'
-import Profile from './components/Profile/Profile';
+import Profile from './components/Profile/profile';
 import Tournaments from './components/Tournaments/Tournaments';
 import MyPosts from './components/MyPosts/MyPosts'
 import MyFriends from './components/MyFriends/MyFriends';
