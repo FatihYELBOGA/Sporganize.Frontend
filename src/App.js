@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
-import Home from './components/Homepage/Homepage'
+import Homepage from './components/Homepage/Homepage'
 import Reservations from './components/Reservations/Reservations'
 import Teams from './components/Teams/Teams'
 import Profile from './components/Profile/profile'
@@ -55,7 +55,7 @@ function App() {
       <BrowserRouter>
         <Navbar/> 
         <Routes>
-          <Route exact path='/home' element = {<Home/>} />
+          <Route exact path='/home' element = {<Homepage/>} />
           <Route exact path='/reservations' element = {<Reservations/>} />
           <Route exact path='/teams' element = {<Teams/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
