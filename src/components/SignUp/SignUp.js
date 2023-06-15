@@ -8,17 +8,12 @@ function SignUp () {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value)
-  }
-
-  const handleMiddeName = (e) => {
-    setMiddleName(e.target.value)
   }
 
   const handleLastName = (e) => {
@@ -43,7 +38,6 @@ function SignUp () {
       },
       body : JSON.stringify({
         firstName : firstName,
-        middleName : middleName,
         lastName : lastName,
         username : username,
         password : password
@@ -73,17 +67,12 @@ function SignUp () {
         <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
             <label>First Name</label>
-            <input type="text" value={firstName} onChange={handleFirstName} placeholder="Merve" required/>
-          </div>
-          
-          <div className="sign-up-form-group">
-            <label>Middle Name</label>
-            <input type="text" value={middleName} onChange={handleMiddeName} placeholder="Nur" required/>
+            <input type="text" value={firstName} onChange={handleFirstName} placeholder="Enes" required/>
           </div>
 
           <div className="sign-up-form-group">
             <label>Last Name</label>
-            <input type="text" value={lastName} onChange={handleLastName} placeholder="OZAN" required/>
+            <input type="text" value={lastName} onChange={handleLastName} placeholder="Demirel" required/>
           </div>
         </fieldset>
 
@@ -92,9 +81,7 @@ function SignUp () {
             <label>Username</label>
             <input type="text" value={username} onChange={handleUsername} placeholder="demirelenes" required/>
           </div>
-        </fieldset>
 
-        <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
             <label>Password</label>
             <input type="password" value={password} onChange={handlePassword} placeholder="*********" required/>

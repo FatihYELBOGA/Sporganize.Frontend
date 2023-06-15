@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  gap: 2%;
+  gap: 3%;
 }
 
 .sign-up-form-header {
@@ -56,11 +56,6 @@
   border-radius: 4px;
 }
 
-.sign-up-gender-form{
-  display: flex;
-  align-items: center;
-}
-
 .sign-up-button {
   width: 20%;
   height: 5%;
@@ -71,6 +66,7 @@
   font-size: 120%;
   border-radius: 6px;
   box-shadow: 4px 5px 4px dimgray;
+  margin-top: 2%;
 }
 
 .sign-up-button:active {

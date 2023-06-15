@@ -1,6 +1,8 @@
 import './Facility.css'
+import FacilityCard from './FacilityCard'
 
-function FacilityCard({ facility }) {
+function FacilityList({ facility }) {
+
   const testFacility = {
     name: "Spor Salonu",
     phone: "123 456 78 90",
@@ -14,13 +16,13 @@ function FacilityCard({ facility }) {
     picture: "",
   }
 
-  const facilities = [testFacility]
+  const testFacilities = [testFacility]
 
   return (
     <div className="facility-list">
-      {facilities.map(facility => <FacilityCard facility={facility}/>)}
+      {testFacilities.map(singleFacility => <FacilityCard facility={singleFacility}/>)}
     </div>
   )
 }
 
-export default FacilityCard;
+export default FacilityList;
