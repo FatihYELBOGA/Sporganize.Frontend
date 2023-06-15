@@ -11,7 +11,7 @@ function FacilityList({ facility }) {
       district: "District",
       province: "Province"
     },
-    branch: ["Football", "Tennis"],
+    branches: ["Football", "Tennis"],
     price: 150,
     picture: "",
   }

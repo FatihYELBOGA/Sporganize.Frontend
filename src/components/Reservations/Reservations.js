@@ -1,8 +1,10 @@
+import FacilityList from "./FacilityList";
+
 function Reservation(){
 
     return (
         <div>
-            
+            <FacilityList/>
         </div>
     );
 }
