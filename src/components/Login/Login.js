@@ -74,7 +74,7 @@ function Login (props) {
         <div className="login-form-header">Login</div>
         <div className="login-form-group">
           <label>Username</label>
-          <input value={email} onChange={handleEmailChange} placeholder="enesdemirel@sporganize.com" required/>
+          <input type="email" value={email} onChange={handleEmailChange} placeholder="enesdemirel@sporganize.com" required/>
         </div>
         <div className="login-form-group">
           <label>Password</label>

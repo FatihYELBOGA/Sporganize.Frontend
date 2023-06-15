@@ -11,6 +11,7 @@ function SignUp () {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
 
   const handleFirstName = (e) => {
     setFirstName(e.target.value)
@@ -28,7 +29,16 @@ function SignUp () {
     setPassword(e.target.value);
   };
 
+  const handlePasswordAgain = (e) => {
+    setPasswordAgain(e.target.value);
+  };
+
   const handleSubmit = (e) => {
+    if (password !== passwordAgain) {
+      alert("Passwords are different!")
+      return
+    }
+
     e.preventDefault()
     fetch("https://sporganize.azurewebsites.net/register",
     {
@@ -79,12 +89,19 @@ function SignUp () {
         <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
             <label>Username</label>
-            <input type="text" value={username} onChange={handleUsername} placeholder="demirelenes" required/>
+            <input type="email" value={username} onChange={handleUsername} placeholder="enesdemirel@sporganize.com" required/>
           </div>
 
           <div className="sign-up-form-group">
             <label>Password</label>
             <input type="password" value={password} onChange={handlePassword} placeholder="*********" required/>
+          </div>
+        </fieldset>
+
+        <fieldset className="sign-up-single-group">
+          <div className="sign-up-form-group">
+            <label>Confirm Password</label>
+            <input type="password" value={passwordAgain} onChange={handlePasswordAgain} placeholder="*********" required/>
           </div>
         </fieldset>
         
