@@ -1,9 +1,11 @@
 import FacilityList from "./FacilityList";
+import FilterReservation from "./FilterReservation";
 
 function Reservation(){
 
     return (
-        <div>
+        <div className="reservation-page">
+            <FilterReservation/>
             <FacilityList/>
         </div>
     );

@@ -2,6 +2,10 @@ import './Facility.css'
 
 function FacilityCard({ facility }) {
 
+  const handleMakeReservation = () => {
+    
+  }
+
   return (
     <div className="facility-card">
       <div className="facility-card-column">
@@ -13,8 +17,8 @@ function FacilityCard({ facility }) {
         <div className="facility-branches">
           {facility.branches.map(branch => (<div className="facility-branch">{branch}</div>))}
         </div>
-        <div className="facility-price"> {facility.price} </div>
-        <button className="facility-reservation-button">Make Reservation</button>
+        <div className="facility-price"> {facility.price} TL/Hour </div>
+        <button className="facility-reservation-button" onClick={handleMakeReservation}>Make Reservation</button>
       </div>
       <div className="facility-card-img-column">
         <img className="facility-card-img" src={facility.picture} alt="facility"></img> 

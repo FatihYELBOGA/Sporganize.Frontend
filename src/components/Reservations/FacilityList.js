@@ -1,11 +1,13 @@
 import './Facility.css'
 import FacilityCard from './FacilityCard'
 
+import testPicture from '../../pictures/testFacilityPicture.jpg'
+
 function FacilityList({ facility }) {
 
   const testFacility = {
     name: "Spor Salonu",
-    phone: "123 456 78 90",
+    phone: "(123) 456 78 90",
     location: {
       street: "Street",
       district: "District",
@@ -13,10 +15,10 @@ function FacilityList({ facility }) {
     },
     branches: ["Football", "Tennis"],
     price: 150,
-    picture: "",
+    picture: testPicture,
   }
 
-  const testFacilities = [testFacility]
+  const testFacilities = [testFacility, testFacility, testFacility]
 
   return (
     <div className="facility-list">
