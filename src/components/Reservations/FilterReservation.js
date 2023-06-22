@@ -15,7 +15,6 @@ function FilterReservation({ facilityList, setFacilityList, allFacilities }) {
 
   function handleFilterButton(e) {
     e.preventDefault()
-    console.log(allFacilities);
     setFacilityList(filterByPrice)
   }
 
