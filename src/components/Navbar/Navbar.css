@@ -35,7 +35,11 @@ li {
 }
 .nav__wrapper {
   background: #BDBDBD ;
+  position: sticky;
+  top: 0;
+  z-index: 999; 
 }
+
 
 .nav {
   display: flex;

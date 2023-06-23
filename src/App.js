@@ -7,7 +7,7 @@ import SignUp from './components/SignUp/SignUp'
 import Homepage from './components/Homepage/Homepage'
 import Reservations from './components/Reservations/Reservations'
 import Teams from './components/Teams/Teams'
-import Profile from './components/Profile/profile'
+import Profile from './components/Profile/Profile'
 import Tournaments from './components/Tournaments/Tournaments';
 import MyPosts from './components/MyPosts/MyPosts'
 import MyFriends from './components/MyFriends/MyFriends';
@@ -16,6 +16,7 @@ import MyReservations from './components/MyReservations/MyReservations';
 import MyTournaments from './components/MyTournaments/MyTournaments'
 import MyAppointments from './components/MyAppointments/MyAppointments';
 import Sidebar from './components/Sidebar/Sidebar';
+import JoinTeam from './components/JoinTeam/JoinTeam';
 
 function App() {
 
@@ -57,7 +58,8 @@ function App() {
         <Routes>
           <Route exact path='/home' element = {<Homepage/>} />
           <Route exact path='/reservations' element = {<Reservations/>} />
-          <Route exact path='/teams' element = {<Teams/>} />
+          <Route exact path='/Teams' element = {<Teams/>} />
+          <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
           <Route exact path='/Profile' element = {<Profile setUserId={setUserId} setRole={setRole} />} />
           <Route exact path='/MyPosts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
