@@ -1,26 +1,10 @@
-/* JoinTeam.css */
-
 .text-field {
     width: 50%;
     color: #FFFFFF;
   }
   
-  .text-field .MuiOutlinedInput-notchedOutline {
-    border-color: #1E7B38;
-  }
-  
-  .text-field:hover .MuiOutlinedInput-notchedOutline,
-  .text-field.Mui-focused .MuiOutlinedInput-notchedOutline,
-  .text-field.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
-  .text-field.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #1E7B38;
-  }
-  
-  .text-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input,
-  .text-field .MuiOutlinedInput-root:hover .MuiOutlinedInput-input,
-  .text-field .MuiOutlinedInput-input,
-  .text-field .MuiIconButton-root {
-    color: #1E7B38;
+  .text-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: #1E7B38 !important;
   }
   
   .sport-chip {
@@ -45,7 +29,12 @@
     color: #FFFFFF;
   }
   
-  .card .card-description,
+  .card .card-description {
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  
   .card .team-members {
     font-size: 16px;
     color: #FFFFFF;

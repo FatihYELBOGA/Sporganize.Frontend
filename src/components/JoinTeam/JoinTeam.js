@@ -1,18 +1,16 @@
-// JoinTeam.js
 import React, { useState, useEffect } from "react";
 import { Button, Card, CardContent, CardMedia, Typography, Grid, Box, TextField, InputAdornment, IconButton, Chip } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
 import './JoinTeam.css';
 
-// Import pictures
 import team1picture from "../../pictures/team1.png";
 import team2picture from "../../pictures/team2.png";
 import team3picture from "../../pictures/team3.png";
 
 function JoinTeam() {
   const [teams, setTeams] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState("Soccer");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -23,7 +21,7 @@ function JoinTeam() {
           name: "BESTFOOT", 
           logoUrl: team1picture, 
           description: "We are looking for two midfielders.", 
-          members: ["Member 1", "Member 2"], 
+          members: ["Member 1", "Member 2",], 
           sport: "Soccer" 
         },
         { 
@@ -38,7 +36,7 @@ function JoinTeam() {
           id: 3, 
           name: "JAGUARS", 
           logoUrl: team3picture, 
-          description: "Looking for a new coach.", 
+          description: "Looking for a team member to join tournaments.", 
           members: ["Member 5", "Member 6"], 
           sport: "Basketball" 
         },
@@ -108,19 +106,20 @@ function JoinTeam() {
                       alt={team.name}
                       sx={{ maxHeight: 140, objectFit: 'contain' }}
                     />
-                    <Box bgcolor="#647C31" p={1} my={2} width="100%" display="flex" justifyContent="center" borderRadius="10px">
+                    <Box bgcolor="#647C31" p={1} my={2} width="100%" display="flex" alignItems="center" justifyContent="center" borderRadius="10px">
                       <Typography className="card-description">{team.description}</Typography>
                     </Box>
                     <Box bgcolor="#1E7B38" p={1} my={1} width="100%" display="flex" flexDirection="row" alignItems="center" maxHeight={100} overflow="auto" borderRadius="10px">
-                      <Typography className="team-members">Team Members: </Typography>
-                      <Box display="flex" flexDirection="row" flexWrap="wrap" pl={1}>
-                        {team.members.map((member, index, arr) => 
-                          <Typography className="card-member-name">
-                            {member}{(index !== arr.length - 1) ? ',' : ''}
-                          </Typography>
-                        )}
-                      </Box>
-                    </Box>
+  <Typography className="team-members">Team Members: </Typography>
+  <Box display="flex" flexDirection="row" flexWrap="wrap" pl={1} alignItems="center">
+    {team.members.map((member, index, arr) => 
+      <Typography className="card-member-name">
+        {member}{(index !== arr.length - 1) ? ',' : ''}
+      </Typography>
+    )}
+  </Box>
+</Box>
+
                     <Box mt={2}>
                       <Button 
                         variant="contained"
