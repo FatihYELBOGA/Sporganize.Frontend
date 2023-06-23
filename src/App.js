@@ -61,7 +61,7 @@ function App() {
           <Route exact path='/Teams' element = {<Teams/>} />
           <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
-          <Route exact path='/Profile' element = {<Profile setUserId={setUserId} setRole={setRole} />} />
+          <Route exact path='/Profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile /></div>} />
           <Route exact path='/MyPosts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
           <Route exact path='/MyAppointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
           <Route exact path='/MyFriends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />
