@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemText } from '@mui/material';
+import { Drawer, List, ListItem, ListItemText, Box } from '@mui/material';
 import { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -15,10 +15,9 @@ const menuItems = [
 
 const Sidebar = (props) => {
 
-  const {setUserId, setRole} = props;
-
+  const { setUserId, setRole } = props;
   const navigate = useNavigate();
-  
+
   const [drawerOpen, setDrawerOpen] = useState(true);
   const location = useLocation();
 
@@ -53,38 +52,56 @@ const Sidebar = (props) => {
       <List>
         {menuItems.map((item) => (
           <ListItem
-            button
             key={item.id}
             component={RouterLink}
             to={item.href}
             selected={location.pathname === item.href}
-            style={{
+            sx={{
               display: 'flex',
               justifyContent: 'center',
-              backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
-              marginBottom: '8%',
+              mb: '5%',
+              mt: '5%',
+              height: '10%',
               '&:hover': {
-                backgroundColor: location.pathname === item.href ? '#647C31' : 'rgba(100, 124, 49, 0.5)',
+                backgroundColor: 'rgba(100, 124, 49, 0.5)',
+              },
+              '&.Mui-selected, &.Mui-selected:hover': {
+                backgroundColor: '#647C31',
               },
             }}
           >
-            <ListItemText primary={item.label} style={{ color: '#000', textAlign: 'center' }} />
+            <Box
+              sx={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
+                zIndex: -1,
+              }}
+            />
+            <ListItemText 
+              primary={item.label} 
+              sx={{ 
+                color: location.pathname === item.href ? '#fff' : '#000', 
+                textAlign: 'center',
+                '&:hover': {
+                  color: '#fff',
+                },
+              }} 
+            />
           </ListItem>
         ))}
         <ListItem
           button
           onClick={handleLogout}
-          style={{
+          sx={{
             display: 'flex',
             justifyContent: 'center',
+            mb: '5%',
             backgroundColor: 'transparent',
-            marginBottom: '2%', 
-            '&:hover': {
-              backgroundColor: 'rgba(100, 124, 49, 0.5)',
-            },
           }}
         >
-          <ListItemText primary="Logout" style={{ color: 'darkred', textAlign: 'center', fontWeight: 'bold' }} />
+          <ListItemText primary="Logout" sx={{ color: 'darkred', textAlign: 'center', fontWeight: 'bold' }} />
         </ListItem>
       </List>
     </Drawer>
