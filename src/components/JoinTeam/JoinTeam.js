@@ -85,11 +85,17 @@ function JoinTeam() {
         <Box marginBottom={3} display="flex" justifyContent="flex-start" flexWrap="wrap" gap={2}>
           {sports.map(sport => (
             <Chip 
-              label={sport} 
-              color={filter === sport ? "primary" : "default"} 
-              onClick={() => handleFilterChange(sport)}
-              className={filter === sport ? "sport-chip" : ""}
-            />
+            label={sport} 
+            color={filter === sport ? "success" : "default"} 
+            onClick={() => handleFilterChange(sport)}
+            className={filter === sport ? "sport-chip" : ""}
+            sx={{
+                '&:hover': {
+                    backgroundColor: '#1E7B38',
+                },
+            }}
+        />
+        
           ))}
         </Box>
 

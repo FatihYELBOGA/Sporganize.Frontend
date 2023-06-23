@@ -18,10 +18,10 @@
   }
   
   .card {
-    border-radius: 20px;
-    border: 1px solid #000;
-    background: rgba(56, 56, 56, 0.75);
-    min-height: 350px;
+    border-radius: 20px !important;
+    border: 1px solid #000 !important;
+    background: rgba(56, 56, 56, 0.75) !important;
+    min-height: 350px !important;
   }
   
   .card .card-title {
@@ -52,4 +52,7 @@
     border-radius: 4px;
     font-size: 16px;
   }
-  
+.join-button:hover,
+.join-button:focus {
+  background-color: #D81A1A !important;
+}
