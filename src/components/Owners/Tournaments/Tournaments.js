@@ -2,7 +2,9 @@ function Tournaments(){
 
     return (
         <div>
-            Tournaments
+            <h1>
+                Tournaments
+            </h1>
         </div>
     );
 }

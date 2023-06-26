@@ -2,7 +2,9 @@ function Reservations(){
 
     return (
         <div>
-            Reservations
+            <h1>
+                Reservations
+            </h1>
         </div>
     );
 }

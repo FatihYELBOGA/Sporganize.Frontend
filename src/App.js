@@ -22,9 +22,9 @@ import Sidebar from './components/Users/Sidebar/Sidebar';
 import JoinTeam from './components/Users/JoinTeam/JoinTeam';
 
 // the owner interfaces
-import OwnerTournaments from './components/Owners/Tournaments/Tournaments'
-import OwnerReservation from './components/Owners/Reservations/Reservations'
-import About from './components/Owners/About/About'
+import OwnerTournaments from './components/Owners/Tournaments/Tournaments';
+import OwnerReservation from './components/Owners/Reservations/Reservations';
+import About from './components/Owners/About/About';
 
 
 function App() {
@@ -77,9 +77,9 @@ function App() {
       <BrowserRouter> 
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/OwnerTournaments' element = {OwnerTournaments} />
-          <Route exact path='/OwnerReservations' element = {OwnerReservation} />
-          <Route exact path='/About' element = {About} />
+          <Route exact path='/OwnerTournaments' element = {<OwnerTournaments />} />
+          <Route exact path='/OwnerReservations' element = {<OwnerReservation />} />
+          <Route exact path='/About' element = {<About />} />
         </Routes>
       </BrowserRouter>
     );

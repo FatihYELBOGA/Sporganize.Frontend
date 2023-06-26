@@ -11,8 +11,8 @@ export const getTopNavOfUser = () => {
 };
 
 const topNavOfOwner = [
-  { id: 1, label: 'Tournaments', href: '/Tournaments' },
-  { id: 2, label: 'Reservations', href: '/Reservations' },
+  { id: 1, label: 'Tournaments', href: '/OwnerTournaments' },
+  { id: 2, label: 'Reservations', href: '/OwnerReservations' },
   { id: 3, label: 'About', href: '/About' }
 ];
 
