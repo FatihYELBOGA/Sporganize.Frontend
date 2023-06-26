@@ -1,11 +1,8 @@
-@@ -4,73 +4,72 @@
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
-<<<<<<< Updated upstream
-=======
-import Home from './components/Homepage/Homepage'
->>>>>>> Stashed changes
 import Homepage from './components/Homepage/Homepage'
 import Reservations from './components/Reservations/Reservations'
 import Teams from './components/Teams/Teams'
@@ -19,7 +16,7 @@ import MyTournaments from './components/MyTournaments/MyTournaments'
 import MyAppointments from './components/MyAppointments/MyAppointments';
 import Sidebar from './components/Sidebar/Sidebar';
 import JoinTeam from './components/JoinTeam/JoinTeam';
-import TeamsSidebar from './components/TeamsSidebar/TeamsSidebar';
+
 
 function App() {
 
@@ -59,10 +56,6 @@ function App() {
       <BrowserRouter>
         <Navbar/> 
         <Routes>
-<<<<<<< Updated upstream
-=======
-          <Route exact path='/home' element = {<Home/>} />
->>>>>>> Stashed changes
           <Route exact path='/home' element = {<Homepage/>} />
           <Route exact path='/reservations' element = {<Reservations/>} />
           <Route exact path='/Teams' element = { <Teams/>} />
