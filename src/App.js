@@ -17,6 +17,7 @@ import MyTournaments from './components/MyTournaments/MyTournaments'
 import MyAppointments from './components/MyAppointments/MyAppointments';
 import Sidebar from './components/Sidebar/Sidebar';
 import JoinTeam from './components/JoinTeam/JoinTeam';
+import TeamsSidebar from './components/TeamsSidebar/TeamsSidebar';
 
 function App() {
 
@@ -58,7 +59,7 @@ function App() {
         <Routes>
           <Route exact path='/home' element = {<Homepage/>} />
           <Route exact path='/reservations' element = {<Reservations/>} />
-          <Route exact path='/Teams' element = {<Teams/>} />
+          <Route exact path='/Teams' element = { <Teams/>} />
           <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
           <Route exact path='/Profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile /></div>} />
