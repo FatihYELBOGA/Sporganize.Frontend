@@ -4,7 +4,7 @@ import {
   RadioGroup, FormControlLabel, Radio, Typography, Paper, InputAdornment, Box
 } from "@material-ui/core";
 import { 
-  SportsBasketball, SportsFootball, SportsTennis, SportsVolleyball, Add, Remove 
+  SportsBasketball, SportsSoccer, SportsTennis, SportsVolleyball, Add, Remove 
 } from "@material-ui/icons";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
@@ -134,7 +134,7 @@ const Teams = () => {
             >
               <FormControlLabel value="Football" control={<Radio color="primary" />} label={
                 <Box display="flex" alignItems="center">
-                  <SportsFootball style={{ marginRight: 10 }}/>
+                  <SportsSoccer style={{ marginRight: 10 }}/>
                   Football
                 </Box>
               } />

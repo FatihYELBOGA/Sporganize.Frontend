@@ -1,58 +1,58 @@
 .text-field {
-    width: 50%;
-    color: #FFFFFF;
-  }
-  
-  .text-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: #1E7B38 !important;
-  }
-  
-  .sport-chip {
-    background-color: #1E7B38;
-    color: #FFFFFF;
-  }
-  
-  .sport-chip:hover,
-  .sport-chip:focus {
-    background-color: #1E7B38;
-  }
-  
-  .card {
-    border-radius: 20px !important;
-    border: 1px solid #000 !important;
-    background: rgba(56, 56, 56, 0.75) !important;
-    min-height: 350px !important;
-  }
-  
-  .card .card-title {
-    font-size: 24px;
-    color: #FFFFFF;
-  }
-  
-  .card .card-description {
-    font-size: 16px;
-    color: #FFFFFF;
-    text-align: center;
-  }
-  
-  .card .team-members {
-    font-size: 16px;
-    color: #FFFFFF;
-  }
-  
-  .card .card-member-name {
-    font-size: 14px;
-    color: #FFFFFF;
-    margin: 0px 5px 5px 0px;
-  }
-  
-  .card .join-button {
-    background-color: #D81A1A;
-    color: #FFFFFF;
-    border-radius: 4px;
-    font-size: 16px;
-  }
+  width: 50%;
+  color: #FFFFFF;
+}
+
+.text-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #1E7B38 !important;
+}
+
+.sport-chip {
+  background-color: #1E7B38;
+  color: #FFFFFF;
+}
+
+.sport-chip:hover,
+.sport-chip:focus {
+  background-color: #1E7B38;
+}
+
+.card {
+  border-radius: 20px !important;
+  border: 1px solid #000 !important;
+  background: rgba(56, 56, 56, 0.75) !important;
+  min-height: 350px !important;
+}
+
+.card .card-title {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+.card .card-description {
+  font-size: 16px;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.card .team-members {
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.card .card-member-name {
+  font-size: 14px;
+  color: #FFFFFF;
+  margin: 0px 5px 5px 0px;
+}
+
+.card .join-button {
+  background-color: #D81A1A;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-size: 16px;
+}
 .join-button:hover,
 .join-button:focus {
-  background-color: #D81A1A !important;
+background-color: #D81A1A !important;
 }
