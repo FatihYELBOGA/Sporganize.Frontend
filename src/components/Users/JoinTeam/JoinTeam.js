@@ -3,7 +3,7 @@ import { Button, Card, CardContent, CardMedia, Typography, Grid, Box, TextField,
 import SearchIcon from '@mui/icons-material/Search';
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
 import './JoinTeam.css';
-
+// team logo photos
 import team1picture from "../../../pictures/team1.png";
 import team2picture from "../../../pictures/team2.png";
 import team3picture from "../../../pictures/team3.png";

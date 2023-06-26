@@ -36,6 +36,7 @@ const TeamsSidebar = () => {
       <List>
         {menuItems.map((item) => (
           <ListItem
+          
             key={item.id}
             component={RouterLink}
             to={item.href}
@@ -77,6 +78,7 @@ const TeamsSidebar = () => {
         ))}
       </List>
     </Drawer>
+
   );
 };
 
