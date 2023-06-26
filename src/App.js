@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+@@ -4,73 +4,72 @@
 import Navbar from './components/Navbar/Navbar'
 import Login from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp'
+<<<<<<< Updated upstream
+=======
+import Home from './components/Homepage/Homepage'
+>>>>>>> Stashed changes
 import Homepage from './components/Homepage/Homepage'
 import Reservations from './components/Reservations/Reservations'
 import Teams from './components/Teams/Teams'
@@ -57,6 +59,10 @@ function App() {
       <BrowserRouter>
         <Navbar/> 
         <Routes>
+<<<<<<< Updated upstream
+=======
+          <Route exact path='/home' element = {<Home/>} />
+>>>>>>> Stashed changes
           <Route exact path='/home' element = {<Homepage/>} />
           <Route exact path='/reservations' element = {<Reservations/>} />
           <Route exact path='/Teams' element = { <Teams/>} />

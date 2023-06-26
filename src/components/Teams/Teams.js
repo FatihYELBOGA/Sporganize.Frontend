@@ -8,6 +8,7 @@ import {
 } from "@material-ui/icons";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
+<<<<<<< Updated upstream
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
 const theme = createTheme({
   palette: {
@@ -37,6 +38,37 @@ const Teams = () => {
   const usernames = ["user1", "user2", "user3","merveozan","osmanaltunay","enesdemirel","fatihyelboga"];
   const teamNames = ["team1", "team2", "team3"];  
 
+=======
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1E7B38',
+    },
+    secondary: {
+      main: '#000000',
+    },
+    error: {
+      main: '#f44336',
+    },
+    success: {
+      main: green[500],
+    }
+  },
+});
+const Teams = () => {
+  const [teamName, setTeamName] = useState("");
+  const [sport, setSport] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [sentRequests, setSentRequests] = useState([]);
+  const [error, setError] = useState(false);
+  const [errorTeamName, setErrorTeamName] = useState(false);
+
+  const usernames = ["user1", "user2", "user3","merveozan","osmanaltunay","enesdemirel","fatihyelboga"];
+  const teamNames = ["team1", "team2", "team3"];  
+
+>>>>>>> Stashed changes
   const handleSendRequest = () => {
     if (selectedFriend) {
       if(usernames.includes(selectedFriend)) {
@@ -64,13 +96,20 @@ const Teams = () => {
       setErrorTeamName(true);
     } else {
       setErrorTeamName(false);
+<<<<<<< Updated upstream
 
+=======
+      // Add the team creation logic here
+>>>>>>> Stashed changes
     }
   }
 
   return (
     <ThemeProvider theme={theme}>
+<<<<<<< Updated upstream
       <TeamsSidebar/>
+=======
+>>>>>>> Stashed changes
       <div style={{ display: "flex", justifyContent: "center", marginTop: '3rem' }}>
       <Paper style={{ 
         padding: '2rem', 

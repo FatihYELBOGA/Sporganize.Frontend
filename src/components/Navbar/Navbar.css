@@ -34,10 +34,17 @@ li {
   }
 }
 .nav__wrapper {
+<<<<<<< Updated upstream
   background: #BDBDBD ;
   position: sticky;
   top: 0;
   z-index: 999; 
+=======
+  background: #BDBDBD;
+  position: sticky;
+  top: 0;
+  z-index: 999;  /* other elements to slide under the navbar */
+>>>>>>> Stashed changes
 }
 
 

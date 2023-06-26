@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 import { Drawer, List, ListItem, ListItemText, Box } from '@mui/material';
+=======
+
+import { Drawer, List, ListItem, ListItemText } from '@mui/material';
+>>>>>>> Stashed changes
 import { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 
@@ -6,7 +11,11 @@ const menuItems = [
   { id: 1, label: 'Create Team', href: '/Teams' },
   { id: 2, label: 'Join Team', href: '/JoinTeam' },
 ];
+<<<<<<< Updated upstream
   
+=======
+
+>>>>>>> Stashed changes
 const TeamsSidebar = () => {
   const [drawerOpen, setDrawerOpen] = useState(true);
   const location = useLocation();
@@ -35,10 +44,15 @@ const TeamsSidebar = () => {
       <List>
         {menuItems.map((item) => (
           <ListItem
+<<<<<<< Updated upstream
+=======
+            button
+>>>>>>> Stashed changes
             key={item.id}
             component={RouterLink}
             to={item.href}
             selected={location.pathname === item.href}
+<<<<<<< Updated upstream
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -72,6 +86,21 @@ const TeamsSidebar = () => {
                 },
               }} 
             />
+=======
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
+              marginBottom: '8%',
+              marginTop: '10%',
+              height: '20%', 
+              '&:hover': {
+                backgroundColor: location.pathname === item.href ? '#647C31' : 'rgba(100, 124, 49, 0.5)',
+              },
+            }}
+          >
+            <ListItemText primary={item.label} style={{ color: '#000', textAlign: 'center' }} />
+>>>>>>> Stashed changes
           </ListItem>
         ))}
       </List>

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 import {
   Box, TextField, Avatar, Typography, Grid,
@@ -132,7 +133,24 @@ const Profile = () => {
         </Box>
       </Box>
     </ThemeProvider>
+=======
+import React from 'react';
+import Sidebar from '../Sidebar/Sidebar';
+const ProfilePage = () => {
+  return (
+   
+    <div style={{ 
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+      fontSize: '24px',
+    }}>
+      Burası profil sayfasıdır
+     < Sidebar/>
+    </div>
+>>>>>>> Stashed changes
   );
 };
 
-export default Profile;
+export default ProfilePage;
