@@ -28,8 +28,9 @@ const theme = createTheme({
 });
 
 const Profile = () => {
-  const [username, setUsername] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
@@ -72,7 +73,20 @@ const Profile = () => {
        </Box>
         <Grid container spacing={2} sx={{ mt: 3 }}>
           <Grid item xs={12}>
-            <TextField label="Username" value={username} onChange={(e) => setUsername(e.target.value)} fullWidth InputProps={{ style: { color: "#000000" }}} sx={{ width: '50%' }}/>
+            <TextField label="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth InputProps={{ style: { color: "#000000" }}} sx={{ width: '50%' }}/>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField label="LastName" value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth InputProps={{ style: { color: "#000000" }}} sx={{ width: '50%' }}/>
+          </Grid>
+          <Grid item xs={4}>
+            <FormControl fullWidth>
+              <InputLabel id="province-label">Gender</InputLabel>
+              <Select labelId="province-label" id="province-select" value={province} onChange={handleProvinceChange}>
+                {provinces.map((prov, index) => (
+                  <MenuItem key={index} value={prov}>{prov}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField label="Birth Date" type="date" defaultValue=""
@@ -85,17 +99,7 @@ const Profile = () => {
               InputProps={{ style: { color: "#000000" }}}
               sx={{ width: '50%' }}
             />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label="Phone Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              fullWidth
-              InputProps={{ style: { color: "#000000" }}}
-              sx={{ width: '50%' }}
-            />
-          </Grid>
+          </Grid>  
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="province-label">Province</InputLabel>
@@ -128,7 +132,7 @@ const Profile = () => {
           </Grid>
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-          <Button variant="contained" color="primary" sx={{ width: '33%' }} onClick={handleSaveChanges}>Save Changes</Button>
+          <Button variant="contained" color="primary" sx={{marginRight: '50%', width: '50%' }} onClick={handleSaveChanges}>Save Changes</Button>
         </Box>
       </Box>
     </ThemeProvider>
