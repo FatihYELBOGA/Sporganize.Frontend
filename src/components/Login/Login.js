@@ -47,10 +47,10 @@ function Login (props) {
         if(res.role === "ADMIN"){
 
         }else if(res.role === "OWNER"){
-
+          navigate("/OwnerTournaments");
         }
         else if(res.role === "USER"){
-          navigate("/home");
+          navigate("/Home");
         }
       } else {
         alert(res.message);
@@ -73,7 +73,7 @@ function Login (props) {
       <form onSubmit={handleSubmit} className="login-form-part">
         <div className="login-form-header">Login</div>
         <div className="login-form-group">
-          <label>Username</label>
+          <label>E-mail</label>
           <input type="email" value={email} onChange={handleEmailChange} placeholder="enesdemirel@sporganize.com" required/>
         </div>
         <div className="login-form-group">

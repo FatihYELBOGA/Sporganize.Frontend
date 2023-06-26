@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './Facility.css'
-import upArrow from '../../pictures/up-arrow.svg'
+import upArrow from '../../../pictures/up-arrow.svg'
 
 function FacilityCard({ facility }) {
   const [makeReservation, setMakeReservation] = useState(false);

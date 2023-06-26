@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import MyAppointmentsCard from "../UserAppointments/MyAppointmentCard";
+import MyAppointmentsCard from "../../Users/UserAppointments/MyAppointmentCard";
 
 function Homepage(){
 

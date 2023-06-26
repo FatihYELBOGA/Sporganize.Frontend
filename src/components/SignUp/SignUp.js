@@ -88,7 +88,7 @@ function SignUp () {
 
         <fieldset className="sign-up-double-group">
           <div className="sign-up-form-group">
-            <label>Username</label>
+            <label>E-mail</label>
             <input type="email" value={username} onChange={handleUsername} placeholder="enesdemirel@sporganize.com" required/>
           </div>
 

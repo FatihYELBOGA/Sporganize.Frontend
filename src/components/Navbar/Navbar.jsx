@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'; 
-import { getTopNav } from './navbars';
+import { getTopNavOfUser, getTopNavOfOwner } from './navbars';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = (props) => {
 
+  const [NavRole, setNavRole] = useState(props.NavRole);
   const [navItems, setNavItems] = useState([]);
   const [collapse, setCollapse] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null); 
 
   const location = useLocation(); 
   useEffect(() => {
-    setNavItems(getTopNav());
+    if(NavRole == "OWNER"){
+      setNavItems(getTopNavOfOwner());
+    } else if(NavRole == "USER"){
+      setNavItems(getTopNavOfUser());
+    }
   }, []);
 
   useEffect(() => { 

@@ -1,11 +1,21 @@
-const topNav = [
-    { id: 1, label: 'Homepage', href: '/home' },
-    { id: 2, label: 'Reservations', href: '/reservations' },
+const topNavOfUser = [
+    { id: 1, label: 'Homepage', href: '/Home' },
+    { id: 2, label: 'Reservations', href: '/Reservations' },
     { id: 3, label: 'Teams', href: '/Teams' },
-    { id: 4, label: 'Tournaments', href: '/tournaments' },
+    { id: 4, label: 'Tournaments', href: '/Tournaments' },
     { id: 5, label: 'Profile', href: '/Profile' },
   ];
-  
-  export const getTopNav = () => {
-    return topNav;
-  };
+
+export const getTopNavOfUser = () => {
+  return topNavOfUser;
+};
+
+const topNavOfOwner = [
+  { id: 1, label: 'Tournaments', href: '/Tournaments' },
+  { id: 2, label: 'Reservations', href: '/Reservations' },
+  { id: 3, label: 'About', href: '/About' }
+];
+
+export const getTopNavOfOwner = () => {
+  return topNavOfOwner;
+};  

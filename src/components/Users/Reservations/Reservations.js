@@ -2,7 +2,7 @@ import FacilityList from "./FacilityList";
 import FilterReservation from "./FilterReservation";
 import { useState } from "react";
 
-import testPicture from '../../pictures/testFacilityPicture.jpg'
+import testPicture from '../../../pictures/testFacilityPicture.jpg'
 
 function Reservation() {
 
