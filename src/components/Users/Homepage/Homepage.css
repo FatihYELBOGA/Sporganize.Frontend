@@ -1,0 +1,29 @@
+.homepage {
+  display: flex;
+}
+
+.homepage-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding-top: 35px;
+  align-items: center;
+}
+
+.homepage-appointments {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+}
+
+.homepage-new-button {
+  width: 75%;
+  height: 10%;
+  background-color: green;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 150%;
+  border-radius: 6px;
+  box-shadow: 4px 5px 4px dimgray;
+}

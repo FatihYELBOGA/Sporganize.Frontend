@@ -9,40 +9,45 @@
   align-items: center;
   margin: auto auto;
   margin-top: 5%;
-  padding: 1% 2%;
-  gap: 10px;
+  padding: 2%;
+  gap: 12px;
 }
 
 .appointment-title {
   font-size: 150%;
 }
 
-.appointment-user-username {
-  font-size: 120%;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.appointment-user {
+.appointment-user-info, .appointment-user-details {
+  display: flex;
+  align-self: flex-end;
   color: greenyellow;
-  padding: 5px;
-  width: 100%;
-  padding: 0;
+  gap: 5px;
 }
 
 .appointment-user-details {
-  display: flex;
-  justify-content: space-around;
+  gap: 15px;
+}
+
+.appointment-user-username {
+  font-size: 100%;
+  text-decoration: underline;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.appointment-title, .appointment-desc {
+  align-self: flex-start;
 }
 
 .appointment-desc {
-  width: 90%;
+  font-style: italic;
 }
 
 .appointment-row {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .appointment-reason {
@@ -50,11 +55,21 @@
 }
 
 .appointment-branch {
-  border: 2px orangered solid;
-  border-radius: 15px;
-  padding: 4px;
-  color: orangered;
+  border: 1px orange solid;
+  border-radius: 10px;
+  padding: 4px 8px;
+  color: orange;
   width: fit-content;
+}
+
+.appointment-send-request {
+  width: 75%;
+  background-color: green;
+  color: whitesmoke;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 2%;
 }
 
 .appointment-accepted-users summary {

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import MyAppointmentsCard from "../../Users/UserAppointments/MyAppointmentCard";
+import AppointmentCard from "../UserAppointments/AppointmentCard";
+import './Homepage.css'
 
 function Homepage(){
 
@@ -24,9 +25,18 @@ function Homepage(){
         getAppointments();
     }, [])
 
+    const handleNewPostButton = () => {
+
+    }
+
     return (
-        <div>
-            {appointments.map((appointment) => (<MyAppointmentsCard appointment={appointment} displayUsers={false} />))}
+        <div className="homepage">
+            <div className="homepage-sidebar">
+                <button className="homepage-new-button" onClick={handleNewPostButton}>+ New post</button>
+            </div>
+            <div className="homepage-appointments">
+                {appointments.map((appointment) => (<AppointmentCard appointment={appointment} displayUsers={false} />))}
+            </div>
         </div>
     );
 }

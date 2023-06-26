@@ -1,24 +1,35 @@
-import './MyAppointments.css'
+import { useState } from 'react';
+import './Appointment.css'
 
-function MyAppointmentsCard ({ appointment, displayUsers }) {
+function AppointmentCard ({ appointment, displayUsers }) {
+  
+  const [userDetails, setUserDetails] = useState(false);
+  
+  const handleUserDetails = () => {
+    setUserDetails(!userDetails);
+  };
 
   return (
     <div className="appointment-card">
-      <div className="appointment-title">{appointment.title}</div>
+      
+      <div className='appointment-user-info' onClick={handleUserDetails}>
+        <div className="appointment-user-username">{appointment.user.username}</div>
+        <img src={appointment.userPicture} className="appointment-user-pic" alt='user profile'></img>
+      </div>
 
-      <details className="appointment-user">
-        <summary className="appointment-user-username">{appointment.user.username}</summary>
-        <div className="appointment-user-details">
-          <div className="appointment-user-email">{appointment.user.email}</div>
+      { userDetails ? 
+      <div className="appointment-user-details">
           <div className="appointment-user-phone">{appointment.user.phone}</div>
           <div className="appointment-user-gender">{appointment.user.gender}</div>
-        </div>
-      </details>
+      </div> : <div />
+      }
+
+      <div className="appointment-title">{appointment.title}</div>
 
       <div className="appointment-desc">{appointment.description}</div>
 
       <div className="appointment-row">
-        <div className="appointment-reason">{appointment.appointmentReason}</div>
+        <div className="appointment-location">{appointment.location.street}, {appointment.location.district} / {appointment.location.province}</div>
         <div className="appointment-branch">{appointment.branch}</div>
       </div>
 
@@ -34,11 +45,14 @@ function MyAppointmentsCard ({ appointment, displayUsers }) {
               <div className="appointment-accepted-user-gender">{acceptedUser.acceptedUser.gender}</div>
             </div>))}
         </details> : <div />}
-        <div className="appointment-location">{appointment.location.street} {appointment.location.district}/{appointment.location.province}</div>
+        {/*<div className="appointment-reason">{appointment.appointmentReason}</div>*/}
       </div>
-      
+
+      <button className='appointment-send-request'>
+        I'm interested
+      </button>
     </div>
   )
 }
 
-export default MyAppointmentsCard
+export default AppointmentCard

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import MyAppointmentsCard from "../UserAppointments/MyAppointmentCard";
+import AppointmentCard from "../UserAppointments/AppointmentCard";
 
 const MyAppointments = (props) => {
 
@@ -29,7 +29,7 @@ const MyAppointments = (props) => {
 
     return (
         <div>
-            {myAppointments.map((appointment) => (<MyAppointmentsCard appointment={appointment} displayUsers={true} />))}
+            {myAppointments.map((appointment) => (<AppointmentCard appointment={appointment} displayUsers={true} />))}
         </div>
     );
 };
