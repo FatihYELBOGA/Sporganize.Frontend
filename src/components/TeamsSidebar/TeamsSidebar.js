@@ -40,7 +40,7 @@ const TeamsSidebar = () => {
             key={item.id}
             component={RouterLink}
             to={item.href}
-            selected={location.pathname === item.href}
+            selected={location.pathname == item.href}
             sx={{
               display: 'flex',
               justifyContent: 'center',
