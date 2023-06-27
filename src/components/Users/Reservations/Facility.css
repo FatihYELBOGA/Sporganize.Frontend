@@ -100,7 +100,7 @@
 
 .filter-reservation {
   height: inherit;
-  width: 20%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   padding: 2% 3%;
@@ -122,6 +122,11 @@
 .single-price-input {
   display: flex;
   gap: 5px;
+  width: 100%;
+}
+
+.single-price-input input {
+  width: 90%;
 }
 
 .filter-price-button {

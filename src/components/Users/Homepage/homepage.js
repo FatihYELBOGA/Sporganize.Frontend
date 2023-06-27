@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import AppointmentCard from "../UserAppointments/AppointmentCard";
 import './Homepage.css'
+import NewPost from "../NewPost/NewPost.js"
 
 function Homepage(){
 
-    const[appointments, setAppointments] = useState([]);
+    const [appointments, setAppointments] = useState([]);
+    const [newPost, setNewPost] = useState(false);
 
     const getAppointments = () => {
         fetch("https://sporganize.azurewebsites.net/appointments")
@@ -25,8 +27,9 @@ function Homepage(){
         getAppointments();
     }, [])
 
-    const handleNewPostButton = () => {
-
+    const handleNewPostButton = (e) => {
+        e.preventDefault();
+        setNewPost(!newPost);
     }
 
     return (
@@ -34,9 +37,16 @@ function Homepage(){
             <div className="homepage-sidebar">
                 <button className="homepage-new-button" onClick={handleNewPostButton}>+ New post</button>
             </div>
-            <div className="homepage-appointments">
-                {appointments.map((appointment) => (<AppointmentCard appointment={appointment} displayUsers={false} />))}
-            </div>
+            { newPost ?
+                <div className="homepage-new-post">
+                    <NewPost setNewPost={setNewPost} />
+                </div>
+                :
+                <div className="homepage-appointments">
+                    {appointments.map((appointment) => (<AppointmentCard appointment={appointment} displayUsers={false} />))}
+                </div>
+
+            }
         </div>
     );
 }

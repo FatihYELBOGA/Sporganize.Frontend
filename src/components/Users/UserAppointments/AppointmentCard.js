@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import './Appointment.css'
+import checkIcon from '../../../pictures/checkIcon.svg'
 
 function AppointmentCard ({ appointment, displayUsers }) {
   
   const [userDetails, setUserDetails] = useState(false);
+  const [clicked, setClicked] = useState(false);
   
   const handleUserDetails = () => {
     setUserDetails(!userDetails);
   };
+
+  const handleRequest = (e) => {
+    e.preventDefault();
+    setClicked(true);
+  }
 
   return (
     <div className="appointment-card">
@@ -45,12 +52,17 @@ function AppointmentCard ({ appointment, displayUsers }) {
               <div className="appointment-accepted-user-gender">{acceptedUser.acceptedUser.gender}</div>
             </div>))}
         </details> : <div />}
-        {/*<div className="appointment-reason">{appointment.appointmentReason}</div>*/}
       </div>
 
-      <button className='appointment-send-request'>
-        I'm interested
-      </button>
+      { clicked ?
+        <button className='appointment-send-request-img' onClick={handleRequest}>
+          <img src={checkIcon} alt='check icon'></img>
+        </button>
+        :
+        <button className='appointment-send-request' onClick={handleRequest}>
+          I'm interested
+        </button>
+      }
     </div>
   )
 }
