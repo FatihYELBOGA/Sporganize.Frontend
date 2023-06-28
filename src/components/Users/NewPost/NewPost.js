@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box, TextField, Avatar, Typography, Grid,
   Select, MenuItem, InputLabel, FormControl, Button, createTheme, ThemeProvider
 } from '@mui/material';
 import "./NewPost.css"
-
-const addressData = {
-  "İstanbul": {
-    "Kadıköy": ["Acıbadem", "Moda", "Erenköy"],
-    "Beşiktaş": ["Levent", "Etiler", "Ortaköy"],
-  },
-  "Ankara": {
-    "Çankaya": ["Kızılay", "Dikmen", "Ayrancı"],
-    "Mamak": ["Altındağ", "Demetevler", "Başak"],
-  }
-};
-
-const branchData = [
-  "Football",
-  "Basketball",
-  "Tennis"
-]
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -67,31 +51,95 @@ const theme = createTheme({
   }
 });
 
-const NewPost = ({ setNewPost }) => {
+const NewPost = (props) => {
+
+  const navigate = useNavigate();
+
+  const {userId, setNewPost, setPostAdded} = props;
+
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [branch, setBranch] = useState("");
   const [province, setProvince] = useState("");
+  const [provinceId, setProvinceId] = useState(0);
   const [district, setDistrict] = useState("");
+  const [districtId, setDistrictId] = useState(0);
   const [street, setStreet] = useState("");
-  const branches = branchData;
-  const provinces = Object.keys(addressData);
-  const districts = province ? Object.keys(addressData[province]) : [];
-  const streets = district ? addressData[province][district] : [];
+  const [streetId, setStreetId] = useState(0);
 
-  const handleProvinceChange = (event) => {
-    setProvince(event.target.value);
-    setDistrict("");
-    setStreet("");
+  const [branches, setBranches] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [streets, setStreets] = useState([]);
+
+ 
+  useEffect(() => {
+    fetch(" https://sporganize.azurewebsites.net/branches").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setBranches(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, [])
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/provinces").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setProvinces(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, [])
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setDistricts(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [provinceId])
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setStreets(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [districtId])
+
+  const handleProvinceChange = (e) => {
+
+    let pid = provinces.find(province => province.name === e.target.value)?.id;
+    setProvinceId(pid);
+    setProvince(e.target.value);
   };
 
-  const handleDistrictChange = (event) => {
-    setDistrict(event.target.value);
-    setStreet("");
+  const handleDistrictChange = (e) => {
+
+    let did = districts.find(district => district.name === e.target.value)?.id;
+    setDistrictId(did);
+    setDistrict(e.target.value);
   };
 
-  const handleBranchChange = (e) => {
-    setBranch(e.target.value);
+  const handleStreetChange = (e) => {
+
+    let sid = streets.find(street => street.name === e.target.value)?.id;
+    setStreetId(sid);
+    setStreet(e.target.value);
   }
 
   const handleCancel= (e) => {
@@ -99,8 +147,28 @@ const NewPost = ({ setNewPost }) => {
     setNewPost(false)
   }
 
-  const handleSaveChanges = () => {
-
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
+    fetch("https://sporganize.azurewebsites.net/appointments",
+    {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+      },
+      body : JSON.stringify({
+        title : title,
+        description : desc,
+        branch : branch,
+        streetId : streetId,
+        userId : userId
+      }),    
+    })
+    .then((res) => {
+      res.json();
+      alert("the post added successfully!");
+      setPostAdded(true);
+    })
+    .catch((err) => console.log(err))
   };
 
   return (
@@ -119,8 +187,8 @@ const NewPost = ({ setNewPost }) => {
               <FormControl fullWidth>
                 <InputLabel id="branch-label">Branch</InputLabel>
                 <Select labelId="branch-label" id="branch-select" value={branch} onChange={(e) => setBranch(e.target.value)}>
-                  {branches.map((br, index) => (
-                    <MenuItem key={index} value={br}>{br}</MenuItem>
+                  {branches.map((b) => (
+                    <MenuItem value={b}>{b}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -128,9 +196,9 @@ const NewPost = ({ setNewPost }) => {
             <Grid item xs={6}>
               <FormControl fullWidth>
                 <InputLabel id="province-label">Province</InputLabel>
-                <Select labelId="province-label" id="province-select" value={province} onChange={handleProvinceChange}>
-                  {provinces.map((prov, index) => (
-                    <MenuItem key={index} value={prov}>{prov}</MenuItem>
+                <Select labelId="province-label" id="province-select" value={province} onChange={handleProvinceChange} >
+                  {provinces.map((p) => (
+                    <MenuItem key={p.id} value={p.name} >{p.name}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -139,8 +207,8 @@ const NewPost = ({ setNewPost }) => {
               <FormControl fullWidth>
                 <InputLabel id="district-label">District</InputLabel>
                 <Select labelId="district-label" id="district-select" value={district} onChange={handleDistrictChange} disabled={!province}>
-                  {districts.map((dist, index) => (
-                    <MenuItem key={index} value={dist}>{dist}</MenuItem>
+                  {districts.map((d) => (
+                    <MenuItem key={d.id} value={d.name}>{d.name}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -148,9 +216,9 @@ const NewPost = ({ setNewPost }) => {
             <Grid item xs={6}>
               <FormControl fullWidth>
                 <InputLabel id="street-label">Street</InputLabel>
-                <Select labelId="street-label" id="street-select" value={street} onChange={(e) => setStreet(e.target.value)} disabled={!district}>
-                  {streets.map((str, index) => (
-                    <MenuItem key={index} value={str}>{str}</MenuItem>
+                <Select labelId="street-label" id="street-select" value={street} onChange={handleStreetChange} disabled={!district}>
+                  {streets.map((s) => (
+                    <MenuItem key={s.id} value={s.name}>{s.name}</MenuItem>
                   ))}
                 </Select>
               </FormControl>  

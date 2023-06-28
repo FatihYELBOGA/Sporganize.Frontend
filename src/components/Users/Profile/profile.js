@@ -1,19 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box, TextField, Avatar, Typography, Grid,
   Select, MenuItem, InputLabel, FormControl, Button, createTheme, ThemeProvider
 } from '@mui/material';
-
-const addressData = {
-  "İstanbul": {
-    "Kadıköy": ["Acıbadem", "Moda", "Erenköy"],
-    "Beşiktaş": ["Levent", "Etiler", "Ortaköy"],
-  },
-  "Ankara": {
-    "Çankaya": ["Kızılay", "Dikmen", "Ayrancı"],
-    "Mamak": ["Altındağ", "Demetevler", "Başak"],
-  }
-};
 
 const theme = createTheme({
   palette: {
@@ -57,40 +46,179 @@ const theme = createTheme({
   }
 });
 
-const Profile = () => {
+const Profile = (props) => {
+
+
+  const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
+  const [genders, setGenders] = useState([]);
   const [birthDate, setBirthDate] = useState("");
+  const [phone, setPhone] = useState("");
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
   const [street, setStreet] = useState("");
-  const [avatarSrc, setAvatarSrc] = useState("");
-  const provinces = Object.keys(addressData);
-  const districts = province ? Object.keys(addressData[province]) : [];
-  const streets = district ? addressData[province][district] : [];
-  const genders = ["Female","Male"];
+  const [provinces, setProvinces] = useState([]);
+  const [provinceId, setProvinceId] = useState(0);
+  const [districts, setDistricts] = useState([]);
+  const [districtId, setDistrictId] = useState(0);
+  const [streets, setStreets] = useState([]);
+  const [streetId, setStreetId] = useState(0);
+  const [file, setFile] = useState("");
 
-  const handleProvinceChange = (event) => {
-    setProvince(event.target.value);
-    setDistrict("");
-    setStreet("");
-  };
+  const convertBase64ToFile = (base64String, fileName) => {
+    const contentType = 'image/*'; // Update the content type as per your file type
+    const sliceSize = 1024;
+    const byteCharacters = atob(base64String);
+    const byteArrays = [];
 
-  const handleDistrictChange = (event) => {
-    setDistrict(event.target.value);
-    setStreet("");
-  };
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
 
-  const handleAvatarChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setAvatarSrc(URL.createObjectURL(event.target.files[0]));
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
     }
+
+    const blob = new Blob(byteArrays, { type: contentType });
+    const f = new File([blob], fileName, { type: contentType });
+    const fileURL = URL.createObjectURL(f);
+    setAvatarURL(fileURL);
   };
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/users/"+props.userId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setUsername(result.username);
+      setFirstName(result.firstName);
+      setLastName(result.lastName);
+      setGender(result.gender);
+      setPhone(result.phone);
+      setBirthDate(result.bornDate.split('T')[0]);
+      setProvince(result.location.province);
+      setDistrict(result.location.district);
+      setStreet(result.location.street);
+      setStreetId(result.location.id);
+      convertBase64ToFile(result.profile.content, result.profile.name);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, []);
 
   const handleSaveChanges = () => {
-    console.log('Changes saved!');
+    const formData = new FormData();
+    formData.append("FirstName", firstName);
+    formData.append("LastName", lastName);
+    formData.append("Gender", gender);
+    formData.append("BornDate", birthDate);
+    formData.append("StreetId", streetId);
+    formData.append("Profile", file);
+
+    fetch("https://sporganize.azurewebsites.net/users/" + props.userId, {
+      method: "PUT",
+      body: formData
+    })
+      .then((res) => res.json()) 
+      .then((data) => {
+        alert("the user informations updated successfully!");
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/provinces").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setProvinces(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, []);
+
+  useEffect(() => { 
+    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setDistricts(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [provinceId]);
+
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setStreets(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [districtId]);
+
+  const handleProvinceChange = (e) => {
+    let pid = provinces.find(province => province.name === e.target.value)?.id;
+    setProvinceId(pid);
+    setProvince(e.target.value);
+  };
+
+  const handleDistrictChange = (e) => {
+
+    let did = districts.find(district => district.name === e.target.value)?.id;
+    setDistrictId(did);
+    setDistrict(e.target.value);
+  };
+
+  const handleStreetChange = (e) => {
+    let sid = streets.find(street => street.name === e.target.value)?.id;
+    setStreetId(sid);
+    setStreet(e.target.value);
+  }
+
+  useEffect(() => {
+    fetch(" https://sporganize.azurewebsites.net/genders").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setGenders(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, []);
+
+
+  const handleFile = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Check file size
+      const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
+      if (selectedFile.size <= fileSizeLimit) {
+        setFile(selectedFile);
+        const fileURL = URL.createObjectURL(selectedFile);
+        setAvatarURL(fileURL);
+      } else {
+        // File size exceeds the limit
+        alert("File size exceeds the limit of 5MB.");
+      }
+    }
+  }
+
+  const [avatarURL, setAvatarURL] = useState("");
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,22 +228,28 @@ const Profile = () => {
               accept="image/*"
               id="avatar-upload"
               type="file"
+              onChange={handleFile}
               style={{ display: "none" }}
-              onChange={handleAvatarChange}
             />
-          <Avatar sx={{ width: 80, height: 80, cursor: 'pointer' }} src={avatarSrc} onClick={() => document.getElementById('avatar-upload').click()}/>
-          <Typography variant="h6" component="p" sx={{ color: '#000', textAlign: 'center', textShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)', fontFamily: 'Poppins', fontWeight: 300, fontSize: '32px' }}>John Doe</Typography>
-          <Button variant="contained" color="primary" size="small" sx={{ mt: 1 }} onClick={() => document.getElementById('avatar-upload').click()}>Edit Profile Photo</Button>
+          <Avatar sx={{ width: 80, height: 80}}src={avatarURL} />
+          <Typography variant="h6" component="p" sx={{ color: '#000', textAlign: 'center', textShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)', fontFamily: 'Poppins', fontWeight: 300, fontSize: '32px' }}>{firstName + " " + lastName}</Typography>
+          <Button variant="contained" color="primary" size="small" sx={{ mt: 1 }} onClick={() => document.getElementById('avatar-upload').click()}>Edit Photo</Button>
        </Box>
         <Grid container spacing={2} sx={{ mt: 3 }}>
           <Grid item xs={6}>
-            <TextField label="First Name" placeholder="Enter your first name" value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth/>
+            <TextField label="E-mail"  value={username} onChange={(e) => setUsername(e.target.value)} fullWidth/>
           </Grid>
           <Grid item xs={6}>
-            <TextField label="Last Name" placeholder="Enter your last name" value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth/>
+            <TextField label="Phone"  value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth/>
           </Grid>
           <Grid item xs={6}>
-            <TextField label="Birth Date" type="date" defaultValue="" placeholder="Enter your birth date"
+            <TextField label="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth/>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField label="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} fullWidth/>
+          </Grid>
+          <Grid item xs={6}>
+            <TextField label="Birth Date" type="date"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
               InputLabelProps={{
@@ -128,45 +262,48 @@ const Profile = () => {
             <FormControl fullWidth>
               <InputLabel id="gender-label">Gender</InputLabel>
               <Select labelId="gender-label" id="gender-select" value={gender} onChange={(e) => setGender(e.target.value)}>
-                {genders.map((gend, index) => (
-                  <MenuItem key={index} value={gend}>{gend}</MenuItem>
-                ))}
+              {genders.map((g) => (
+                    <MenuItem value={g} >{g}</MenuItem>
+                  ))}
               </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField label="Current Location" value={province+"/"+district+"/"+street} fullWidth/>
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="province-label">Province</InputLabel>
-              <Select labelId="province-label" id="province-select" value={province} onChange={handleProvinceChange}>
-                {provinces.map((prov, index) => (
-                  <MenuItem key={index} value={prov}>{prov}</MenuItem>
-                ))}
+              <Select labelId="province-label" id="province-select" onChange={handleProvinceChange}>
+                {provinces.map((p) => (
+                    <MenuItem key={p.id} value={p.name} >{p.name}</MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="district-label">District</InputLabel>
-              <Select labelId="district-label" id="district-select" value={district} onChange={handleDistrictChange} disabled={!province}>
-                {districts.map((dist, index) => (
-                  <MenuItem key={index} value={dist}>{dist}</MenuItem>
-                ))}
+              <Select labelId="district-label" id="district-select" onChange={handleDistrictChange}>
+              {districts.map((d) => (
+                    <MenuItem key={d.id} value={d.name}>{d.name}</MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="street-label">Street</InputLabel>
-              <Select labelId="street-label" id="street-select" value={street} onChange={(e) => setStreet(e.target.value)} disabled={!district}>
-                {streets.map((str, index) => (
-                  <MenuItem key={index} value={str}>{str}</MenuItem>
-                ))}
+              <Select labelId="street-label" id="street-select" onChange={handleStreetChange}>
+              {streets.map((s) => (
+                    <MenuItem key={s.id} value={s.name}>{s.name}</MenuItem>
+                  ))}
               </Select>
             </FormControl>  
           </Grid>
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-          <Button variant="contained" color="primary" onClick={handleSaveChanges}>Save Changes</Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 5 }}>
+          <Button sx={{ width: '50%', padding:'1%', marginRight:'25%' }} variant="contained" color="primary" onClick={handleSaveChanges}>Save Changes</Button>
         </Box>
       </Box>
     </ThemeProvider>

@@ -4,10 +4,11 @@ import AppointmentCard from "../UserAppointments/AppointmentCard";
 import './Homepage.css'
 import NewPost from "../NewPost/NewPost.js"
 
-function Homepage(){
+function Homepage(props){
 
     const [appointments, setAppointments] = useState([]);
     const [newPost, setNewPost] = useState(false);
+    const [postAdded, setPostAdded] = useState(false);
 
     const getAppointments = () => {
         fetch("https://sporganize.azurewebsites.net/appointments")
@@ -21,7 +22,14 @@ function Homepage(){
                 console.log(error);
             }
         )
-    }
+    } 
+    
+    useEffect(() => {
+        if (postAdded) {
+          getAppointments();
+          setPostAdded(false);
+        }
+    }, [postAdded]);
 
     useEffect(() => {
         getAppointments();
@@ -39,7 +47,7 @@ function Homepage(){
             </div>
             { newPost ?
                 <div className="homepage-new-post">
-                    <NewPost setNewPost={setNewPost} />
+                    <NewPost userId={props.userId} setNewPost={setNewPost} setPostAdded={setPostAdded} />
                 </div>
                 :
                 <div className="homepage-appointments">

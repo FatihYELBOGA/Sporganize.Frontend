@@ -56,12 +56,12 @@ function App() {
       <BrowserRouter>
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/Home' element = {<Homepage/>} />
+          <Route exact path='/Home' element = {<Homepage userId={userId} />} />
           <Route exact path='/Reservations' element = {<Reservations/>} />
           <Route exact path='/Teams' element = { <Teams/>} />
           <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
           <Route exact path='/Tournaments' element = {<Tournaments/>} />
-          <Route exact path='/Profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile /></div>} />
+          <Route exact path='/Profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
           <Route exact path='/MyPosts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
           <Route exact path='/MyAppointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
           <Route exact path='/MyFriends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />

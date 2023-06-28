@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Appointment.css'
 import checkIcon from '../../../pictures/checkIcon.svg'
 
@@ -15,13 +15,45 @@ function AppointmentCard ({ appointment, displayUsers }) {
     e.preventDefault();
     setClicked(true);
   }
+  
+  const convertBase64ToFile = (base64String, fileName) => {
+    const contentType = 'image/*'; // Update the content type as per your file type
+    const sliceSize = 1024;
+    const byteCharacters = atob(base64String);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    const blob = new Blob(byteArrays, { type: contentType });
+    const f = new File([blob], fileName, { type: contentType });
+    const fileURL = URL.createObjectURL(f);
+    setAvatarURL(fileURL);
+  };
+  
+  useEffect(() => {
+    const content = appointment.user.profile == null ? null : appointment.user.profile.content;
+    const fileName = appointment.user.profile == null ? null : appointment.user.profile.name;
+    convertBase64ToFile(content, fileName);
+  }, [])
+
+  const [avatarURL, setAvatarURL] = useState("");
 
   return (
     <div className="appointment-card">
       
       <div className='appointment-user-info' onClick={handleUserDetails}>
         <div className="appointment-user-username">{appointment.user.username}</div>
-        <img src={appointment.userPicture} className="appointment-user-pic" alt='user profile'></img>
+        <img src={avatarURL} width="50px" class="appointment-user-pic" alt="user profile" />
       </div>
 
       { userDetails ? 
