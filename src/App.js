@@ -23,9 +23,11 @@ import JoinTeam from './components/Users/JoinTeam/JoinTeam';
 
 // the owner interfaces
 import OwnerTournaments from './components/Owners/Tournaments/Tournaments';
+import OwnerMyTournaments from './components/Owners/Tournaments/MyTournaments'
 import OwnerReservation from './components/Owners/Reservations/Reservations';
 import About from './components/Owners/About/About';
-
+import OwnerTournament from './components/Owners/Tournaments/Tournament';
+import OwnerTournamentSaveMatch from './components/Owners/Tournaments/TournamentSaveMatch';
 
 function App() {
 
@@ -77,9 +79,18 @@ function App() {
       <BrowserRouter> 
         <Navbar NavRole={role} /> 
         <Routes>
+<<<<<<< Updated upstream
           <Route exact path='/owner-tournaments' element = {<OwnerTournaments />} />
           <Route exact path='/owner-reservations' element = {<OwnerReservation />} />
           <Route exact path='/about' element = {<About />} />
+=======
+          <Route exact path='/OwnerTournaments' element = {<OwnerTournaments userId={userId} />} />
+          <Route exact path='/OwnerMyTournaments' element = {<OwnerMyTournaments userId={userId}/>} />
+          <Route exact path='/OwnerTournament/:id' element = {<OwnerTournament userId={userId}/>}/>
+           <Route exact path='/OwnerTournament/:id/saveMatches' element = {<OwnerTournamentSaveMatch userId={userId}/>}/>
+          <Route exact path='/OwnerReservations' element = {<OwnerReservation userId={userId}/>} />
+          <Route exact path='/About' element = {<About userId={userId} />} />
+>>>>>>> Stashed changes
         </Routes>
       </BrowserRouter>
     );

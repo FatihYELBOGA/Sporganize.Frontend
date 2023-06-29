@@ -1,12 +1,19 @@
-function Tournaments(){
+import React from "react";
+import TournamentSidebar from "./TournamentsSidebar";
+import CreateTournamentForm from "./CreateTournamentForm";
+
+
+function Tournament(){
 
     return (
-        <div>
-            <h1>
-                Tournaments
-            </h1>
-        </div>
+       
+      <div style={{ display: "flex" }}>
+        <TournamentSidebar/>
+        <CreateTournamentForm/>
+       
+      </div>
+    
     );
 }
 
-export default Tournaments;
+export default Tournament;

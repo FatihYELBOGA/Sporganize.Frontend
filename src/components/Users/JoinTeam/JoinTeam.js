@@ -61,7 +61,7 @@ function JoinTeam() {
   }
 
   return (
-    <Box display="flex">
+    <Box display="flex">1
       <TeamsSidebar />
       <Box flexGrow={1} p={3}>
         <Box marginBottom={3} display="flex" justifyContent="center">
