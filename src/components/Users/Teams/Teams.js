@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { 
-  TextField, Button, FormControl, Avatar, Grid, 
-  RadioGroup, FormControlLabel, Radio, Typography, Paper, InputAdornment, Box
+  TextField, Button, FormControl, Avatar, Grid, Typography, Paper, Box
 } from "@material-ui/core";
 
-import { 
-  SportsBasketball, SportsSoccer, SportsTennis, SportsVolleyball, Add, Remove 
-} from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
+import { Select, MenuItem, InputLabel } from '@mui/material';
+
 
 const theme = createTheme({
   palette: {
@@ -31,31 +30,23 @@ const theme = createTheme({
 
 const Teams = () => {
   const [teamName, setTeamName] = useState("");
-  const [sport, setSport] = useState("");
+  const [branch, setBranch] = useState("");
+  const [branches, setBranches] = useState([]);
   const [selectedFriend, setSelectedFriend] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [sentRequests, setSentRequests] = useState([]);
-  const [error, setError] = useState(false);
-  const [errorTeamName, setErrorTeamName] = useState(false);
 
-  const usernames = ["user1", "user2", "user3","merveozan","osmanaltunay","enesdemirel","fatihyelboga"];
-  const teamNames = ["team1", "team2", "team3"];  
-
-  const handleSendRequest = () => {
-    if (selectedFriend) {
-      if(usernames.includes(selectedFriend)) {
-        setError(false);
-        setSentRequests([...sentRequests, selectedFriend]);
-        setSelectedFriend("");
-      } else {
-        setError(true);
-      }
-    }
-  }
-
-  const handleRemoveRequest = (indexToRemove) => {
-    setSentRequests(sentRequests.filter((_, index) => index !== indexToRemove));
-  }
+  // get the branches
+  useEffect(() => {
+    fetch(" https://sporganize.azurewebsites.net/branches").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setBranches(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, []);
 
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
@@ -63,12 +54,9 @@ const Teams = () => {
     }
   }
 
-  const handleCreateTeam = () => {
-    if (teamNames.includes(teamName)) {
-      setErrorTeamName(true);
-    } else {
-      setErrorTeamName(false);
-    }
+  const handleCreateTeam = () => 
+  {
+
   }
 
   return (
@@ -118,107 +106,30 @@ const Teams = () => {
                 variant="outlined" 
                 value={teamName} 
                 onChange={(e) => {
-                  setTeamName(e.target.value);
-                  setErrorTeamName(false);
+
                 }}
-                error={errorTeamName}
-                helperText={errorTeamName ? "This team name is already taken. Please choose another." : ""}
                 fullWidth
               />
             </Grid>
           </Grid>
 
-          <FormControl component="fieldset">
-            <RadioGroup
-              row
-              value={sport}
-              onChange={(e) => setSport(e.target.value)}
-            >
-              <FormControlLabel value="Football" control={<Radio color="primary" />} label={
-                <Box display="flex" alignItems="center">
-                  <SportsSoccer style={{ marginRight: 10 }}/>
-                  Football
-                </Box>
-              } />
-              <FormControlLabel value="Basketball" control={<Radio color="primary" />} label={
-                <Box display="flex" alignItems="center">
-                  <SportsBasketball style={{ marginRight: 10 }}/>
-                  Basketball
-                </Box>
-              } />
-              <FormControlLabel value="Tennis" control={<Radio color="primary" />} label={
-                <Box display="flex" alignItems="center">
-                  <SportsTennis style={{ marginRight: 10 }}/>
-                  Tennis
-                </Box>
-              } />
-              <FormControlLabel value="Volleyball" control={<Radio color="primary" />} label={
-                <Box display="flex" alignItems="center">
-                  <SportsVolleyball style={{ marginRight: 10 }}/>
-                  Volleyball
-                </Box>
-              } />
-            </RadioGroup>
-          </FormControl>
+<Grid item xs={12} sm={9}>
+  <Grid container spacing={1} alignItems="center">
+    {branches.map((b) => (
+      <Grid item key={b}>
+        <Button 
+          variant={branch === b ? "contained" : "outlined"} 
+          onClick={() => setBranch(b)}
+        >
+          {b}
+        </Button>
+      </Grid>
+    ))}
+  </Grid>
+</Grid>
 
-          <Typography variant="body1" align="left">
-            You can add friends with username
-          </Typography>
 
-          <TextField 
-            variant="outlined"
-            placeholder="Enter username" 
-            value={selectedFriend} 
-            onChange={(e) => setSelectedFriend(e.target.value)}
-            error={error}
-            helperText={error ? "This username doesn't exist." : ""}
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    size="small"
-                    onClick={handleSendRequest}
-                  >
-                    SEND REQUEST
-                  </Button>
-                </InputAdornment>
-              ),
-            }}
-          />
-
-          {sentRequests.map((request, index) => (
-            <Box
-            key={index}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            mt={1}
-            p={1}
-            borderRadius={4}
-            border="1px solid #ccc"
-          >
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar style={{ marginRight: 10 }}>{request.charAt(0)}</Avatar>
-              <Typography variant="body1">{request}</Typography>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', marginLeft: 10 }}>
-              <Button
-                variant="outlined"
-                color="primary"
-                size="small"
-                onClick={() => handleRemoveRequest(index)}
-              >
-                <Remove style={{ marginRight: 5 }}/>
-                REMOVE
-              </Button>
-            </div>
-          </Box>
-          ))}
-
-          <Box mt={2}>
+          <Box  sx={{ width: '50%', padding:'1%', marginLeft:'25%' }}>
             <Button 
               variant="contained" 
               color="primary"

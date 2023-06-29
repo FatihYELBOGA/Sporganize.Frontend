@@ -79,18 +79,15 @@ function App() {
       <BrowserRouter> 
         <Navbar NavRole={role} /> 
         <Routes>
-<<<<<<< Updated upstream
           <Route exact path='/owner-tournaments' element = {<OwnerTournaments />} />
           <Route exact path='/owner-reservations' element = {<OwnerReservation />} />
           <Route exact path='/about' element = {<About />} />
-=======
           <Route exact path='/OwnerTournaments' element = {<OwnerTournaments userId={userId} />} />
           <Route exact path='/OwnerMyTournaments' element = {<OwnerMyTournaments userId={userId}/>} />
           <Route exact path='/OwnerTournament/:id' element = {<OwnerTournament userId={userId}/>}/>
            <Route exact path='/OwnerTournament/:id/saveMatches' element = {<OwnerTournamentSaveMatch userId={userId}/>}/>
           <Route exact path='/OwnerReservations' element = {<OwnerReservation userId={userId}/>} />
           <Route exact path='/About' element = {<About userId={userId} />} />
->>>>>>> Stashed changes
         </Routes>
       </BrowserRouter>
     );
