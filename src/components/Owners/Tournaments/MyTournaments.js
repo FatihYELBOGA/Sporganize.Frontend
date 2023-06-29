@@ -44,7 +44,16 @@ function MyTournaments(props){
     return(
         <div style={{display:"flex"}}>
             <TournamentSidebar></TournamentSidebar>
-            {tournamentList.map((tournament) =>{
+            
+            <TournamentCard/>
+            
+        </div>
+    )
+    }
+
+}
+export default MyTournaments;
+/*{tournamentList.map((tournament) =>{
                 <TournamentCard 
                     id={tournament.id} 
                     name={tournament.name} 
@@ -53,11 +62,4 @@ function MyTournaments(props){
                     startingDate={tournament.startingDate} 
                     endingDate={tournament.endingDate} 
                     branch={tournament.branch}/>
-            })}
-            
-        </div>
-    )
-    }
-
-}
-export default MyTournaments;
+            })}*/

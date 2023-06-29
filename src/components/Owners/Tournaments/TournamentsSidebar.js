@@ -2,11 +2,11 @@ import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 import { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
-import { Button } from '@material-ui/core';
+
 
 const menuItems = [
-  { id: 1, label: 'Create Tournament', href: '/OwnerTournaments' },
-  { id: 2, label: 'My Tournaments', href: '/OwnerMyTournaments' },
+  { id: 1, label: 'Create Tournament', href: '/owner-tournaments' },
+  { id: 2, label: 'My Tournaments', href: '/owner-mytournaments' },
 ];
 
 const TournamentSidebar = () => {
