@@ -17,7 +17,7 @@ const TournamentNavbar = (props) => {
   return (
     <Box sx={containerStyles}>
      <Button onClick={(e) =>{
-        navigate("/OwnerMyTournaments")
+        navigate("/owner-mytournaments")
      }}>
         <ArrowBackIcon sx={{color:"green",fontSize:35,marginLeft:5}}></ArrowBackIcon>
       </Button>
@@ -27,7 +27,7 @@ const TournamentNavbar = (props) => {
 
             onClick={(event) => {
                 handleOptionClick(event, 'leagueTable')
-                navigate("/OwnerTournament/1")}}
+                navigate("/owner-tournament/1")}}
             sx={{borderBottom:2,borderColor: selectedOption === "leagueTable" ? "black":"green"}}
           >
             League Table
@@ -35,7 +35,7 @@ const TournamentNavbar = (props) => {
           <MenuItem
             onClick={(event) => {
                 handleOptionClick(event, 'saveMatches')
-                navigate("/OwnerTournament/1/saveMatches")}}
+                navigate("/owner-tournament/1/saveMatches")}}
             sx={{borderBottom:2,borderColor: selectedOption === "saveMatches" ? "black":"green"}}
           >
             Save Matches

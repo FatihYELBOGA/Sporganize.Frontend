@@ -81,7 +81,7 @@ const TournamentCard = () => {
         
         <Button
           onClick={(e)=>{
-            navigate("/OwnerTournament/1")
+            navigate("/owner-tournament/1")
           }}
           sx={{
             color: '#1E7B38',
