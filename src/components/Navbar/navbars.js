@@ -1,9 +1,9 @@
 const topNavOfUser = [
-    { id: 1, label: 'Homepage', href: '/Home' },
-    { id: 2, label: 'Reservations', href: '/Reservations' },
-    { id: 3, label: 'Teams', href: '/Teams' },
-    { id: 4, label: 'Tournaments', href: '/Tournaments' },
-    { id: 5, label: 'Profile', href: '/Profile' },
+    { id: 1, label: 'Homepage', href: '/home' },
+    { id: 2, label: 'Reservations', href: '/reservations' },
+    { id: 3, label: 'Teams', href: '/teams' },
+    { id: 4, label: 'Tournaments', href: '/tournaments' },
+    { id: 5, label: 'Profile', href: '/profile' },
   ];
 
 export const getTopNavOfUser = () => {
@@ -11,9 +11,9 @@ export const getTopNavOfUser = () => {
 };
 
 const topNavOfOwner = [
-  { id: 1, label: 'Tournaments', href: '/OwnerTournaments' },
-  { id: 2, label: 'Reservations', href: '/OwnerReservations' },
-  { id: 3, label: 'About', href: '/About' }
+  { id: 1, label: 'Tournaments', href: '/ownert-tournaments' },
+  { id: 2, label: 'Reservations', href: '/owner-reservations' },
+  { id: 3, label: 'About', href: '/about' }
 ];
 
 export const getTopNavOfOwner = () => {

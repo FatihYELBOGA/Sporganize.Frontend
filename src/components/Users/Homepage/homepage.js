@@ -4,12 +4,13 @@ import AppointmentCard from "../UserAppointments/AppointmentCard";
 import './Homepage.css'
 import NewPost from "../NewPost/NewPost.js"
 
-function Homepage(props){
-
+function Homepage(props)
+{
+    // appointments and newPost useStates
     const [appointments, setAppointments] = useState([]);
     const [newPost, setNewPost] = useState(false);
-    const [postAdded, setPostAdded] = useState(false);
 
+    // load the appointments
     const getAppointments = () => {
         fetch("https://sporganize.azurewebsites.net/appointments")
         .then((res) =>
@@ -24,22 +25,23 @@ function Homepage(props){
         )
     } 
     
-    useEffect(() => {
-        if (postAdded) {
-          getAppointments();
-          setPostAdded(false);
-        }
-    }, [postAdded]);
-
+    // load the appointments for loading
     useEffect(() => {
         getAppointments();
     }, [])
 
+    // load tge appointments for each clicking the the New post button
+    useEffect(() => {
+        getAppointments();
+    }, [newPost]);
+
+    // change the newPost state for each clicking
     const handleNewPostButton = (e) => {
         e.preventDefault();
         setNewPost(!newPost);
     }
 
+    // the New post button and posts here 
     return (
         <div className="homepage">
             <div className="homepage-sidebar">
@@ -47,7 +49,7 @@ function Homepage(props){
             </div>
             { newPost ?
                 <div className="homepage-new-post">
-                    <NewPost userId={props.userId} setNewPost={setNewPost} setPostAdded={setPostAdded} />
+                    <NewPost userId={props.userId} setNewPost={setNewPost} />
                 </div>
                 :
                 <div className="homepage-appointments">

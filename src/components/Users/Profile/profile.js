@@ -46,28 +46,139 @@ const theme = createTheme({
   }
 });
 
-const Profile = (props) => {
-
-
+const Profile = (props) => 
+{
+  // username, phone, firstName, lastName, birthDate, gender, and locationnformations
   const [username, setUsername] = useState("");
+  const [phone, setPhone] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [genders, setGenders] = useState([]);
-  const [birthDate, setBirthDate] = useState("");
-  const [phone, setPhone] = useState("");
   const [province, setProvince] = useState("");
-  const [district, setDistrict] = useState("");
-  const [street, setStreet] = useState("");
-  const [provinces, setProvinces] = useState([]);
   const [provinceId, setProvinceId] = useState(0);
-  const [districts, setDistricts] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+  const [district, setDistrict] = useState("");
   const [districtId, setDistrictId] = useState(0);
+  const [districts, setDistricts] = useState([]);
+  const [street, setStreet] = useState("");
   const [streets, setStreets] = useState([]);
   const [streetId, setStreetId] = useState(0);
-  const [file, setFile] = useState("");
 
-  const convertBase64ToFile = (base64String, fileName) => {
+  // byte array of profile photo
+  const [avatar, setAvatar] = useState(null);
+
+  // profile photo
+  const [avatarURL, setAvatarURL] = useState(null);
+
+  // get the user informations by userId
+  useEffect(() => 
+  {
+    fetch("https://sporganize.azurewebsites.net/users/"+props.userId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setUsername(result.username);
+      setFirstName(result.firstName);
+      setLastName(result.lastName);
+      setGender(result.gender);
+      setPhone(result.phone);
+      setBirthDate(result.bornDate.split('T')[0]);
+      setProvince(result.location.province);
+      setDistrict(result.location.district);
+      setStreet(result.location.street);
+      setStreetId(result.location.id);
+      if(result.profile!=null){
+        convertBase64ToFile(result.profile.content, result.profile.name);
+      }
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, []);
+
+  // get the provinces
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/provinces").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setProvinces(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, []);
+
+  // get the districts by provinceId
+  useEffect(() => { 
+    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setDistricts(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [provinceId]);
+
+  // get the streets by districtId
+  useEffect(() => {
+    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setStreets(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [districtId]);
+  
+  // get the genders
+  useEffect(() => {
+    fetch(" https://sporganize.azurewebsites.net/genders").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setGenders(result);
+    },
+    (error) => {
+      console.log(error);
+    })
+  }, []);
+
+
+  // change the province and provinceId
+  const handleProvinceChange = (e) => 
+  {
+    let pid = provinces.find(province => province.name === e.target.value)?.id;
+    setProvinceId(pid);
+    setProvince(e.target.value);
+  };
+
+  // change the district and districtId
+  const handleDistrictChange = (e) => 
+  {
+
+    let did = districts.find(district => district.name === e.target.value)?.id;
+    setDistrictId(did);
+    setDistrict(e.target.value);
+  };
+
+  // change the street and streetId
+  const handleStreetChange = (e) => 
+  {
+    let sid = streets.find(street => street.name === e.target.value)?.id;
+    setStreetId(sid);
+    setStreet(e.target.value);
+  }
+  
+  // convert the byte[] to file object
+  const convertBase64ToFile = (base64String, fileName) => 
+  {
     const contentType = 'image/*'; // Update the content type as per your file type
     const sliceSize = 1024;
     const byteCharacters = atob(base64String);
@@ -88,39 +199,38 @@ const Profile = (props) => {
     const blob = new Blob(byteArrays, { type: contentType });
     const f = new File([blob], fileName, { type: contentType });
     const fileURL = URL.createObjectURL(f);
+    setAvatar(f);
     setAvatarURL(fileURL);
   };
 
-  useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/users/"+props.userId).
-    then((res) =>
-      res.json()).
-    then((result) => {
-      setUsername(result.username);
-      setFirstName(result.firstName);
-      setLastName(result.lastName);
-      setGender(result.gender);
-      setPhone(result.phone);
-      setBirthDate(result.bornDate.split('T')[0]);
-      setProvince(result.location.province);
-      setDistrict(result.location.district);
-      setStreet(result.location.street);
-      setStreetId(result.location.id);
-      convertBase64ToFile(result.profile.content, result.profile.name);
-    },
-    (error) => {
-      console.log(error);
-    });
-  }, []);
+  // select the image for the profile photo
+  const handleFile = (e) => 
+  {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Check file size
+      const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
+      if (selectedFile.size <= fileSizeLimit) {
+        const fileURL = URL.createObjectURL(selectedFile);
+        setAvatar(selectedFile);
+        setAvatarURL(fileURL);
+      } else {
+        // File size exceeds the limit
+        alert("File size exceeds the limit of 5MB.");
+      }
+    }
+  }
 
-  const handleSaveChanges = () => {
+  // update the user informations
+  const handleSaveChanges = () => 
+  {
     const formData = new FormData();
     formData.append("FirstName", firstName);
     formData.append("LastName", lastName);
     formData.append("Gender", gender);
     formData.append("BornDate", birthDate);
     formData.append("StreetId", streetId);
-    formData.append("Profile", file);
+    formData.append("Profile", avatar);
 
     fetch("https://sporganize.azurewebsites.net/users/" + props.userId, {
       method: "PUT",
@@ -134,92 +244,7 @@ const Profile = (props) => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/provinces").
-    then((res) =>
-      res.json()).
-    then((result) => {
-      setProvinces(result);
-    },
-    (error) => {
-      console.log(error);
-    })
-  }, []);
-
-  useEffect(() => { 
-    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
-    then((res) =>
-      res.json()).
-    then((result) => {
-      setDistricts(result);
-    },
-    (error) => {
-      console.log(error);
-    });
-  }, [provinceId]);
-
-  useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
-    then((res) =>
-      res.json()).
-    then((result) => {
-      setStreets(result);
-    },
-    (error) => {
-      console.log(error);
-    });
-  }, [districtId]);
-
-  const handleProvinceChange = (e) => {
-    let pid = provinces.find(province => province.name === e.target.value)?.id;
-    setProvinceId(pid);
-    setProvince(e.target.value);
-  };
-
-  const handleDistrictChange = (e) => {
-
-    let did = districts.find(district => district.name === e.target.value)?.id;
-    setDistrictId(did);
-    setDistrict(e.target.value);
-  };
-
-  const handleStreetChange = (e) => {
-    let sid = streets.find(street => street.name === e.target.value)?.id;
-    setStreetId(sid);
-    setStreet(e.target.value);
-  }
-
-  useEffect(() => {
-    fetch(" https://sporganize.azurewebsites.net/genders").
-    then((res) =>
-      res.json()).
-    then((result) => {
-      setGenders(result);
-    },
-    (error) => {
-      console.log(error);
-    })
-  }, []);
-
-
-  const handleFile = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      // Check file size
-      const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
-      if (selectedFile.size <= fileSizeLimit) {
-        setFile(selectedFile);
-        const fileURL = URL.createObjectURL(selectedFile);
-        setAvatarURL(fileURL);
-      } else {
-        // File size exceeds the limit
-        alert("File size exceeds the limit of 5MB.");
-      }
-    }
-  }
-
-  const [avatarURL, setAvatarURL] = useState("");
-
+  // the profile page
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ padding: 3, marginTop: 2, borderRadius: 2, width: '60%', marginLeft: '30%', marginRight: '10%' }}>

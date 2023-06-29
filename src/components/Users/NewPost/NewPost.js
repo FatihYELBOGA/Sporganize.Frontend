@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Box, TextField, Avatar, Typography, Grid,
+  Box, TextField, Grid,
   Select, MenuItem, InputLabel, FormControl, Button, createTheme, ThemeProvider
 } from '@mui/material';
 import "./NewPost.css"
@@ -51,29 +51,38 @@ const theme = createTheme({
   }
 });
 
-const NewPost = (props) => {
+const NewPost = (props) => 
+{
 
+  // to navigate
   const navigate = useNavigate();
 
-  const {userId, setNewPost, setPostAdded} = props;
+  // userId to add the post, setNewPost to refresh the appointments
+  const {userId, setNewPost} = props;
 
+  // title, description, branch, streetId to add the post
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [branch, setBranch] = useState("");
+
+  /* 
+    branches, provinces, districts, and streets to get the data from endpoints
+    province, district, and street to assign the comboboxs
+  */
+  const [branches, setBranches] = useState([]);
   const [province, setProvince] = useState("");
   const [provinceId, setProvinceId] = useState(0);
+  const [provinces, setProvinces] = useState([]);
   const [district, setDistrict] = useState("");
   const [districtId, setDistrictId] = useState(0);
+  const [districts, setDistricts] = useState([]);
   const [street, setStreet] = useState("");
   const [streetId, setStreetId] = useState(0);
-
-  const [branches, setBranches] = useState([]);
-  const [provinces, setProvinces] = useState([]);
-  const [districts, setDistricts] = useState([]);
   const [streets, setStreets] = useState([]);
-
  
-  useEffect(() => {
+  // get the branches
+  useEffect(() => 
+  {
     fetch(" https://sporganize.azurewebsites.net/branches").
     then((res) =>
       res.json()).
@@ -85,7 +94,9 @@ const NewPost = (props) => {
     })
   }, [])
 
-  useEffect(() => {
+  // get the provinces
+  useEffect(() => 
+  {
     fetch("https://sporganize.azurewebsites.net/provinces").
     then((res) =>
       res.json()).
@@ -97,7 +108,9 @@ const NewPost = (props) => {
     })
   }, [])
 
-  useEffect(() => {
+  // get the districts by provinceId
+  useEffect(() => 
+  {
     fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
     then((res) =>
       res.json()).
@@ -109,7 +122,9 @@ const NewPost = (props) => {
     });
   }, [provinceId])
 
-  useEffect(() => {
+  // get the streets by districtId
+  useEffect(() => 
+  {
     fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
     then((res) =>
       res.json()).
@@ -121,33 +136,40 @@ const NewPost = (props) => {
     });
   }, [districtId])
 
-  const handleProvinceChange = (e) => {
-
+  // change the province and provinceId
+  const handleProvinceChange = (e) => 
+  {
     let pid = provinces.find(province => province.name === e.target.value)?.id;
     setProvinceId(pid);
     setProvince(e.target.value);
   };
 
-  const handleDistrictChange = (e) => {
-
+  // change the district and districtId
+  const handleDistrictChange = (e) => 
+  {
     let did = districts.find(district => district.name === e.target.value)?.id;
     setDistrictId(did);
     setDistrict(e.target.value);
   };
 
-  const handleStreetChange = (e) => {
-
+  // change the street and streetId
+  const handleStreetChange = (e) => 
+  {
     let sid = streets.find(street => street.name === e.target.value)?.id;
     setStreetId(sid);
     setStreet(e.target.value);
   }
 
-  const handleCancel= (e) => {
-    e.preventDefault()
-    setNewPost(false)
+  // go to the homepage by changing the setNewPost
+  const handleCancel= (e) => 
+  {
+    e.preventDefault();
+    setNewPost(false);
   }
 
-  const handleSaveChanges = (e) => {
+  // add the post
+  const handleSaveChanges = (e) => 
+  {
     e.preventDefault();
     fetch("https://sporganize.azurewebsites.net/appointments",
     {
@@ -166,11 +188,11 @@ const NewPost = (props) => {
     .then((res) => {
       res.json();
       alert("the post added successfully!");
-      setPostAdded(true);
     })
     .catch((err) => console.log(err))
   };
 
+  // the post page
   return (
     <div className='new-post'>
       <div className='new-post-header'>Create a new post</div>

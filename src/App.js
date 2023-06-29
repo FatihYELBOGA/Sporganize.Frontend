@@ -56,18 +56,18 @@ function App() {
       <BrowserRouter>
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/Home' element = {<Homepage userId={userId} />} />
-          <Route exact path='/Reservations' element = {<Reservations/>} />
-          <Route exact path='/Teams' element = { <Teams/>} />
-          <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
-          <Route exact path='/Tournaments' element = {<Tournaments/>} />
-          <Route exact path='/Profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
-          <Route exact path='/MyPosts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
-          <Route exact path='/MyAppointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
-          <Route exact path='/MyFriends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />
-          <Route exact path='/MyTeams' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTeams userId={userId} /></div> } />
-          <Route exact path='/MyReservations' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyReservations userId={userId} /></div> } />
-          <Route exact path='/MyTournaments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTournaments userId={userId} /></div> } />
+          <Route exact path='/home' element = {<Homepage userId={userId} />} />
+          <Route exact path='/reservations' element = {<Reservations/>} />
+          <Route exact path='/teams' element = { <Teams/>} />
+          <Route exact path='/join-team' element = {<JoinTeam/>} />
+          <Route exact path='/tournaments' element = {<Tournaments/>} />
+          <Route exact path='/profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
+          <Route exact path='/my-posts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
+          <Route exact path='/my-appointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
+          <Route exact path='/my-friends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />
+          <Route exact path='/my-teams' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTeams userId={userId} /></div> } />
+          <Route exact path='/my-reservations' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyReservations userId={userId} /></div> } />
+          <Route exact path='/my-tournaments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTournaments userId={userId} /></div> } />
         </Routes>
       </BrowserRouter>
       
@@ -77,9 +77,9 @@ function App() {
       <BrowserRouter> 
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/OwnerTournaments' element = {<OwnerTournaments />} />
-          <Route exact path='/OwnerReservations' element = {<OwnerReservation />} />
-          <Route exact path='/About' element = {<About />} />
+          <Route exact path='/owner-tournaments' element = {<OwnerTournaments />} />
+          <Route exact path='/owner-reservations' element = {<OwnerReservation />} />
+          <Route exact path='/about' element = {<About />} />
         </Routes>
       </BrowserRouter>
     );
