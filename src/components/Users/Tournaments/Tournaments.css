@@ -1,0 +1,48 @@
+/* Tournaments.css */
+
+.card {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-description {
+  font-size: 1em;
+  text-align: center;
+}
+
+.card-details {
+  font-size: 0.8em;
+  text-align: left;
+}
+
+.text-field {
+  width: 50%;
+}
+
+.sport-chip {
+  cursor: pointer;
+}
+
+.join-button {
+  background-color: #647C31;
+  color: white;
+  width: 100%;
+}
+
+.see-details {
+  cursor: pointer;
+  color: white;
+  text-align: left;
+}
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

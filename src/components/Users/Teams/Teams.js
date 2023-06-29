@@ -146,10 +146,10 @@ const Teams = () => {
                   Basketball
                 </Box>
               } />
-              <FormControlLabel value="Table Tennis" control={<Radio color="primary" />} label={
+              <FormControlLabel value="Tennis" control={<Radio color="primary" />} label={
                 <Box display="flex" alignItems="center">
                   <SportsTennis style={{ marginRight: 10 }}/>
-                  Table Tennis
+                  Tennis
                 </Box>
               } />
               <FormControlLabel value="Volleyball" control={<Radio color="primary" />} label={

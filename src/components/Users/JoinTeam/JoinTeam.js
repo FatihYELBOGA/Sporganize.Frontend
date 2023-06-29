@@ -8,9 +8,9 @@ import team1picture from "../../../pictures/team1.png";
 import team2picture from "../../../pictures/team2.png";
 import team3picture from "../../../pictures/team3.png";
 
-function JoinTeam() {
+function JoinTeam() { 
   const [teams, setTeams] = useState([]);
-  const [filter, setFilter] = useState("Soccer");
+  const [filter, setFilter] = useState("Football");
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function JoinTeam() {
           logoUrl: team1picture, 
           description: "We are looking for two midfielders.", 
           members: ["Member 1", "Member 2",], 
-          sport: "Soccer" 
+          sport: "Football" 
         },
         { 
           id: 2, 
@@ -30,7 +30,7 @@ function JoinTeam() {
           logoUrl: team2picture, 
           description: "We need a goalkeeper.", 
           members: ["Member 3", "Member 4"], 
-          sport: "Soccer" 
+          sport: "Football" 
         },
         { 
           id: 3, 
@@ -46,7 +46,7 @@ function JoinTeam() {
     fetchTeams();
   }, []);
 
-  const sports = ["Soccer","Basketball", "Tennis"]; 
+  const sports = ["Football", "Tennis","Basketball","Volleyball"]; 
 
   const filteredTeams = teams
     .filter(team => team.sport === filter)
@@ -92,6 +92,7 @@ function JoinTeam() {
             sx={{
                 '&:hover': {
                     backgroundColor: '#1E7B38',
+                    color:'#ffffff',
                 },
             }}
         />

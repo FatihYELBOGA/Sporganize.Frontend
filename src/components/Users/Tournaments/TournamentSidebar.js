@@ -4,11 +4,10 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
 const menuItems = [
-  { id: 1, label: 'Create Team', href: '/Teams' },
-  { id: 2, label: 'Join Team', href: '/JoinTeam' },
+  { id: 1, label: 'Tournaments', href: '/Tournaments' },
 ];
 
-const TeamsSidebar = () => {
+const TournamentsSidebar = () => {
   const [drawerOpen, setDrawerOpen] = useState(true);
   const location = useLocation();
 
@@ -45,7 +44,7 @@ const TeamsSidebar = () => {
               justifyContent: 'center',
               mb: '8%',
               mt: '10%',
-              height: '30%', // height has been increased
+              height: '50%', // height has been increased
               '&:hover': {
                 backgroundColor: 'rgba(100, 124, 49, 0.5)',
               },
@@ -77,8 +76,7 @@ const TeamsSidebar = () => {
         ))}
       </List>
     </Drawer>
-
   );
 };
 
-export default TeamsSidebar;
+export default TournamentsSidebar;

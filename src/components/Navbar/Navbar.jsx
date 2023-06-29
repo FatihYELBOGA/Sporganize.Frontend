@@ -4,7 +4,6 @@ import { getTopNavOfUser, getTopNavOfOwner } from './navbars';
 import './Navbar.css';
 
 const Navbar = (props) => {
-
   const [NavRole, setNavRole] = useState(props.NavRole);
   const [navItems, setNavItems] = useState([]);
   const [collapse, setCollapse] = useState(false);
@@ -12,9 +11,9 @@ const Navbar = (props) => {
 
   const location = useLocation(); 
   useEffect(() => {
-    if(NavRole == "OWNER"){
+    if(NavRole === "OWNER"){
       setNavItems(getTopNavOfOwner());
-    } else if(NavRole == "USER"){
+    } else if(NavRole === "USER"){
       setNavItems(getTopNavOfUser());
     }
   }, []);
@@ -39,7 +38,7 @@ const Navbar = (props) => {
             <div className="nav__brand-box">
               <span className="nav__brand">SPORGANIZE</span>
             </div>
-            <div className="toggler__icon" onClick={onToggle}>
+            <div className={`toggler__icon ${collapse ? 'toggle' : ''}`} onClick={onToggle}>
               <div className="line__1"></div>
               <div className="line__2"></div>
               <div className="line__3"></div>
