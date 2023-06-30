@@ -133,12 +133,12 @@ const Teams = () => {
             </Grid>
             <Grid item xs={12} sm={9}>
               
-              <TextField 
-                    variant="outlined" 
-                    value={teamName} 
-                    onChange={(e) => setTeamName(e.targettea.value)}
-                    label="Team Name"
-                    fullWidth
+            <TextField 
+            variant="outlined" 
+            value={teamName} 
+            onChange={(e) => setTeamName(e.target.value)}
+            label="Team Name"
+            fullWidth
 />
 
               <Grid container spacing={1} alignItems="center" style={{ marginTop: '1rem' }}>
