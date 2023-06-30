@@ -5,7 +5,8 @@ import Box from '@material-ui/core/Box';
 
 const menuItems = [
   { id: 1, label: 'Create Team', href: '/Teams' },
-  { id: 2, label: 'Join Team', href: '/JoinTeam' },
+  { id: 2, label: 'Invite Team Members', href: '/InviteMember' },
+  { id: 2, label: 'Incoming Invitations', href: '/IncomingInvitations' }
 ];
 
 const TeamsSidebar = () => {

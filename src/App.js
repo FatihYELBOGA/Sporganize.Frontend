@@ -19,7 +19,8 @@ import MyReservations from './components/Users/MyReservations/MyReservations';
 import MyTournaments from './components/Users/MyTournaments/MyTournaments'
 import MyAppointments from './components/Users/MyAppointments/MyAppointments';
 import Sidebar from './components/Users/Sidebar/Sidebar';
-import JoinTeam from './components/Users/JoinTeam/JoinTeam';
+import InviteMember from './components/Users/InviteMember/InviteMember';
+import IncomingInvitations from './components/Users/IncomingInvitations/IncomingInvitations';
 
 // the owner interfaces
 import OwnerTournaments from './components/Owners/Tournaments/Tournaments';
@@ -58,10 +59,11 @@ function App() {
       <BrowserRouter>
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/home' element = {<Homepage userId={userId} />} />
+          <Route exact path='/Home' element = {<Homepage userId={userId} />} />
           <Route exact path='/reservations' element = {<Reservations/>} />
           <Route exact path='/Teams' element = { <Teams/>} />
-          <Route exact path='/JoinTeam' element = {<JoinTeam/>} />
+          <Route exact path='/InviteMember' element = {<InviteMember/>} />
+          <Route exact path='/IncomingInvitations' element = {<IncomingInvitations/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
           <Route exact path='/profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
           <Route exact path='/my-posts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />

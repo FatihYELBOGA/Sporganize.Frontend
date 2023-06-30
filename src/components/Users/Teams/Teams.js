@@ -206,7 +206,7 @@ const Teams = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Box sx={{ width: '100%', padding: '1%'}}>
+            <Box sx={{ width: '100%', padding: '1%', marginLeft:'10%',marginRight:'10%'}}>
               <Button 
                 variant="contained" 
                 color="primary"
