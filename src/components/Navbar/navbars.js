@@ -1,7 +1,7 @@
 const topNavOfUser = [
-    { id: 1, label: 'Homepage', href: '/home' },
+    { id: 1, label: 'Homepage', href: '/Home' },
     { id: 2, label: 'Reservations', href: '/reservations' },
-    { id: 3, label: 'Teams', href: '/teams' },
+    { id: 3, label: 'Teams', href: '/Teams' },
     { id: 4, label: 'Tournaments', href: '/tournaments' },
     { id: 5, label: 'Profile', href: '/profile' },
   ];

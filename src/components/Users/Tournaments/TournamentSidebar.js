@@ -4,7 +4,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
 const menuItems = [
-  { id: 1, label: 'Tournaments', href: '/Tournaments' },
+  { id: 1, label: 'Tournaments', href: '/tournaments' },
 ];
 
 const TournamentsSidebar = () => {
