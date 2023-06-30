@@ -53,7 +53,7 @@ const Teams = () => {
   const [streets, setStreets] = useState([]);
 
   useEffect(() => {
-    fetch(" https://sporganize.azurewebsites.net/branches")
+    fetch("https://sporganize.azurewebsites.net/branches")
       .then((res) => res.json())
       .then((result) => setBranches(result))
       .catch((error) => console.log(error));
@@ -90,7 +90,9 @@ const Teams = () => {
     }
   };
 
-  const handleCreateTeam = () => {};
+  const handleCreateTeam = () => {
+    // Burada yeni takımı oluşturma işlemlerini gerçekleştirin
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -132,15 +134,13 @@ const Teams = () => {
               </div>
             </Grid>
             <Grid item xs={12} sm={9}>
-              
-            <TextField 
-            variant="outlined" 
-            value={teamName} 
-            onChange={(e) => setTeamName(e.target.value)}
-            label="Team Name"
-            fullWidth
-/>
-
+              <TextField 
+                variant="outlined" 
+                value={teamName} 
+                onChange={(e) => setTeamName(e.target.value)}
+                label="Team Name"
+                fullWidth
+              />
               <Grid container spacing={1} alignItems="center" style={{ marginTop: '1rem' }}>
                 {branches.map((b) => (
                   <Grid item key={b}>
@@ -206,17 +206,16 @@ const Teams = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Box  sx={{ width: '100%', padding:'1%', marginLeft:'0%', display: 'flex', justifyContent: 'center' }}>
-            <Button 
-              variant="contained" 
-              color="primary"
-              fullWidth
-              onClick={handleCreateTeam}
-              style={{ width: '70%', marginLeft: '5%' }}
-            >
-              CREATE TEAM
-            </Button>
-          </Box>
+            <Box sx={{ width: '50%', padding: '1%', marginLeft: '25%' }}>
+              <Button 
+                variant="contained" 
+                color="primary"
+                fullWidth
+                onClick={handleCreateTeam}
+              >
+                CREATE TEAM
+              </Button>
+            </Box>
           </Grid>
         </Paper>
       </div>
