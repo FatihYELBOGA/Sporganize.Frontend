@@ -1,0 +1,16 @@
+.display-reservation-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.facility-back-button {
+  align-self: flex-start;
+  background-color: green;
+  color: whitesmoke;
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+}

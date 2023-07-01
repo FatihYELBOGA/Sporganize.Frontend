@@ -73,12 +73,12 @@
 .facility-branches {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px
+  gap: 10px;
 }
 
 .facility-branch {
   border: 2px yellow solid;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 3px 7px;
   color: yellow;
   width: fit-content;

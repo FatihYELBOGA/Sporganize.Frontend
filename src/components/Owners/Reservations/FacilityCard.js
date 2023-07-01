@@ -1,6 +1,12 @@
 import "./FacilityCard.css"
 
-const FacilityCard = ({ facility, handleDisplayReservations }) => {
+const FacilityCard = ({ facility, setDisplayFacility, setSeeReservations }) => {
+
+  const handleSeeReservationButton = () => {
+    setDisplayFacility(facility)
+    setSeeReservations(true)
+  }
+
   return (
     <div className="owner-facility-card">
       <img className="owner-facility-card-img" src={facility.picture} alt="facility"></img>
@@ -17,7 +23,7 @@ const FacilityCard = ({ facility, handleDisplayReservations }) => {
           {facility.branches.map(branch => (<div className="owner-facility-branch">{branch}</div>))}
         </div>
       </div>
-      <button className="owner-facility-reservation-button" onClick={handleDisplayReservations}>See Reservations</button>
+      <button className="owner-facility-reservation-button" onClick={handleSeeReservationButton}>See Reservations</button>
     </div>
   )
 }
