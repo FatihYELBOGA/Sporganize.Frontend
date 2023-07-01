@@ -53,14 +53,14 @@ function AppointmentCard ({ appointment, displayUsers }) {
       
       <div className='appointment-user-info' onClick={handleUserDetails}>
         <div className="appointment-user-username">{appointment.user.username}</div>
-        <img src={avatarURL} width="50px" class="appointment-user-pic" alt="user profile" />
+        <img src={avatarURL} class="appointment-user-pic" alt="user profile" />
       </div>
 
       { userDetails ? 
-      <div className="appointment-user-details">
-          <div className="appointment-user-phone">{appointment.user.phone}</div>
-          <div className="appointment-user-gender">{appointment.user.gender}</div>
-      </div> : <div />
+          <div className="appointment-user-details">
+              <div className="appointment-user-phone">{appointment.user.phone}</div>
+              <div className="appointment-user-gender">{appointment.user.gender}</div>
+          </div> : <div />
       }
 
       <div className="appointment-title">{appointment.title}</div>

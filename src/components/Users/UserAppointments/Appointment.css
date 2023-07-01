@@ -19,20 +19,23 @@
 
 .appointment-user-info, .appointment-user-details {
   display: flex;
-  align-self:center;
+  align-self: flex-end;
   color: greenyellow;
   gap: 25px;
+  align-items: center;
 }
 
 .appointment-user-details {
   gap: 15px;
+  align-self: flex-end;
+  padding-right: 18%;
 }
 
 .appointment-user-username {
   font-size: 100%;
   text-decoration: underline;
   cursor: pointer;
-  align-self: flex-end;
+  align-self: center;
 }
 
 .appointment-title, .appointment-desc {
@@ -111,8 +114,8 @@
 }
 
 .appointment-user-pic {
-  position: absolute;
-  margin-left: 19%;
+  width: 50px;
+  height: auto;
   border-radius: 50%;
-  border: 2px solid #000; /* Example border styling */
+  justify-self: flex-end;
 }
