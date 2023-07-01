@@ -1,0 +1,14 @@
+.owner-reservations {
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+}
+
+.owner-facility-list {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 5%;
+  justify-self: center;
+}

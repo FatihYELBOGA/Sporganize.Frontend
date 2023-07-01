@@ -1,0 +1,55 @@
+.owner-facility-card {
+  background-color: rgb(37, 37, 37);
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 500px;
+  width: 30%;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.owner-facility-card-img {
+  width: 100%;
+  height: auto;
+}
+
+.owner-facility-card-name {
+  font-size: 30px;
+}
+
+.owner-facility-card-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.owner-facility-card-branches {
+  display: flex;
+}
+
+.owner-facility-reservation-button {
+  height: 10%;
+  width: 90%;
+  background-color: green;
+  color: whitesmoke;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.owner-facility-card-branches {
+  display: flex;
+  gap: 10px;
+}
+
+.owner-facility-branch {
+  border: 2px aqua solid;
+  border-radius: 10px;
+  padding: 3px 7px;
+  color:aqua;
+  width: fit-content;
+}
