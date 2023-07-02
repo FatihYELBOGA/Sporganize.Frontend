@@ -44,9 +44,9 @@ const TeamsSidebar = () => {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              mb: '8%',
+              mb: '12',
               mt: '10%',
-              height: '30%', // height has been increased
+              height: '25%', // height has been increased
               '&:hover': {
                 backgroundColor: 'rgba(100, 124, 49, 0.5)',
               },
@@ -58,7 +58,7 @@ const TeamsSidebar = () => {
             <Box
               sx={{
                 position: 'absolute',
-                height: '120%', // height has been increased
+                height: '100%', // height has been increased
                 width: '100%',
                 backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
                 zIndex: -1,
