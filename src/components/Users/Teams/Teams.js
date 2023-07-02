@@ -43,7 +43,6 @@ const Teams = () => {
   const [teamName, setTeamName] = useState("");
   const [branch, setBranch] = useState("");
   const [branches, setBranches] = useState([]);
-  const [selectedFriend, setSelectedFriend] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [province, setProvince] = useState("");
   const [district, setDistrict] = useState("");
@@ -91,7 +90,7 @@ const Teams = () => {
   };
 
   const handleCreateTeam = () => {
-    // Burada yeni takımı oluşturma işlemlerini gerçekleştirin
+    
   };
 
   return (
