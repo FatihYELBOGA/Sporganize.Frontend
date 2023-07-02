@@ -168,6 +168,9 @@ function InviteMember() {
                       sx={{ maxHeight: 140, objectFit: 'contain' }}
                     />
                     <Box mt={2}>
+                    <Typography variant="body1" align="center" sx={{ color: 'whitesmoke', marginBottom: '1rem' }}>
+                        You can add teammates to your team with their username
+                      </Typography>
                     <TextField
                         variant="outlined"
                         placeholder="Enter username"
