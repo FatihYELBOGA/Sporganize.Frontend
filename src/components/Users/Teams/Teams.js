@@ -124,8 +124,15 @@ const Teams = () => {
               {!selectedFile && <Add style={{ fontSize: 70 }} />}
             </Avatar>
           </label>
-          <label htmlFor="logo-upload" style={{ marginTop: '1rem', cursor: "pointer", color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}`, borderRadius: '5px', padding: '5px' }}>
-            Edit Team Logo
+          <label htmlFor="logo-upload">
+            <Button 
+              component="span" 
+              variant="contained" 
+              color="primary" 
+              style={{ marginTop: '1rem' }}
+            >
+              Edit Team Logo
+            </Button>
           </label>
           <TextField 
             variant="outlined" 
