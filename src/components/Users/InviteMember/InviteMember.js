@@ -1,17 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Grid,
-  Box,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Chip
-} from '@mui/material';
+import {Button,Card,CardContent,CardMedia,Typography,Grid,Box,TextField,InputAdornment,IconButton,Chip} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
 import team1picture from "../../../pictures/team1.png";
@@ -23,9 +11,8 @@ function InviteMember() {
   const [filter, setFilter] = useState("Football");
   const [search, setSearch] = useState("");
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [invitees, setInvitees] = useState({});  // key: teamId, value: invitee
-  const [invitedMembers, setInvitedMembers] = useState({});  // key: teamId, value: array of invitees
-
+  const [invitees, setInvitees] = useState({});  
+  const [invitedMembers, setInvitedMembers] = useState({});  
   useEffect(() => {
     const fetchTeams = () => {
       const data = [
@@ -106,52 +93,13 @@ function InviteMember() {
       <TeamsSidebar />
       <Box flexGrow={1} p={3}>
         <Box marginBottom={3} display="flex" justifyContent="center">
-          <TextField 
-            variant="outlined"
-            placeholder="Search teams"
-            value={search}
-            onChange={handleSearchChange}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              width:'50%',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: 'green',
-                },
-                '&:hover fieldset': {
-                  borderColor: 'darkgreen',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: 'darkgreen',
-                },
-              },
-              color: 'whitesmoke',
-            }}
-          />
+          <TextField variant="outlined" placeholder="Search teams"value={search}  onChange={handleSearchChange}
+            InputProps={{endAdornment: (<InputAdornment position="end"><IconButton><SearchIcon /></IconButton></InputAdornment>),}}
+            sx={{width:'50%','& .MuiOutlinedInput-root': {'& fieldset': {borderColor: 'green',},'&:hover fieldset': { borderColor: 'darkgreen', },'&.Mui-focused fieldset': {borderColor: 'darkgreen',},},color: 'whitesmoke', }}/>
         </Box>
         <Box marginBottom={3} display="flex" justifyContent="flex-start" flexWrap="wrap" gap={2}>
-          {sports.map(sport => (
-            <Chip 
-              label={sport} 
-              color={filter === sport ? "success" : "default"} 
-              onClick={() => handleFilterChange(sport)}
-              className={filter === sport ? "sport-chip" : ""}
-              sx={{
-                '&:hover': {
-                  backgroundColor: '#1E7B38',
-                  color:'whitesmoke',
-                },
-              }}
-            />
-          ))}
+          {sports.map(sport => (<Chip label={sport} color={filter === sport ? "success" : "default"} onClick={() => handleFilterChange(sport)}className={filter === sport ? "sport-chip" : ""}
+              sx={{ '&:hover': {backgroundColor: '#1E7B38',color:'whitesmoke',},}}/>))}
         </Box>
 
         <Grid container spacing={3}>
@@ -161,96 +109,28 @@ function InviteMember() {
                 <CardContent>
                   <Box display="flex" flexDirection="column" alignItems="center">
                     <Typography className="card-title" sx={{ color: 'whitesmoke' }}>{team.name}</Typography>
-                    <CardMedia
-                      component="img"
-                      image={team.logoUrl}
-                      alt={team.name}
-                      sx={{ maxHeight: 140, objectFit: 'contain' }}
-                    />
+                    <CardMedia component="img" image={team.logoUrl}alt={team.name}sx={{ maxHeight: 140, objectFit: 'contain' }}/>
                     <Box mt={2}>
                     <Typography variant="body1" align="center" sx={{ color: 'whitesmoke', marginBottom: '1rem' }}>
                         You can add teammates to your team with their username
                       </Typography>
-                    <TextField
-                        variant="outlined"
-                        placeholder="Enter username"
-                        value={invitees[team.id] || ""}
-                        onChange={(event) => handleInviteeChange(event, team.id)}
-                        className="invitee-textfield"
-                        InputProps={{
-                          endAdornment: (
+                    <TextField variant="outlined" placeholder="Enter username" value={invitees[team.id] || ""} onChange={(event) => handleInviteeChange(event, team.id)}className="invitee-textfield"
+                        InputProps={{endAdornment: (
                             <InputAdornment position="end">
-                              <IconButton 
-                                    onClick={() => handleSendRequest(team.id)} 
-                                    color="inherit" 
-                                    sx={{
-                                      backgroundColor: 'green',
-                                      color: 'whitesmoke',
-                                      '&:hover': {
-                                        backgroundColor: 'green',
-                                      },
-                                      borderRadius: '5px', 
-                                      marginRight: '-8px', 
-                                    }}
-                                  >
+                              <IconButton onClick={() => handleSendRequest(team.id)} color="inherit" sx={{backgroundColor: 'green',color: 'whitesmoke','&:hover': {backgroundColor: 'green', },borderRadius: '5px', marginRight: '-8px', }}>
                                     <Typography variant="body2" sx={{ color: 'whitesmoke'}}>SEND REQUEST</Typography>
-                                  </IconButton>
-
-
-                            </InputAdornment>
-                          ),
-                          className: "input-field",
-                          classes: {
-                            notchedOutline: "notched-outline"
-                          },
-                        }}
-                          sx={{
-                            '& .MuiOutlinedInput-root': {
-                              '& fieldset': {
-                                borderColor: 'green',
-                              },
-                              '&:hover fieldset': {
-                                borderColor: 'darkgreen',
-                              },
-                              '&.Mui-focused fieldset': {
-                                borderColor: 'darkgreen',
-                              },
-                            },
-                            color: 'whitesmoke', 
-                            '& .MuiOutlinedInput-input': {
-                              color: 'whitesmoke' 
-                            },
-                            '& .MuiInputLabel-root': {
-                              color: 'whitesmoke', 
-                            },
-                            '&:hover .MuiInputLabel-root': {
-                              color: 'whitesmoke',
-                            },
-                            '& .MuiInputLabel-root.Mui-focused': {
-                              color: 'whitesmoke',
-                            },
-                          }}
-                        />
-
+                             </IconButton>
+                          </InputAdornment>),
+                          className: "input-field",classes: { notchedOutline: "notched-outline"},}}
+                          sx={{'& .MuiOutlinedInput-root': {'& fieldset': { borderColor: 'green',},'&:hover fieldset': {borderColor: 'darkgreen',},'&.Mui-focused fieldset': {borderColor: 'darkgreen',},},color: 'whitesmoke', '& .MuiOutlinedInput-input': {color: 'whitesmoke' },
+                            '& .MuiInputLabel-root': {color: 'whitesmoke',  }, '&:hover .MuiInputLabel-root': {color: 'whitesmoke',},'& .MuiInputLabel-root.Mui-focused': {color: 'whitesmoke',}, }}/>
                     </Box>
-                    <Box mt={2}>
-                      <Button 
-                        variant="contained"
-                        onClick={() => handleSeeDetails(team)}
-                        sx={{color: 'whitesmoke'}}
->
-                        {selectedTeam === team ? "Hide Details" : "See Details"}
-                      </Button>
+                    <Box mt={2}><Button variant="contained"onClick={() => handleSeeDetails(team)}sx={{color: 'whitesmoke'}}>
+                        {selectedTeam === team ? "Hide Details" : "See Details"}</Button>
                     </Box>
-                    {selectedTeam === team && (
-                      <Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
+                    {selectedTeam === team && (<Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
                         <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Location: {team.location}</Typography>
-                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Members: {team.members.join(", ")}</Typography>
-                        {invitedMembers[team.id]?.length > 0 && (
-                          <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Invited: {invitedMembers[team.id].join(", ")}</Typography>
-                        )}
-                      </Box>
-                    )}
+                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Members: {team.members.join(", ")}</Typography> </Box> )}
                   </Box>
                 </CardContent>
               </Card>
