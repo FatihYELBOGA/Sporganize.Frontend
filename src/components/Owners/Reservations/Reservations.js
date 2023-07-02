@@ -9,7 +9,7 @@ const Reservations = () => {
   const testFacility = {
     name: "Spor Salonu",
     phone: "(123) 456 78 90",
-      location: {
+    location: {
       street: "Street",
       district: "District",
       province: "Province"

@@ -13,4 +13,96 @@
   padding: 8px;
   border: none;
   border-radius: 8px;
+  margin-top: 15px;
+  margin-left: 7.5%;
+}
+
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  gap: 15px;
+}
+
+.single-reservation {
+  display: flex;
+  background-color: rgb(75, 75, 75);
+  color: whitesmoke;
+  border-radius: 10px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.reservation-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+}
+
+.reservation-user-name {
+  font-size: 25px;
+  border-bottom: 2px deeppink solid;
+  margin-bottom: 15px;
+}
+
+.reservation-user-detail {
+  display: flex;
+  gap: 15px;
+}
+
+.reservation-username, .reservation-user-phone, .reservation-user-gender {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.reservation-branch-name {
+  border: 2px deeppink solid;
+  border-radius: 10px;
+  padding: 3px 7px;
+  color: deeppink;
+  width: fit-content;
+}
+
+.reservation-facility-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 40%;
+}
+
+.reservation-date {
+  font-style: italic;
+  font-size: 20px;
+}
+
+.reservation-hours {
+  font-style: italic;
+  font-size: 20px;
+}
+
+.reservation-hours :first-child {
+  border-bottom: 2px wheat solid;
+}
+
+.reservation-price {
+  font-size: 20px;
+}
+
+.cancel-reservation-button {
+  background-color: tomato;
+  color: wheat;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.cancel-button-container {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
