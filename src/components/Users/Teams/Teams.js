@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { 
-  TextField, Button, FormControl, Avatar, Grid, Typography, Paper, Box, InputLabel, OutlinedInput
+import {
+  TextField, Button, FormControl, Avatar, Grid, Typography, Paper, Box, InputLabel, OutlinedInput, Container
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { createTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
@@ -97,64 +97,59 @@ const Teams = () => {
   return (
     <ThemeProvider theme={theme}>
       <TeamsSidebar/>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: '3rem' }}>
-        <Paper style={{ 
+      <Container style={{ marginTop: '2rem' }}>
+        <div style={{ 
           padding: '2rem', 
-          width: '65%', 
-          marginLeft: '10%',
+          maxWidth: '75%', 
+          marginLeft: '20%',  
           display: 'flex', 
           flexDirection: 'column', 
+          alignItems: 'center',
           gap: '1rem',
-          backgroundColor: '#c1cdc1',
-          color: theme.palette.secondary.main,
         }}>
-          <Grid container alignItems="flex-start" spacing={3} marginBottom="2rem">
-            <Grid item xs={12} sm={3} style={{ textAlign: 'center' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  style={{ display: "none" }}
-                  id="logo-upload"
-                />
-                <label htmlFor="logo-upload">
-                  <Avatar
-                    alt="Team Logo"
-                    src={selectedFile}
-                    variant="square"
-                    style={{ width: 150, height: 150, cursor: "pointer" }}
-                  >
-                    {!selectedFile && <Add style={{ fontSize: 70 }} />}
-                  </Avatar>
-                </label>
-                <label htmlFor="logo-upload" style={{ marginTop: '1rem', cursor: "pointer", color: green[500], border: `1px solid ${green[500]}`, borderRadius: '5px', padding: '5px' }}>
-                  Edit Team Logo
-                </label>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={9}>
-              <TextField 
-                variant="outlined" 
-                value={teamName} 
-                onChange={(e) => setTeamName(e.target.value)}
-                label="Team Name"
-                fullWidth
-              />
-              <Grid container spacing={1} alignItems="center" style={{ marginTop: '1rem' }}>
-                {branches.map((b) => (
-                  <Grid item key={b}>
-                    <Button 
-                      variant={branch === b ? "contained" : "outlined"} 
-                      color={branch === b ? "primary" : "default"}
-                      onClick={() => setBranch(b)}
-                    >
-                      {b}
-                    </Button>
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+            id="logo-upload"
+          />
+          <label htmlFor="logo-upload">
+            <Avatar
+              alt="Team Logo"
+              src={selectedFile}
+              variant="square"
+              style={{ width: 150, height: 150, cursor: "pointer" }}
+            >
+              {!selectedFile && <Add style={{ fontSize: 70 }} />}
+            </Avatar>
+          </label>
+          <label htmlFor="logo-upload" style={{ marginTop: '1rem', cursor: "pointer", color: theme.palette.primary.main, border: `1px solid ${theme.palette.primary.main}`, borderRadius: '5px', padding: '5px' }}>
+            Edit Team Logo
+          </label>
+          <TextField 
+            variant="outlined" 
+            value={teamName} 
+            onChange={(e) => setTeamName(e.target.value)}
+            label="Team Name"
+            fullWidth
+          />
+          <FormControl fullWidth variant="outlined" style={{ marginTop: '1rem' }}>
+            <InputLabel id="branch-select-label">Branch</InputLabel>
+            <Select
+              labelId="branch-select-label"
+              value={branch}
+              onChange={(e) => setBranch(e.target.value)}
+              input={<GreenOutlinedInput label="Branch" />}
+            >
+              {branches.map((b) => (
+                <MenuItem value={b} key={b}>
+                  {b}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Grid container spacing={1} justifyContent="space-between" style={{ marginTop: '1rem' }}>
             <Grid item xs={12} sm={4}>
               <FormControl fullWidth variant="outlined">
                 <InputLabel id="province-select-label">Province</InputLabel>
@@ -206,19 +201,18 @@ const Teams = () => {
                 </Select>
               </FormControl>
             </Grid>
-            <Box sx={{ width: '100%', padding: '1%', marginLeft:'10%',marginRight:'10%'}}>
-              <Button 
-                variant="contained" 
-                color="primary"
-                fullWidth
-                onClick={handleCreateTeam}
-              >
-                CREATE TEAM
-              </Button>
-            </Box>
           </Grid>
-        </Paper>
-      </div>
+          <Button 
+            variant="contained" 
+            color="primary"
+            fullWidth
+            style={{ marginTop: '1rem' }}
+            onClick={handleCreateTeam}
+          >
+            CREATE TEAM
+          </Button>
+          </div>
+      </Container>
     </ThemeProvider>
   );
 };
