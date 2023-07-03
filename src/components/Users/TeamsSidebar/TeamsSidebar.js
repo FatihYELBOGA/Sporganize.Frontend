@@ -4,9 +4,9 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
 const menuItems = [
-  { id: 1, label: 'Create Team', href: '/Teams' },
-  { id: 2, label: 'Invite Team Members', href: '/InviteMember' },
-  { id: 2, label: 'Incoming Invitations', href: '/IncomingInvitations' }
+  { id: 1, label: 'My Teams', href: '/teams' },
+  { id: 2, label: 'Create Team', href: '/create-team' },
+  { id: 3, label: 'Incoming Invitations', href: '/incoming-invitations' }
 ];
 
 const TeamsSidebar = () => {

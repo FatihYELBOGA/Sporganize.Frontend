@@ -162,7 +162,6 @@ const Profile = (props) =>
   // change the district and districtId
   const handleDistrictChange = (e) => 
   {
-
     let did = districts.find(district => district.name === e.target.value)?.id;
     setDistrictId(did);
     setDistrict(e.target.value);
@@ -199,7 +198,6 @@ const Profile = (props) =>
     const blob = new Blob(byteArrays, { type: contentType });
     const f = new File([blob], fileName, { type: contentType });
     const fileURL = URL.createObjectURL(f);
-    setAvatar(f);
     setAvatarURL(fileURL);
   };
 
@@ -212,7 +210,6 @@ const Profile = (props) =>
       const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
       if (selectedFile.size <= fileSizeLimit) {
         const fileURL = URL.createObjectURL(selectedFile);
-        setAvatar(selectedFile);
         setAvatarURL(fileURL);
       } else {
         // File size exceeds the limit
@@ -236,12 +233,12 @@ const Profile = (props) =>
       method: "PUT",
       body: formData
     })
-      .then((res) => res.json()) 
-      .then((data) => {
-        alert("the user informations updated successfully!");
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
+    .then((res) => res.json()) 
+    .then((data) => {
+      alert("the user informations updated successfully!");
+      console.log(data);
+    })
+    .catch((err) => console.log(err));
   };
 
   // the profile page

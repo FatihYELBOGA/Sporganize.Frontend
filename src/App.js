@@ -14,7 +14,6 @@ import Profile from './components/Users/Profile/profile'
 import Tournaments from './components/Users/Tournaments/Tournaments';
 import MyPosts from './components/Users/MyPosts/MyPosts'
 import MyFriends from './components/Users/MyFriends/MyFriends';
-import MyTeams from './components/Users/MyTeams/MyTeams';
 import MyReservations from './components/Users/MyReservations/MyReservations';
 import MyTournaments from './components/Users/MyTournaments/MyTournaments'
 import MyAppointments from './components/Users/MyAppointments/MyAppointments';
@@ -61,15 +60,14 @@ function App() {
         <Routes>
           <Route exact path='/Home' element = {<Homepage userId={userId} />} />
           <Route exact path='/reservations' element = {<Reservations/>} />
-          <Route exact path='/Teams' element = { <Teams/>} />
-          <Route exact path='/InviteMember' element = {<InviteMember/>} />
-          <Route exact path='/IncomingInvitations' element = {<IncomingInvitations/>} />
+          <Route exact path='/teams' element = {<InviteMember userId={userId}/>} />
+          <Route exact path='/create-team' element = { <Teams userId={userId} />} />
+          <Route exact path='/incoming-invitations' element = {<IncomingInvitations/>} />
           <Route exact path='/tournaments' element = {<Tournaments/>} />
           <Route exact path='/profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
           <Route exact path='/my-posts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
           <Route exact path='/my-appointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
           <Route exact path='/my-friends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />
-          <Route exact path='/my-teams' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTeams userId={userId} /></div> } />
           <Route exact path='/my-reservations' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyReservations userId={userId} /></div> } />
           <Route exact path='/my-tournaments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTournaments userId={userId} /></div> } />
         </Routes>

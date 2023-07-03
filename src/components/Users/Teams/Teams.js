@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  TextField, Button, FormControl, Avatar, Grid, Typography, Paper, Box, InputLabel, OutlinedInput, Container
+  TextField, Button, FormControl, Avatar, Grid, InputLabel, OutlinedInput, Container,Select, MenuItem
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import { createTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import TeamsSidebar from "../TeamsSidebar/TeamsSidebar";
-import { Select, MenuItem } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -39,18 +38,28 @@ const GreenOutlinedInput = withStyles({
   },
 })(OutlinedInput);
 
-const Teams = () => {
+const Teams = (props) => 
+{
   const [teamName, setTeamName] = useState("");
   const [branch, setBranch] = useState("");
   const [branches, setBranches] = useState([]);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [province, setProvince] = useState("");
-  const [district, setDistrict] = useState("");
+  const [province, setProvince] = useState("");  
+  const [provinceId, setProvinceId] = useState(0);
+  const [district, setDistrict] = useState(""); 
+  const [districtId, setDistrictId] = useState(0);
   const [street, setStreet] = useState("");
+  const [streetId, setStreetId] = useState(0);
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
-  const [streets, setStreets] = useState([]);
+  const [streets, setStreets] = useState([]);  
+  
+  // byte array of profile photo
+  const [avatar, setAvatar] = useState(null);
 
+  // profile photo
+  const [avatarURL, setAvatarURL] = useState(null);
+
+  // get the branches
   useEffect(() => {
     fetch("https://sporganize.azurewebsites.net/branches")
       .then((res) => res.json())
@@ -58,41 +67,113 @@ const Teams = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  // get the provinces
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/provinces")
-      .then((res) => res.json())
-      .then((result) => setProvinces(result))
-      .catch((error) => console.log(error));
+    fetch("https://sporganize.azurewebsites.net/provinces").
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setProvinces(result);
+    },
+    (error) => {
+      console.log(error);
+    })
   }, []);
 
-  useEffect(() => {
-    if (province) {
-      fetch(`https://sporganize.azurewebsites.net/districts/${province}`)
-        .then((res) => res.json())
-        .then((result) => setDistricts(result))
-        .catch((error) => console.log(error));
-    }
-  }, [province]);
+  // get the districts by provinceId
+  useEffect(() => { 
+    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setDistricts(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [provinceId]);
 
+  // get the streets by districtId
   useEffect(() => {
-    if (district) {
-      fetch(`https://sporganize.azurewebsites.net/streets/${district}`)
-        .then((res) => res.json())
-        .then((result) => setStreets(result))
-        .catch((error) => console.log(error));
-    }
-  }, [district]);
+    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    then((res) =>
+      res.json()).
+    then((result) => {
+      setStreets(result);
+    },
+    (error) => {
+      console.log(error);
+    });
+  }, [districtId]);
 
-  const handleFileChange = (e) => {
-    if (e.target.files[0]) {
-      setSelectedFile(URL.createObjectURL(e.target.files[0]));
+  const handleFileChange = (e) => 
+  {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Check file size
+      const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
+      if (selectedFile.size <= fileSizeLimit) {
+        const fileURL = URL.createObjectURL(selectedFile);
+        setAvatar(selectedFile);
+        setAvatarURL(fileURL);
+      } else {
+        // File size exceeds the limit
+        alert("File size exceeds the limit of 5MB.");
+      }
     }
   };
 
-  const handleCreateTeam = () => {
-    
+  const handleCreateTeam = (e) => 
+  {
+    e.preventDefault();
+
+    if(avatar==null){
+      alert("logo should not be null!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("Name", teamName);
+    formData.append("Logo", avatar);
+    formData.append("Branch", branch);
+    formData.append("StreetId", streetId);
+    formData.append("CaptainId", props.userId);
+
+    fetch("https://sporganize.azurewebsites.net/teams",{
+      method: "POST",
+      body: formData
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      alert("the team was created successfully!");
+    })
+    .catch((err) => console.log(err));
   };
 
+  // change the province and provinceId
+  const handleProvinceChange = (e) => 
+  {
+    let pid = provinces.find(province => province.name === e.target.value)?.id;
+    setProvinceId(pid);
+    setProvince(e.target.value);
+  };
+
+  // change the district and districtId
+  const handleDistrictChange = (e) => 
+  {
+    let did = districts.find(district => district.name === e.target.value)?.id;
+    setDistrictId(did);
+    setDistrict(e.target.value);
+  };
+
+  // change the street and streetId
+  const handleStreetChange = (e) => 
+  {
+    let sid = streets.find(street => street.name === e.target.value)?.id;
+    setStreetId(sid);
+    setStreet(e.target.value);
+  }
+  
   return (
     <ThemeProvider theme={theme}>
       <TeamsSidebar/>
@@ -116,11 +197,11 @@ const Teams = () => {
           <label htmlFor="logo-upload">
             <Avatar
               alt="Team Logo"
-              src={selectedFile}
+              src={avatarURL}
               variant="square"
               style={{ width: 150, height: 150, cursor: "pointer" }}
             >
-              {!selectedFile && <Add style={{ fontSize: 70 }} />}
+              {!avatarURL && <Add style={{ fontSize: 70 }} />}
             </Avatar>
           </label>
           <label htmlFor="logo-upload">
@@ -162,11 +243,11 @@ const Teams = () => {
                 <Select
                   labelId="province-select-label"
                   value={province}
-                  onChange={(e) => setProvince(e.target.value)}
+                  onChange={handleProvinceChange}
                   input={<GreenOutlinedInput label="Province" />}
                 >
                   {provinces.map((p) => (
-                    <MenuItem value={p.id} key={p.id}>
+                    <MenuItem value={p.name} key={p.id}>
                       {p.name}
                     </MenuItem>
                   ))}
@@ -179,11 +260,11 @@ const Teams = () => {
                 <Select
                   labelId="district-select-label"
                   value={district}
-                  onChange={(e) => setDistrict(e.target.value)}
+                  onChange={handleDistrictChange}
                   input={<GreenOutlinedInput label="District" />}
                 >
                   {districts.map((d) => (
-                    <MenuItem value={d.id} key={d.id}>
+                    <MenuItem value={d.name} key={d.id}>
                       {d.name}
                     </MenuItem>
                   ))}
@@ -196,11 +277,11 @@ const Teams = () => {
                 <Select
                   labelId="street-select-label"
                   value={street}
-                  onChange={(e) => setStreet(e.target.value)}
+                  onChange={handleStreetChange}
                   input={<GreenOutlinedInput label="Street" />}
                 >
                   {streets.map((s) => (
-                    <MenuItem value={s.id} key={s.id}>
+                    <MenuItem value={s.name} key={s.id}>
                       {s.name}
                     </MenuItem>
                   ))}
