@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TournamentsSidebar from './TournamentSidebar';
 import './Tournaments.css';
 
-// tournament logo photos
+// Turnuva logo resimleri
 import tournament1picture from "../../../pictures/tournament1.png";
 import tournament2picture from "../../../pictures/tournament2.png";
 
@@ -19,6 +19,7 @@ function Tournaments() {
   const [selectedTournament, setSelectedTournament] = useState('');
 
   useEffect(() => {
+    //  fetch 
     const fetchTournaments = () => {
       const data = [
         { 
@@ -26,12 +27,12 @@ function Tournaments() {
           name: "IYTE Tennis Tournament", 
           logoUrl: tournament1picture, 
           sport: "Tennis",
-          applyDeadline: "30.06.2023", 
+          applyDeadline: "30.06.20 23", 
           details: {
-            date: "04.07.2023",
             location: "Urla/Izmir",
             venue: "IYTE Spor Salonu",
-            period: "04.07.2023 to 06.07.2023",
+            startDate: "04.07.2023", 
+            endDate: "06.07.2023", 
             showDetails: false,
           }
         },
@@ -42,10 +43,10 @@ function Tournaments() {
           sport: "Football",
           applyDeadline: "15.09.2023", 
           details: {
-            date: "20.09.2023",
             location: "Urla/Izmir",
             venue: "IYTE Spor Salonu",
-            period: "20.09.2023 to 25.09.2023",
+            startDate: "20.09.2023", 
+            endDate: "25.09.2023", 
             showDetails: false,
           }
         }
@@ -54,28 +55,33 @@ function Tournaments() {
     };
     fetchTournaments();
 
+    // Kullanıcının takım lideri olduğu takımlar
     setUserTeams([
       { id: 1, name: "Team 1", sport: "Football" },
-      { id: 2, name: "Team 2", sport: "Tennis" },
+      // { id: 2, name: "Team 2", sport: "Tennis" }, hiç bu dalda takım olduğu yoksa takımınız yok der
       { id: 3, name: "Team 3", sport: "Football" },
-      { id: 4, name: "Team 4", sport: "Basketball" },
     ]);
   }, []);
 
+  // Spor dalları
   const sports = ["Football","Tennis","Basketball", "Volleyball"]; 
 
+  // Filtrelenmiş turnuvalar
   const filteredTournaments = tournaments
     .filter(tournament => tournament.sport === filter)
     .filter(tournament => tournament.name.toLowerCase().includes(search.toLowerCase()));
 
+  // Filtre değişimini yöneten fonksiyon
   const handleFilterChange = (sport) => {
     setFilter(sport);
   }
 
+  // Arama değişimini yöneten fonksiyon
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   }
 
+  // Turnuva detaylarını göster/gizle yöneten fonksiyon
   const handleToggleDetails = (id) => {
     const updatedTournaments = tournaments.map(tournament => {
       if(tournament.id === id) {
@@ -86,6 +92,7 @@ function Tournaments() {
     setTournaments(updatedTournaments);
   };
 
+  // Başvuru butonuna tıklama işlemini yöneten fonksiyon
   const handleApplyClick = (event, tournamentId) => {
     const selectedTournament = tournaments.find(tournament => tournament.id === tournamentId);
     setSelectedTournament(selectedTournament);
@@ -102,10 +109,12 @@ function Tournaments() {
     }
   };
 
+  // Menu kapatmayı yöneten fonksiyon
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  // Takım seçimini yöneten fonksiyon
   const handleTeamSelect = (teamName) => {
     setSelectedTeam(teamName);
     setAnchorEl(null);
@@ -116,97 +125,70 @@ function Tournaments() {
     <Box display="flex">
       <TournamentsSidebar />
       <Box flexGrow={1} p={3}>
-        <Box marginBottom={3} display="flex" justifyContent="center">
+      <Box marginBottom={3} display="flex" justifyContent="center">
           <TextField 
             variant="outlined"
-            placeholder="Search tournaments"
+            placeholder="Search Tournaments"
             value={search}
             onChange={handleSearchChange}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton>
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            className="text-field"
+            InputProps={{endAdornment: (<InputAdornment position="end"><IconButton><SearchIcon /></IconButton></InputAdornment>),}}
+            sx={{width:'50%','& .MuiOutlinedInput-root': {'& fieldset': {borderColor: 'green',},'&:hover fieldset': { borderColor: 'darkgreen', },'&.Mui-focused fieldset': {borderColor: 'darkgreen',},},color: 'whitesmoke', }}
           />
         </Box>
         <Box marginBottom={3} display="flex" justifyContent="flex-start" flexWrap="wrap" gap={2}>
           {sports.map(sport => (
-            <Chip 
-              label={sport} 
-              color={filter === sport ? "success" : "default"} 
+            <Chip label={sport} color={filter === sport ? "success" : "default"} 
               onClick={() => handleFilterChange(sport)}
-              className={filter === sport ? "sport-chip" : ""}
-              sx={{
-                '&:hover': {
-                    backgroundColor: '#1E7B38',
-                    color: '#ffffff',
-                },
-              }}
-            />
-          ))}
+              sx={{ '&:hover': {backgroundColor: '#1E7B38',color: '#ffffff',}, }}/>))}
         </Box>
-
         <Grid container spacing={3}>
           {filteredTournaments.map((tournament) => (
             <Grid item xs={12} sm={6} md={4} key={tournament.id}>
-              <Card className="card">
+              <Card className="card" sx={{ backgroundColor: 'rgb(37, 37, 37)' }}>
                 <CardContent>
                   <Box display="flex" flexDirection="column" alignItems="center">
-                    <Typography className="card-title">{tournament.name}</Typography>
-                    <CardMedia
-                      component="img"
-                      image={tournament.logoUrl}
+                    <Typography className="card-title" sx={{ color: 'whitesmoke' }}>{tournament.name}</Typography>
+                    <CardMedia component="img" image={tournament.logoUrl}
                       alt={tournament.name}
-                      sx={{ maxHeight: 140, objectFit: 'contain' }}
+                      sx={{ maxHeight: 175, objectFit: 'contain' }}
                     />
-                    <Box bgcolor="#647C31" p={1} my={2} width="100%" display="flex" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px">
-                      <Typography className="card-description">{tournament.details.venue}</Typography>
-                      <Typography className="see-details" onClick={() => handleToggleDetails(tournament.id)}>See Details</Typography>
+                    <Box bgcolor="blue" p={1} my={2} width="100%" display="flex" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px">
+                      <Typography className="see-details" onClick={() => handleToggleDetails(tournament.id)} sx={{ color: 'whitesmoke' }}>
+                        {tournament.details.showDetails ? 'Hide Details' : 'See Details'}
+                      </Typography>
                     </Box>
                     {tournament.details.showDetails && 
                     <Box display="flex" flexDirection="column" alignItems="center">
-                      <Typography className="card-details" sx={{ color: '#ffffff' }}>{`Application deadline: ${tournament.applyDeadline}`}</Typography>
-                      <Typography className="card-details" sx={{ color: '#ffffff' }}>{`Location: ${tournament.details.location}`}</Typography>
-                      <Typography className="card-details" sx={{ color: '#ffffff' }}>{`Period: ${tournament.details.period}`}</Typography>
+                      <Typography className="card-venue" sx={{ color: 'whitesmoke' }}>{tournament.details.venue}</Typography>
+                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Application Deadline: ${tournament.applyDeadline}`}</Typography>
+                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Location: ${tournament.details.location}`}</Typography>
+                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Start Date: ${tournament.details.startDate}`}</Typography> 
+                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`End Date: ${tournament.details.endDate}`}</Typography> 
                     </Box>}
-                    <Box mt={2}>
-                      <Button 
-                        variant="contained"
-                        className="join-button"
-                        aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        onClick={(event) => handleApplyClick(event, tournament.id)}
-                        disabled={new Date(tournament.applyDeadline) < new Date()} // disable the apply button if the apply deadline has passed
-                      >
-                        Apply
-                      </Button>
-                    </Box>
                   </Box>
                 </CardContent>
+                <Box textAlign="center" py={2}>
+                  <Button variant="contained" color="success" onClick={(event) => handleApplyClick(event, tournament.id)}>Apply</Button>
+                </Box>
               </Card>
             </Grid>
           ))}
-        </Grid> 
+        </Grid>
 
         <Menu
-          id="simple-menu"
           anchorEl={anchorEl}
-          keepMounted
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
           {eligibleTeams.map((team) => (
-            <MenuItem onClick={() => handleTeamSelect(team.name)}>{team.name}</MenuItem>
+            <MenuItem key={team.id} onClick={() => handleTeamSelect(team.name)}>
+              {team.name}
+            </MenuItem>
           ))}
         </Menu>
       </Box>
     </Box>
-  )
+  );
 }
 
 export default Tournaments;
