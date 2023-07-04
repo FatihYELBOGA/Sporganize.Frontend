@@ -10,7 +10,7 @@ function IncomingInvitations(props) {
   const [filter, setFilter] = useState('FOOTBALL');
   const [search, setSearch] = useState('');
   const [branch,setBranch] = useState([])
-  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [changes,setChanges] = useState(false);
 
   useEffect(() => {
       
@@ -21,7 +21,7 @@ function IncomingInvitations(props) {
             console.log(result)
           })
           .catch((error) => console.log(error)); 
-  }, [props.userId]);
+  }, [props.userId,changes]);
 
   useEffect(()=>{
     fetch("http://yelbogafatih-001-site1.btempurl.com/branches")
@@ -64,7 +64,7 @@ function IncomingInvitations(props) {
               sx={{'&:hover': {backgroundColor: '#1E7B38', color: '#ffffff'} }} />))}
         </Box>
         <Grid container spacing={3}>{teams.map((team) => (
-            <TeamCard invitationId={team.id}  team={team.team} type="incoming"></TeamCard>
+            <TeamCard invitationId={team.id}  team={team.team} type="incoming" setChanges={setChanges} changes={changes}></TeamCard>
           ))}
         </Grid>
       </Box>

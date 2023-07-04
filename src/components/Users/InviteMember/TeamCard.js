@@ -4,9 +4,12 @@ import {Button,Avatar,Card,CardContent,Typography,Grid,Box,TextField,InputAdornm
 
 function TeamCard(props) 
 { 
-  const {team,type,invitationId} = props;
+  const {team,type,invitationId,setChanges,changes} = props;
+  const [playerId,setPlayerId] = useState(0);
   const [invitedUsername, setInvitedUsername] = useState("");
   const [isDetails,setIsDetails] = useState(false);
+  const [users,setUsers] = useState([]);
+
 
   // profile photo
   const [avatarURL, setAvatarURL] = useState(null);
@@ -25,8 +28,32 @@ function TeamCard(props)
       .catch((err) => console.log(err));
   };
 
+  
+    useEffect(() => {
+      fetch("http://yelbogafatih-001-site1.btempurl.com/users-without-details")
+        .then((res) => res.json())
+        .then((result) => {
+          setUsers(result);
+        })
+        .catch((error) => console.log(error));
+    }, []);
+
+
+
+  const handlePlayerId = (playerName) =>{
+        users.forEach(element => {
+          
+          if(element.username === playerName){
+            setPlayerId(element.id);
+            console.log("osman")
+          } 
+        });
+        handleSendRequest();
+  }
+
   const handleInvitationReject = () => 
   {
+
     const formData = new FormData();
     formData.append("Id", invitationId);
     formData.append("Status", "DENIED");
@@ -38,6 +65,7 @@ function TeamCard(props)
       .then((res) => res.json())
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
+    setChanges(!changes)
   };
  
  
@@ -67,7 +95,37 @@ function TeamCard(props)
      setAvatarURL(fileURL);
    };
 
-  const handleSendRequest = (teamId) => {
+  const handleSendRequest = () => {
+    console.log(playerId)
+    if(playerId===0){
+      alert("There is no user with this username!")
+    }else{
+      fetch('http://yelbogafatih-001-site1.btempurl.com/teams/invitation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            teamId: team.id,
+            playerId: playerId
+          }) // Replace with your data
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Request failed');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('Response:', data);
+            // Handle the response data
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            // Handle the error
+          });
+          setInvitedUsername("");
+    }
 
   }
   useEffect(()=>{
@@ -92,7 +150,7 @@ function TeamCard(props)
                     <TextField variant="outlined" placeholder="Enter username" value={invitedUsername} onChange={(e) => setInvitedUsername(e.target.value)} className="invitee-textfield"
                         InputProps={{endAdornment: (
                             <InputAdornment position="end">
-                              <IconButton onClick={() => handleSendRequest(team.id)} color="inherit" sx={{backgroundColor: 'green',color: 'whitesmoke','&:hover': {backgroundColor: 'green', },borderRadius: '5px', marginRight: '-8px', }}>
+                              <IconButton onClick={() => handlePlayerId(invitedUsername)} color="inherit" sx={{backgroundColor: 'green',color: 'whitesmoke','&:hover': {backgroundColor: 'green', },borderRadius: '5px', marginRight: '-8px', }}>
                                     <Typography variant="body2" sx={{ color: 'whitesmoke'}}>SEND REQUEST</Typography>
                              </IconButton>
                           </InputAdornment>),
@@ -105,8 +163,9 @@ function TeamCard(props)
                         {isDetails ? "Hide Details" : "See Details"}</Button>
                     </Box>
                     {isDetails && (<Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
-                        {type === "incoming" ? (<Typography variant="body2" sx={{ color: 'whitesmoke' }}></Typography>) :(<Typography variant="body2" sx={{ color: 'whitesmoke' }}>Location: {team.location.province+" "+team.location.street+"/"+team.location.district}</Typography>)}
-                        
+                        {type === "incoming" ? (<Typography variant="body2" sx={{ color: 'whitesmoke',marginBottom:1  }}></Typography>) :(<Typography variant="body2" sx={{ color: 'whitesmoke',marginBottom:1  }}>Location: {team.location.province+" "+team.location.street+"/"+team.location.district}</Typography>)}
+                        <Typography variant="body2" sx={{ color: 'whitesmoke'}}>Captain:</Typography>
+                        <Typography variant="body2" sx={{ color: 'whitesmoke',marginBottom:1  }}>{team.captain.firstName+" "+team.captain.lastName}</Typography>
                         <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Members: {team.players.map((player)=>(
                             <Typography>{player.firstName+" " +player.lastName}</Typography>
                         ))}</Typography> </Box> )}

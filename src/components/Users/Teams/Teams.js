@@ -148,6 +148,10 @@ const Teams = (props) =>
       alert("the team was created successfully!");
     })
     .catch((err) => console.log(err));
+    setTeamName("");
+    setAvatar(null);
+    setBranch("")
+    
   };
 
   // change the province and provinceId
