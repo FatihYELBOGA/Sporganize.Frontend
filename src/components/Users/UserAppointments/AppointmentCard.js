@@ -16,6 +16,7 @@ function AppointmentCard ({ appointment, displayUsers }) {
     setClicked(true);
   }
   
+  
   const convertBase64ToFile = (base64String, fileName) => {
     const contentType = 'image/*'; // Update the content type as per your file type
     const sliceSize = 1024;
