@@ -21,7 +21,7 @@ const CreateTournamentForm = () => {
       alert("Start date cannot be greater than end date!")
     }
     else{
-    fetch("https://localhost:7120/tournaments", {
+    fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

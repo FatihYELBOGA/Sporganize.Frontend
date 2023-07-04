@@ -9,7 +9,7 @@ function MyTournaments(props){
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() =>{
-        fetch("https://localhost:7120/tournaments/"+1)
+        fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/"+1)
         .then((res) => {
             if (res.status === 204) {
               // Handle 204 No Content response

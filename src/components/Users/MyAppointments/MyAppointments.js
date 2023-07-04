@@ -9,7 +9,7 @@ const MyAppointments = (props) => {
     const[myAppointments, setMyAppointments] = useState([]);
 
     const getMyAppointments = () => {
-        fetch("https://localhost:7120/users/appointments/"+userId)
+        fetch("http://yelbogafatih-001-site1.btempurl.com/users/appointments/"+userId)
         .then((res) =>
             res.json())
         .then(

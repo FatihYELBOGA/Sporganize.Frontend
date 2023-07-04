@@ -61,7 +61,7 @@ const Teams = (props) =>
 
   // get the branches
   useEffect(() => {
-    fetch("https://localhost:7120/branches")
+    fetch("http://yelbogafatih-001-site1.btempurl.com/branches")
       .then((res) => res.json())
       .then((result) => setBranches(result))
       .catch((error) => console.log(error));
@@ -69,7 +69,7 @@ const Teams = (props) =>
 
   // get the provinces
   useEffect(() => {
-    fetch("https://localhost:7120/provinces").
+    fetch("http://yelbogafatih-001-site1.btempurl.com/provinces").
     then((res) =>
       res.json()).
     then((result) => {
@@ -82,7 +82,7 @@ const Teams = (props) =>
 
   // get the districts by provinceId
   useEffect(() => { 
-    fetch("https://localhost:7120/districts/"+provinceId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/districts/"+provinceId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -95,7 +95,7 @@ const Teams = (props) =>
 
   // get the streets by districtId
   useEffect(() => {
-    fetch("https://localhost:7120/streets/"+districtId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/streets/"+districtId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -139,7 +139,7 @@ const Teams = (props) =>
     formData.append("StreetId", streetId);
     formData.append("CaptainId", props.userId);
 
-    fetch("https://localhost:7120/teams",{
+    fetch("http://yelbogafatih-001-site1.btempurl.com/teams",{
       method: "POST",
       body: formData
     })

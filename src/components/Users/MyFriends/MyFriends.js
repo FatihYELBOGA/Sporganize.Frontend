@@ -9,7 +9,7 @@ import FriendCard from './FriendCard';
       const [isLoaded, setIsLoaded] = useState(false);
     
       const getTeams = () =>{
-        fetch("https://localhost:7120/users/friends/" + userId)
+        fetch("http://yelbogafatih-001-site1.btempurl.com/users/friends/" + userId)
           .then((res) => {
             if (res.status === 204) {
               // Handle 204 No Content response

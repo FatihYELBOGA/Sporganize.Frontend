@@ -14,7 +14,7 @@ function IncomingInvitations(props) {
 
   useEffect(() => {
       
-      fetch("https://localhost:7120/users/invitations/"+props.userId)
+      fetch("http://yelbogafatih-001-site1.btempurl.com/users/invitations/"+props.userId)
           .then((res) => res.json())
           .then((result) => {
             setTeams(result);
@@ -24,7 +24,7 @@ function IncomingInvitations(props) {
   }, [props.userId]);
 
   useEffect(()=>{
-    fetch("https://localhost:7120/branches")
+    fetch("http://yelbogafatih-001-site1.btempurl.com/branches")
           .then((res) => res.json())
           .then((result) => {
             setBranch(result);

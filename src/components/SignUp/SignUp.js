@@ -40,7 +40,7 @@ function SignUp () {
     }
 
     e.preventDefault()
-    fetch("https://localhost:7120/register",
+    fetch("http://yelbogafatih-001-site1.btempurl.com/register",
     {
       method: "POST",
       headers: {

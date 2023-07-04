@@ -16,7 +16,7 @@ function TeamCard(props)
     formData.append("Id", invitationId);
     formData.append("Status", "APPROVED");
   
-    fetch("https://localhost:7120/teams/invitation", {
+    fetch("http://yelbogafatih-001-site1.btempurl.com/teams/invitation", {
       method: "PUT",
       body: formData,
     })
@@ -31,7 +31,7 @@ function TeamCard(props)
     formData.append("Id", invitationId);
     formData.append("Status", "DENIED");
 
-    fetch("https://localhost:7120/teams/invitation", {
+    fetch("http://yelbogafatih-001-site1.btempurl.com/teams/invitation", {
       method: "PUT",
       body: formData,
     })

@@ -75,7 +75,7 @@ const Profile = (props) =>
   // get the user informations by userId
   useEffect(() => 
   {
-    fetch("https://localhost:7120/users/"+props.userId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/users/"+props.userId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -100,7 +100,7 @@ const Profile = (props) =>
 
   // get the provinces
   useEffect(() => {
-    fetch("https://localhost:7120/provinces").
+    fetch("http://yelbogafatih-001-site1.btempurl.com/provinces").
     then((res) =>
       res.json()).
     then((result) => {
@@ -113,7 +113,7 @@ const Profile = (props) =>
 
   // get the districts by provinceId
   useEffect(() => { 
-    fetch("https://localhost:7120/districts/"+provinceId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/districts/"+provinceId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -126,7 +126,7 @@ const Profile = (props) =>
 
   // get the streets by districtId
   useEffect(() => {
-    fetch("https://localhost:7120/streets/"+districtId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/streets/"+districtId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -139,7 +139,7 @@ const Profile = (props) =>
   
   // get the genders
   useEffect(() => {
-    fetch(" https://localhost:7120/genders").
+    fetch(" http://yelbogafatih-001-site1.btempurl.com/genders").
     then((res) =>
       res.json()).
     then((result) => {
@@ -231,7 +231,7 @@ const Profile = (props) =>
     formData.append("StreetId", streetId);
     formData.append("Profile", avatar);
 
-    fetch("https://localhost:7120/users/" + props.userId, {
+    fetch("http://yelbogafatih-001-site1.btempurl.com/users/" + props.userId, {
       method: "PUT",
       body: formData
     })

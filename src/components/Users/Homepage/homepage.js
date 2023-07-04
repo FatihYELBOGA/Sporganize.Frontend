@@ -12,7 +12,7 @@ function Homepage(props)
 
     // load the appointments
     const getAppointments = () => {
-        fetch("https://localhost:7120/appointments")
+        fetch("http://yelbogafatih-001-site1.btempurl.com/appointments")
         .then((res) =>
             res.json() )
         .then(

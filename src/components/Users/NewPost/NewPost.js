@@ -83,7 +83,7 @@ const NewPost = (props) =>
   // get the branches
   useEffect(() => 
   {
-    fetch(" https://localhost:7120/branches").
+    fetch(" http://yelbogafatih-001-site1.btempurl.com/branches").
     then((res) =>
       res.json()).
     then((result) => {
@@ -97,7 +97,7 @@ const NewPost = (props) =>
   // get the provinces
   useEffect(() => 
   {
-    fetch("https://localhost:7120/provinces").
+    fetch("http://yelbogafatih-001-site1.btempurl.com/provinces").
     then((res) =>
       res.json()).
     then((result) => {
@@ -111,7 +111,7 @@ const NewPost = (props) =>
   // get the districts by provinceId
   useEffect(() => 
   {
-    fetch("https://localhost:7120/districts/"+provinceId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/districts/"+provinceId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -125,7 +125,7 @@ const NewPost = (props) =>
   // get the streets by districtId
   useEffect(() => 
   {
-    fetch("https://localhost:7120/streets/"+districtId).
+    fetch("http://yelbogafatih-001-site1.btempurl.com/streets/"+districtId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -171,7 +171,7 @@ const NewPost = (props) =>
   const handleSaveChanges = (e) => 
   {
     e.preventDefault();
-    fetch("https://localhost:7120/appointments",
+    fetch("http://yelbogafatih-001-site1.btempurl.com/appointments",
     {
       method: "POST",
       headers: {

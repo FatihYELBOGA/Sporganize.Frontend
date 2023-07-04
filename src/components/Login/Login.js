@@ -28,7 +28,7 @@ function Login (props) {
   // click the submit button
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch("https://localhost:7120/login",
+    fetch("http://yelbogafatih-001-site1.btempurl.com/login",
     {
       method: "POST",
       headers: {
