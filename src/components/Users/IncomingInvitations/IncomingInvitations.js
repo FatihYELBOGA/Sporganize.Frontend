@@ -14,7 +14,7 @@ function IncomingInvitations(props) {
 
   useEffect(() => {
       
-      fetch("https://sporganize.azurewebsites.net/users/invitations/"+props.userId)
+      fetch("https://localhost:7120/users/invitations/"+props.userId)
           .then((res) => res.json())
           .then((result) => {
             setTeams(result);
@@ -24,7 +24,7 @@ function IncomingInvitations(props) {
   }, [props.userId]);
 
   useEffect(()=>{
-    fetch("https://sporganize.azurewebsites.net/branches")
+    fetch("https://localhost:7120/branches")
           .then((res) => res.json())
           .then((result) => {
             setBranch(result);

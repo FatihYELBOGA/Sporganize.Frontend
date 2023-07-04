@@ -9,7 +9,7 @@ import FriendCard from './FriendCard';
       const [isLoaded, setIsLoaded] = useState(false);
     
       const getTeams = () =>{
-        fetch("https://sporganize.azurewebsites.net/users/friends/" + userId)
+        fetch("https://localhost:7120/users/friends/" + userId)
           .then((res) => {
             if (res.status === 204) {
               // Handle 204 No Content response

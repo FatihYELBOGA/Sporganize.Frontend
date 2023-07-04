@@ -21,7 +21,7 @@ function InviteMember(props)
 
   // get the branches
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/branches")
+    fetch("https://localhost:7120/branches")
       .then((res) => res.json())
       .then((result) => {
         setBranches(result);
@@ -31,7 +31,7 @@ function InviteMember(props)
  
   // get the teams
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/users/teams/"+props.userId)
+    fetch("https://localhost:7120/users/teams/"+props.userId)
       .then((res) => res.json())
       .then((result) => {
         setTeams(result);
@@ -41,7 +41,7 @@ function InviteMember(props)
    
   // get the captained teams
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/users/captained-teams/"+props.userId)
+    fetch("https://localhost:7120/users/captained-teams/"+props.userId)
       .then((res) => res.json())
       .then((result) => {
         setCaptainedTeams(result);

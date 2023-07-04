@@ -28,7 +28,7 @@ function Login (props) {
   // click the submit button
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch("https://sporganize.azurewebsites.net/login",
+    fetch("https://localhost:7120/login",
     {
       method: "POST",
       headers: {

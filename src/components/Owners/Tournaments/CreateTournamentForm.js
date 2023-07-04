@@ -21,7 +21,7 @@ const CreateTournamentForm = () => {
       alert("Start date cannot be greater than end date!")
     }
     else{
-    fetch("https://sporganize.azurewebsites.net/tournaments", {
+    fetch("https://localhost:7120/tournaments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

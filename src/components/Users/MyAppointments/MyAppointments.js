@@ -9,7 +9,7 @@ const MyAppointments = (props) => {
     const[myAppointments, setMyAppointments] = useState([]);
 
     const getMyAppointments = () => {
-        fetch("https://sporganize.azurewebsites.net/users/appointments/"+userId)
+        fetch("https://localhost:7120/users/appointments/"+userId)
         .then((res) =>
             res.json())
         .then(

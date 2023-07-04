@@ -40,7 +40,7 @@ function SignUp () {
     }
 
     e.preventDefault()
-    fetch("https://sporganize.azurewebsites.net/register",
+    fetch("https://localhost:7120/register",
     {
       method: "POST",
       headers: {

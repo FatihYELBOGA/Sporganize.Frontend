@@ -12,7 +12,7 @@ function Homepage(props)
 
     // load the appointments
     const getAppointments = () => {
-        fetch("https://sporganize.azurewebsites.net/appointments")
+        fetch("https://localhost:7120/appointments")
         .then((res) =>
             res.json() )
         .then(

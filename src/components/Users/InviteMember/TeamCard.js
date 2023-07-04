@@ -13,10 +13,10 @@ function TeamCard(props)
 
   const handleInvitationAccept = () => {
     const formData = new FormData();
-    formData.append("userTeamId", invitationId);
-    formData.append("status", "APPROVED");
+    formData.append("Id", invitationId);
+    formData.append("Status", "APPROVED");
   
-    fetch("https://sporganize.azurewebsites.net/teams/invitation", {
+    fetch("https://localhost:7120/teams/invitation", {
       method: "PUT",
       body: formData,
     })
@@ -25,20 +25,19 @@ function TeamCard(props)
       .catch((err) => console.log(err));
   };
 
-  const handleInvitationReject = () => {
-    fetch("https://sporganize.azurewebsites.net/teams/invitation", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userTeamId: invitationId,
-          status: "DENIED",
-          
-        }),
-      })
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
+  const handleInvitationReject = () => 
+  {
+    const formData = new FormData();
+    formData.append("Id", invitationId);
+    formData.append("Status", "DENIED");
+
+    fetch("https://localhost:7120/teams/invitation", {
+      method: "PUT",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
   };
  
  

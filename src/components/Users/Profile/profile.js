@@ -75,7 +75,7 @@ const Profile = (props) =>
   // get the user informations by userId
   useEffect(() => 
   {
-    fetch("https://sporganize.azurewebsites.net/users/"+props.userId).
+    fetch("https://localhost:7120/users/"+props.userId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -100,7 +100,7 @@ const Profile = (props) =>
 
   // get the provinces
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/provinces").
+    fetch("https://localhost:7120/provinces").
     then((res) =>
       res.json()).
     then((result) => {
@@ -113,7 +113,7 @@ const Profile = (props) =>
 
   // get the districts by provinceId
   useEffect(() => { 
-    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    fetch("https://localhost:7120/districts/"+provinceId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -126,7 +126,7 @@ const Profile = (props) =>
 
   // get the streets by districtId
   useEffect(() => {
-    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    fetch("https://localhost:7120/streets/"+districtId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -139,7 +139,7 @@ const Profile = (props) =>
   
   // get the genders
   useEffect(() => {
-    fetch(" https://sporganize.azurewebsites.net/genders").
+    fetch(" https://localhost:7120/genders").
     then((res) =>
       res.json()).
     then((result) => {
@@ -198,6 +198,7 @@ const Profile = (props) =>
     const blob = new Blob(byteArrays, { type: contentType });
     const f = new File([blob], fileName, { type: contentType });
     const fileURL = URL.createObjectURL(f);
+    setAvatar(f);
     setAvatarURL(fileURL);
   };
 
@@ -210,6 +211,7 @@ const Profile = (props) =>
       const fileSizeLimit = 5 * 1024 * 1024; // 5MB in bytes
       if (selectedFile.size <= fileSizeLimit) {
         const fileURL = URL.createObjectURL(selectedFile);
+        setAvatar(selectedFile);
         setAvatarURL(fileURL);
       } else {
         // File size exceeds the limit
@@ -229,7 +231,7 @@ const Profile = (props) =>
     formData.append("StreetId", streetId);
     formData.append("Profile", avatar);
 
-    fetch("https://sporganize.azurewebsites.net/users/" + props.userId, {
+    fetch("https://localhost:7120/users/" + props.userId, {
       method: "PUT",
       body: formData
     })

@@ -83,7 +83,7 @@ const NewPost = (props) =>
   // get the branches
   useEffect(() => 
   {
-    fetch(" https://sporganize.azurewebsites.net/branches").
+    fetch(" https://localhost:7120/branches").
     then((res) =>
       res.json()).
     then((result) => {
@@ -97,7 +97,7 @@ const NewPost = (props) =>
   // get the provinces
   useEffect(() => 
   {
-    fetch("https://sporganize.azurewebsites.net/provinces").
+    fetch("https://localhost:7120/provinces").
     then((res) =>
       res.json()).
     then((result) => {
@@ -111,7 +111,7 @@ const NewPost = (props) =>
   // get the districts by provinceId
   useEffect(() => 
   {
-    fetch("https://sporganize.azurewebsites.net/districts/"+provinceId).
+    fetch("https://localhost:7120/districts/"+provinceId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -125,7 +125,7 @@ const NewPost = (props) =>
   // get the streets by districtId
   useEffect(() => 
   {
-    fetch("https://sporganize.azurewebsites.net/streets/"+districtId).
+    fetch("https://localhost:7120/streets/"+districtId).
     then((res) =>
       res.json()).
     then((result) => {
@@ -171,7 +171,7 @@ const NewPost = (props) =>
   const handleSaveChanges = (e) => 
   {
     e.preventDefault();
-    fetch("https://sporganize.azurewebsites.net/appointments",
+    fetch("https://localhost:7120/appointments",
     {
       method: "POST",
       headers: {
