@@ -99,7 +99,41 @@ function InviteMember(props)
 
         <Grid container spacing={3}>
           {captainedTeams.map((team) => (
+<<<<<<< Updated upstream
             <TeamCard team={team} type="captain"/>
+=======
+            <Grid item xs={12} sm={6} md={4} key={team.id}>
+              <Card className="card" sx={{ backgroundColor: 'rgb(37, 37, 37)' }}>
+                <CardContent>
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                    <Typography className="card-title" sx={{ color: 'whitesmoke' }}>{team.name}</Typography>
+                    <Avatar sx={{ width: 80, height: 80}} src={avatarURL} />
+                    <Box mt={2}>
+                    <Typography variant="body1" align="center" sx={{ color: 'whitesmoke', marginBottom: '1rem' }}>
+                        You can add teammates to your team with their username
+                      </Typography>
+                    <TextField variant="outlined" placeholder="Enter username" value={invitedUsername} onChange={(e) => setInvitedUsername(e.target.value)} className="invitee-textfield"
+                        InputProps={{endAdornment: (
+                            <InputAdornment position="end">
+                              <IconButton onClick={() => handleSendRequest(team.id)} color="inherit" sx={{backgroundColor: 'green',color: 'whitesmoke','&:hover': {backgroundColor: 'green', },borderRadius: '5px', marginRight: '-8px', }}>
+                                    <Typography variant="body2" sx={{ color: 'whitesmoke'}}>SEND REQUEST</Typography>
+                             </IconButton>
+                          </InputAdornment>),
+                          className: "input-field",classes: { notchedOutline: "notched-outline"},}}
+                          sx={{'& .MuiOutlinedInput-root': {'& fieldset': { borderColor: 'green',},'&:hover fieldset': {borderColor: 'darkgreen',},'&.Mui-focused fieldset': {borderColor: 'darkgreen',},},color: 'whitesmoke', '& .MuiOutlinedInput-input': {color: 'whitesmoke' },
+                            '& .MuiInputLabel-root': {color: 'whitesmoke',  }, '&:hover .MuiInputLabel-root': {color: 'whitesmoke',},'& .MuiInputLabel-root.Mui-focused': {color: 'whitesmoke',}, }}/>
+                    </Box>
+                    <Box mt={2}><Button variant="contained"onClick={() => handleSeeDetails(team)}sx={{color: 'whitesmoke'}}>
+                        {selectedTeam === team ? "Hide Details" : "See Details"}</Button>
+                    </Box>
+                    {selectedTeam === team && (<Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
+                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Location: {team.location}</Typography>
+                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Members: {team.members.join(", ")}</Typography> </Box> )}
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+>>>>>>> Stashed changes
           ))}
         </Grid>
 
@@ -108,7 +142,26 @@ function InviteMember(props)
 
         <Grid container spacing={3}>
           {teams.map((team) => (
+<<<<<<< Updated upstream
             <TeamCard team={team} type="normal"/>
+=======
+            <Grid item xs={12} sm={6} md={4} key={team.id}>
+              <Card className="card" sx={{ backgroundColor: 'rgb(37, 37, 37)' }}>
+                <CardContent>
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                    <Typography className="card-title" sx={{ color: 'whitesmoke' }}>{team.name}</Typography>
+                    <Avatar sx={{ width: 80, height: 80}} src={avatarURL} />
+                    <Box mt={2}><Button variant="contained"onClick={() => handleSeeDetails(team)}sx={{color: 'whitesmoke'}}>
+                        {selectedTeam === team ? "Hide Details" : "See Details"}</Button>
+                    </Box>
+                    {selectedTeam === team && (<Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
+                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Location: {team.location}</Typography>
+                        <Typography variant="body2" sx={{ color: 'whitesmoke' }}>Members: {team.members.join(", ")}</Typography> </Box> )}
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+>>>>>>> Stashed changes
           ))}
         </Grid>
       </Box>
