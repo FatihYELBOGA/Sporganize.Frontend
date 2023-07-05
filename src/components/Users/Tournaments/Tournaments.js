@@ -7,68 +7,42 @@ import './Tournaments.css';
 // Turnuva logo resimleri
 import tournament1picture from "../../../pictures/tournament1.png";
 import tournament2picture from "../../../pictures/tournament2.png";
+import TournamentCard from "./Tournament";
 
-function Tournaments() {
+function Tournaments(props) {
+  const {userId} = props;
   const [tournaments, setTournaments] = useState([]);
-  const [filter, setFilter] = useState("Football");
+  const [filter, setFilter] = useState("FOOTBALL");
   const [search, setSearch] = useState("");
-  const [userTeams, setUserTeams] = useState([]);
-  const [eligibleTeams, setEligibleTeams] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedTeam, setSelectedTeam] = useState('');
-  const [selectedTournament, setSelectedTournament] = useState('');
+  const [sports,setSports] = useState([]);
+ 
 
   useEffect(() => {
-    //  fetch 
-    const fetchTournaments = () => {
-      const data = [
-        { 
-          id: 1, 
-          name: "IYTE Tennis Tournament", 
-          logoUrl: tournament1picture, 
-          sport: "Tennis",
-          applyDeadline: "30.06.20 23", 
-          details: {
-            location: "Urla/Izmir",
-            venue: "IYTE Spor Salonu",
-            startDate: "04.07.2023", 
-            endDate: "06.07.2023", 
-            showDetails: false,
-          }
-        },
-        { 
-          id: 2, 
-          name: "IYTE Football Tournament", 
-          logoUrl: tournament2picture, 
-          sport: "Football",
-          applyDeadline: "15.09.2023", 
-          details: {
-            location: "Urla/Izmir",
-            venue: "IYTE Spor Salonu",
-            startDate: "20.09.2023", 
-            endDate: "25.09.2023", 
-            showDetails: false,
-          }
-        }
-      ];
-      setTournaments(data);
-    };
-    fetchTournaments();
-
-    // Kullanıcının takım lideri olduğu takımlar
-    setUserTeams([
-      { id: 1, name: "Team 1", sport: "Football" },
-      // { id: 2, name: "Team 2", sport: "Tennis" }, hiç bu dalda takım olduğu yoksa takımınız yok der
-      { id: 3, name: "Team 3", sport: "Football" },
-    ]);
+    fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments")
+      .then((res) => res.json())
+      .then((result) => {
+        setTournaments(result)
+        console.log(result)
+      })
+      .catch((error) => console.log(error));
   }, []);
 
-  // Spor dalları
-  const sports = ["Football","Tennis","Basketball", "Volleyball"]; 
+
+  useEffect(() => {
+
+    fetch("http://yelbogafatih-001-site1.btempurl.com/branches")
+      .then((res) => res.json())
+      .then((result) => {
+        setSports(result);
+
+      })
+      .catch((error) => console.log(error));
+
+  }, []);
 
   // Filtrelenmiş turnuvalar
   const filteredTournaments = tournaments
-    .filter(tournament => tournament.sport === filter)
+    .filter(tournament => tournament.branch === filter)
     .filter(tournament => tournament.name.toLowerCase().includes(search.toLowerCase()));
 
   // Filtre değişimini yöneten fonksiyon
@@ -80,46 +54,6 @@ function Tournaments() {
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   }
-
-  // Turnuva detaylarını göster/gizle yöneten fonksiyon
-  const handleToggleDetails = (id) => {
-    const updatedTournaments = tournaments.map(tournament => {
-      if(tournament.id === id) {
-        tournament.details.showDetails = !tournament.details.showDetails;
-      }
-      return tournament;
-    });
-    setTournaments(updatedTournaments);
-  };
-
-  // Başvuru butonuna tıklama işlemini yöneten fonksiyon
-  const handleApplyClick = (event, tournamentId) => {
-    const selectedTournament = tournaments.find(tournament => tournament.id === tournamentId);
-    setSelectedTournament(selectedTournament);
-
-    const eligibleTeams
-      = userTeams
-      .filter(team => team.sport === selectedTournament.sport);
-    setEligibleTeams(eligibleTeams);
-
-    if(eligibleTeams.length === 0) {
-      alert('You do not have a team eligible for this tournament.');
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
-  };
-
-  // Menu kapatmayı yöneten fonksiyon
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  // Takım seçimini yöneten fonksiyon
-  const handleTeamSelect = (teamName) => {
-    setSelectedTeam(teamName);
-    setAnchorEl(null);
-    alert(`You applied to ${selectedTournament.name} with team ${teamName}`);
-  };
 
   return (
     <Box display="flex">
@@ -143,49 +77,24 @@ function Tournaments() {
         </Box>
         <Grid container spacing={3}>
           {filteredTournaments.map((tournament) => (
-            <Grid item xs={12} sm={6} md={4} key={tournament.id}>
-              <Card className="card" sx={{ backgroundColor: 'rgb(37, 37, 37)' }}>
-                <CardContent>
-                  <Box display="flex" flexDirection="column" alignItems="center">
-                    <Typography className="card-title" sx={{ color: 'whitesmoke' }}>{tournament.name}</Typography>
-                    <CardMedia component="img" image={tournament.logoUrl}
-                      alt={tournament.name}
-                      sx={{ maxHeight: 175, objectFit: 'contain' }}
-                    />
-                    <Box bgcolor="blue" p={1} my={2} width="100%" display="flex" flexDirection="column" alignItems="center" justifyContent="center" borderRadius="10px">
-                      <Typography className="see-details" onClick={() => handleToggleDetails(tournament.id)} sx={{ color: 'whitesmoke' }}>
-                        {tournament.details.showDetails ? 'Hide Details' : 'See Details'}
-                      </Typography>
-                    </Box>
-                    {tournament.details.showDetails && 
-                    <Box display="flex" flexDirection="column" alignItems="center">
-                      <Typography className="card-venue" sx={{ color: 'whitesmoke' }}>{tournament.details.venue}</Typography>
-                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Application Deadline: ${tournament.applyDeadline}`}</Typography>
-                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Location: ${tournament.details.location}`}</Typography>
-                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`Start Date: ${tournament.details.startDate}`}</Typography> 
-                      <Typography className="card-details" sx={{ color: 'whitesmoke' }}>{`End Date: ${tournament.details.endDate}`}</Typography> 
-                    </Box>}
-                  </Box>
-                </CardContent>
-                <Box textAlign="center" py={2}>
-                  <Button variant="contained" color="success" onClick={(event) => handleApplyClick(event, tournament.id)}>Apply</Button>
-                </Box>
-              </Card>
-            </Grid>
+            <TournamentCard 
+
+              key={tournament.id}
+              userId={userId}
+              id={tournament.id} 
+              name={tournament.name} 
+              title={tournament.title}
+              description={tournament.description}
+              startingDate={tournament.startingDate}
+              endingDate={tournament.endingDate}
+              branch={tournament.branch}
+              sportFacility={tournament.sportFacility}
+              url={tournament1picture}/>
+             
           ))}
         </Grid>
 
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {eligibleTeams.map((team) => (
-            <MenuItem key={team.id} onClick={() => handleTeamSelect(team.name)}>
-              {team.name}
-            </MenuItem>
-          ))}
-        </Menu>
+       
       </Box>
     </Box>
   );

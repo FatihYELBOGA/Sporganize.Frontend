@@ -4,6 +4,7 @@ import { getTopNavOfUser, getTopNavOfOwner } from './navbars';
 import './Navbar.css';
 
 const Navbar = (props) => {
+  const{setUserId} = props;
   const [NavRole, setNavRole] = useState(props.NavRole);
   const [navItems, setNavItems] = useState([]);
   const [collapse, setCollapse] = useState(false);
@@ -52,6 +53,11 @@ const Navbar = (props) => {
                 </NavLink>  
               </li>
             ))}
+            <li key={0} className="nav__item" style={{color:"red"}}> 
+                <NavLink onClick={()=>setUserId(0) }to="/" className="nav__link" style={{ color: selectedItem === 4 ? 'red' : '' }} activeClassName="nav__link--active">
+                  Logout
+                </NavLink>  
+              </li>
           </ul>
         </nav>
       </div>

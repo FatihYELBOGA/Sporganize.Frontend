@@ -9,7 +9,8 @@ function Homepage(props)
     // appointments and newPost useStates
     const [appointments, setAppointments] = useState([]);
     const [newPost, setNewPost] = useState(false);
-
+    console.log(props.userId)
+    const {userId} = props;
     // load the appointments
     const getAppointments = () => {
         fetch("http://yelbogafatih-001-site1.btempurl.com/appointments")
@@ -53,7 +54,7 @@ function Homepage(props)
                 </div>
                 :
                 <div className="homepage-appointments">
-                    {appointments.map((appointment) => (<AppointmentCard appointment={appointment} displayUsers={false} />))}
+                    {appointments.map((appointment) => (<AppointmentCard userId={userId} appointment={appointment} displayUsers={false} />))}
                 </div>
 
             }

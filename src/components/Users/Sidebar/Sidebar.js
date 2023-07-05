@@ -5,12 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
   { id: 1, label: 'Account', href: '/profile' },
-  { id: 2, label: 'My Posts', href: '/my-posts' },
   { id: 3, label: 'My Appointments', href: '/my-appointments' },
   { id: 4, label: 'My Friends', href: '/my-friends' },
-  { id: 5, label: 'My Teams', href: '/my-teams' },
-  { id: 6, label: 'My Reservations', href: '/my-reservations' },
-  { id: 7, label: 'My Tournaments', href: '/my-tournaments' },
+  
+  
 ];
 
 const Sidebar = (props) => {
@@ -41,32 +39,35 @@ const Sidebar = (props) => {
         width: '20%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: '20%',
+          width: '15%',
           boxSizing: 'border-box',
           top: '10%',
           height: '100%',
-          backgroundColor: '#E8EAE0',
+          backgroundColor: '#f7f7f7',
         },
       }}
     >
-      <List>
+      <List sx={{marginTop:2}}>
         {menuItems.map((item) => (
           <ListItem
+            
             key={item.id}
             component={RouterLink}
             to={item.href}
             selected={location.pathname === item.href}
             sx={{
               display: 'flex',
+            
               justifyContent: 'center',
               mb: '5%',
               mt: '5%',
               height: '10%',
               '&:hover': {
-                backgroundColor: 'rgba(100, 124, 49, 0.5)',
+                backgroundColor: 'green',
+                opacity:0.6
               },
               '&.Mui-selected, &.Mui-selected:hover': {
-                backgroundColor: '#647C31',
+                backgroundColor: 'green',
               },
             }}
           >
@@ -75,13 +76,15 @@ const Sidebar = (props) => {
                 position: 'absolute',
                 height: '100%',
                 width: '100%',
-                backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
+                
+                backgroundColor: location.pathname === item.href ? 'green' : 'transparent',
                 zIndex: -1,
               }}
             />
             <ListItemText 
               primary={item.label} 
               sx={{ 
+                
                 color: location.pathname === item.href ? '#fff' : '#000', 
                 textAlign: 'center',
                 '&:hover': {
@@ -99,9 +102,10 @@ const Sidebar = (props) => {
             justifyContent: 'center',
             mb: '5%',
             backgroundColor: 'transparent',
+            marginTop:55
           }}
         >
-          <ListItemText primary="Logout" sx={{ color: 'darkred', textAlign: 'center', fontWeight: 'bold' }} />
+          
         </ListItem>
       </List>
     </Drawer>

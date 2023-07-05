@@ -47,7 +47,7 @@ function Login (props) {
         if(res.role === "ADMIN"){
 
         }else if(res.role === "OWNER"){
-          navigate("/OwnerTournaments");
+          navigate("/owner-tournaments");
         }
         else if(res.role === "USER"){
           navigate("/Home");

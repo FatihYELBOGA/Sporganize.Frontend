@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 
 const menuItems = [
   { id: 1, label: 'Tournaments', href: '/tournaments' },
+  { id: 2, label: 'My Tournaments', href: '/my-tournaments' },
 ];
 
 const TournamentsSidebar = () => {
@@ -24,11 +25,11 @@ const TournamentsSidebar = () => {
         width: '20%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: '20%',
+          width: '15%',
           boxSizing: 'border-box',
           top: '10%',
           height: '100%',
-          backgroundColor: '#E8EAE0',
+          backgroundColor: '#f7f7f7',
         },
       }}
     >
@@ -44,19 +45,20 @@ const TournamentsSidebar = () => {
               justifyContent: 'center',
               mb: '8%',
               mt: '10%',
-              height: '50%', // height has been increased
+              height: '30%', // height has been increased
               '&:hover': {
-                backgroundColor: 'rgba(100, 124, 49, 0.5)',
+                backgroundColor: 'green',
+                opacity:0.6,
               },
               '&.Mui-selected, &.Mui-selected:hover': {
-                backgroundColor: '#647C31',
+                backgroundColor: 'green',
               },
             }}
           >
             <Box
               sx={{
                 position: 'absolute',
-                height: '120%', // height has been increased
+                height: '100%', // height has been increased
                 width: '100%',
                 backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
                 zIndex: -1,

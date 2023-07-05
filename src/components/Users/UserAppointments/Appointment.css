@@ -1,6 +1,6 @@
 .appointment-card {
-  background-color: black;
-  color: white;
+  background-color: #ededed;
+  color: black;
   width: 45%;
   opacity: 0.8;
   border-radius: 10px;
@@ -20,7 +20,7 @@
 .appointment-user-info, .appointment-user-details {
   display: flex;
   align-self: flex-end;
-  color: greenyellow;
+  color: green;
   gap: 25px;
   align-items: center;
 }
@@ -58,10 +58,10 @@
 }
 
 .appointment-branch {
-  border: 1px orange solid;
+  border: 1px solid green;
   border-radius: 10px;
   padding: 4px 8px;
-  color: orange;
+  color: green;
   width: fit-content;
 }
 

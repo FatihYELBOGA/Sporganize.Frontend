@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container, TextField, Button, MenuItem, Grid, Typography } from '@mui/material';
 import TournamentNavbar from './TournamentNavbar';
+import { useParams } from 'react-router-dom';
 
 const teams = ['Team A', 'Team B', 'Team C', 'Team D']; // Sample teams data
 
 const TournamentSaveMatch = () => {
+  const {id} = useParams();
   const [teamA, setTeamA] = useState('');
   const [teamB, setTeamB] = useState('');
   const [scoreA, setScoreA] = useState('');
@@ -25,11 +27,35 @@ const TournamentSaveMatch = () => {
   const handleScoreBChange = (event) => {
     setScoreB(event.target.value);
   };
+ 
+    
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Perform save operation with the selected teams and scores
     console.log('Saving match score:', teamA, scoreA, '-', teamB, scoreB);
+    fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/league", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        teamAId: "",
+        teamBId: "",
+        date: "2000-10-01",
+        result: scoreA+"-"+scoreB,
+        tournamentId: id,
+        
+      }),
+    })
+        .then((res) => res.json())
+        .then((result)=>{
+          console.log(result);
+          alert("Success")
+        })
+        .catch((err) => console.log(err));
     // Reset the form
     setTeamA('');
     setTeamB('');
@@ -39,7 +65,7 @@ const TournamentSaveMatch = () => {
 
   return (
     <div>
-        <TournamentNavbar type="saveMatches"/>
+        <TournamentNavbar type="saveMatches" tournamentId={id}/>
 
     <Box sx={containerStyles}>
       <Container maxWidth="sm" sx={{width:"100%"}}>
@@ -133,7 +159,7 @@ const gridContainerStyles = {
 const submitButtonStyles = {
   marginTop: '10px',
   marginBottom:3,
-
+  width:"100%",
   backgroundColor: '#1E7B38',
   '&:hover': {
     backgroundColor: '#49A96A', // Lighter hover color

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Container, MenuItem,Button } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 const TournamentNavbar = (props) => {
- 
-  const {type,tournamentId} = props;
- 
+  const {type} = props;
   const [selectedOption, setSelectedOption] = useState(type);
   const navigate = useNavigate();
 
@@ -20,7 +17,7 @@ const TournamentNavbar = (props) => {
   return (
     <Box sx={containerStyles}>
      <Button onClick={(e) =>{
-        navigate("/owner-mytournaments")
+        navigate("/my-tournaments")
      }}>
         <ArrowBackIcon sx={{color:"green",fontSize:35,marginLeft:5}}></ArrowBackIcon>
       </Button>
@@ -30,19 +27,12 @@ const TournamentNavbar = (props) => {
 
             onClick={(event) => {
                 handleOptionClick(event, 'leagueTable')
-                navigate("/owner-tournament/"+tournamentId)}}
+                navigate("/my-tournament/1")}}
             sx={{borderBottom:2,borderColor: selectedOption === "leagueTable" ? "black":"green"}}
           >
             League Table
           </MenuItem>
-          <MenuItem
-            onClick={(event) => {
-                handleOptionClick(event, 'saveMatches')
-                navigate("/owner-tournament/save-matches/"+tournamentId)}}
-            sx={{borderBottom:2,borderColor: selectedOption === "saveMatches" ? "black":"green"}}
-          >
-            Save Matches
-          </MenuItem>
+         
         
        
       </Container>

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Card, CardContent, Typography, Link,Button } from '@mui/material';
+import { Card, CardContent, Typography, Link,Button,Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-const TournamentCard = () => {
-    const navigate = useNavigate();
+const TournamentCard = (props) => {
+
+  const {userId,tournament} = props;
+  const navigate = useNavigate();
   return (
     <Card
       sx={{
@@ -29,7 +31,7 @@ const TournamentCard = () => {
             color: '#333333',
           }}
         >
-          Football Tournament
+          {tournament.name}
         </Typography>
         <Typography
           variant="subtitle1"
@@ -40,7 +42,7 @@ const TournamentCard = () => {
             color: '#666666',
           }}
         >
-          Tournament Type: Football
+          {tournament.branch}
         </Typography>
         <div
           sx={{
@@ -51,12 +53,25 @@ const TournamentCard = () => {
             fontSize: '14px',
           }}
         >
-          <Typography variant="body2" color="textSecondary">
-            Start Date: 10-10-2000
+        <Box sx={{display:"flex",justifyContent:"space-between"}}>
+          <Box sx={{marginLeft:0}}>
+          <Typography variant="body2" color="textSecondary" sx={{marginTop:1}}>
+          Starting Date
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            End Date: 20-5-2001
+            {tournament.startingDate.split("T")[0]}
           </Typography>
+          </Box>
+          <Box>
+          <Typography variant="body2" color="textSecondary" sx={{marginTop:1}}>
+          Ending Date
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+          {tournament.endingDate.split("T")[0]}
+          </Typography>
+          </Box>
+          
+          </Box>
         </div>
       </CardContent>
       <CardContent
@@ -81,7 +96,7 @@ const TournamentCard = () => {
         
         <Button
           onClick={(e)=>{
-            navigate("/owner-tournament/1")
+            navigate("/owner-tournament/"+tournament.id)
           }}
           sx={{
             color: '#1E7B38',

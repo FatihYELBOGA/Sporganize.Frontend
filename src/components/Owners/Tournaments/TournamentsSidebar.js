@@ -26,11 +26,11 @@ const TournamentSidebar = () => {
         width: '20%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: '20%',
+          width: '15%',
           boxSizing: 'border-box',
           top: '10%',
           height: '100%',
-          backgroundColor: '#E8EAE0',
+          backgroundColor: '#f7f7f7',
         },
       }}
     >
@@ -48,12 +48,13 @@ const TournamentSidebar = () => {
               justifyContent: 'center',
               mb: '8%',
               mt: '10%',
-              height: '20%', 
+              height: '30%', 
               '&:hover': {
-                backgroundColor: 'rgba(100, 124, 49, 0.5)',
+                backgroundColor: 'green',
+                opacity:0.7,
               },
               '&.Mui-selected, &.Mui-selected:hover': {
-                backgroundColor: '#647C31',
+                backgroundColor: 'green',
               },
             }}
           >
@@ -62,7 +63,7 @@ const TournamentSidebar = () => {
                 position: 'absolute',
                 height: '100%',
                 width: '100%',
-                backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
+                backgroundColor: location.pathname === item.href ? 'green' : 'transparent',
                 zIndex: -1,
               }}
             />

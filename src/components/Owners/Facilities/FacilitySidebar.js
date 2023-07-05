@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 
+
 const menuItems = [
-  { id: 1, label: 'My Teams', href: '/teams' },
-  { id: 2, label: 'Create Team', href: '/create-team' },
-  { id: 3, label: 'Incoming Invitations', href: '/incoming-invitations' }
+  { id: 1, label: 'Create Facility', href: '/creat-facilities' },
+  { id: 2, label: 'My Facilities', href: '/sport-facilities' },
 ];
 
-const TeamsSidebar = () => {
+const FacilitySidebar = () => {
   const [drawerOpen, setDrawerOpen] = useState(true);
   const location = useLocation();
 
@@ -23,7 +23,7 @@ const TeamsSidebar = () => {
       anchor="left"
       open={drawerOpen}
       sx={{
-        width: '20%',
+        width: '0%',
         flexShrink: 0,
         '& .MuiDrawer-paper': {
           width: '15%',
@@ -34,9 +34,11 @@ const TeamsSidebar = () => {
         },
       }}
     >
+ 
       <List>
         {menuItems.map((item) => (
           <ListItem
+          
             key={item.id}
             component={RouterLink}
             to={item.href}
@@ -44,12 +46,12 @@ const TeamsSidebar = () => {
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              mb: '12',
+              mb: '8%',
               mt: '10%',
-              height: '25%', // height has been increased
+              height: '30%', 
               '&:hover': {
                 backgroundColor: 'green',
-                opacity:0.6
+                opacity:0.7
               },
               '&.Mui-selected, &.Mui-selected:hover': {
                 backgroundColor: 'green',
@@ -59,7 +61,7 @@ const TeamsSidebar = () => {
             <Box
               sx={{
                 position: 'absolute',
-                height: '100%', // height has been increased
+                height: '100%',
                 width: '100%',
                 backgroundColor: location.pathname === item.href ? '#647C31' : 'transparent',
                 zIndex: -1,
@@ -83,4 +85,4 @@ const TeamsSidebar = () => {
   );
 };
 
-export default TeamsSidebar;
+export default FacilitySidebar;

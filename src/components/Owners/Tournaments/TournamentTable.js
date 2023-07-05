@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 
-const TournamentTable = () => {
-  const tableData = [
-    { team: 'Brazil', matches: 3, wins: 2, draws: 1, losses: 0 },
-    { team: 'France', matches: 3, wins: 2, draws: 0, losses: 1 },
-    { team: 'Germany', matches: 3, wins: 1, draws: 1, losses: 1 },
-    { team: 'Argentina', matches: 3, wins: 0, draws: 1, losses: 2 },
-  ];
+const TournamentTable = (props) => {
+  const{tournamentId} = props;
+  const [teams,setTeams] = useState([]);
 
-  const calculatePoints = (wins, draws) => {
-    return wins * 3 + draws;
+  useEffect(() => {
+
+    fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/league/"+tournamentId)
+      .then((res) => res.json())
+      .then((result) => {
+        setTeams(result);
+
+      })
+      .catch((error) => console.log(error));
+
+  }, []);
+
+
+  const calculatePoints = (wins, draws,loss) => {
+    return wins + draws + loss;
   };
 
   return (
@@ -25,21 +34,28 @@ const TournamentTable = () => {
             <TableCell sx={headerCellStyle}>Wins</TableCell>
             <TableCell sx={headerCellStyle}>Draws</TableCell>
             <TableCell sx={headerCellStyle}>Losses</TableCell>
+            <TableCell sx={headerCellStyle}>GS</TableCell>
+            <TableCell sx={headerCellStyle}>GC</TableCell>
+            <TableCell sx={headerCellStyle}>Avarage</TableCell>
             <TableCell sx={headerCellStyle}>Points</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData.map((row, index) => (
-            <TableRow key={row.team} sx={rowStyles}>
+          { (teams.length!==0) ? (teams.map((row, index) => (
+            <TableRow key={row.name} sx={rowStyles}>
               <TableCell sx={cellStyles}>{index + 1}</TableCell>
-              <TableCell sx={cellStyles}>{row.team}</TableCell>
-              <TableCell sx={cellStyles}>{row.matches}</TableCell>
-              <TableCell sx={cellStyles}>{row.wins}</TableCell>
-              <TableCell sx={cellStyles}>{row.draws}</TableCell>
-              <TableCell sx={cellStyles}>{row.losses}</TableCell>
-              <TableCell sx={pointsCellStyle}>{calculatePoints(row.wins, row.draws)}</TableCell>
+              <TableCell sx={cellStyles}>{row.name}</TableCell>
+              <TableCell sx={cellStyles}>{calculatePoints(row.numberOfWins, row.numberOfDraws,row.numberOfLoss)}</TableCell>
+              <TableCell sx={cellStyles}>{row.numberOfWins}</TableCell>
+              <TableCell sx={cellStyles}>{row.numberOfDraws}</TableCell>
+              <TableCell sx={cellStyles}>{row.numberOfLoss}</TableCell>
+              <TableCell sx={cellStyles}>{row.goalScored}</TableCell>
+              <TableCell sx={cellStyles}>{row.goalConceded}</TableCell>
+              <TableCell sx={cellStyles}>{row.goalScored-row.goalConceded}</TableCell>
+              <TableCell sx={pointsCellStyle}>{row.points}</TableCell>
             </TableRow>
-          ))}
+          ))):(<div></div>)}
         </TableBody>
       </Table>
     </TableContainer>

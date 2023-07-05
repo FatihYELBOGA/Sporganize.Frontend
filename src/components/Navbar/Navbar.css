@@ -10,7 +10,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #E8EAE0;
+  background-color: #ffffff;
 }
 
 a {
@@ -35,7 +35,7 @@ li {
 }
 
 .nav__wrapper {
-  background: #BDBDBD ;
+  background: #ececec ;
   position: sticky;
   top: 0;
   z-index: 999; 

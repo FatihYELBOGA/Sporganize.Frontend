@@ -20,7 +20,7 @@ import MyAppointments from './components/Users/MyAppointments/MyAppointments';
 import Sidebar from './components/Users/Sidebar/Sidebar';
 import InviteMember from './components/Users/InviteMember/InviteMember';
 import IncomingInvitations from './components/Users/IncomingInvitations/IncomingInvitations';
-
+import TournamentDetail from './components/Users/MyTournaments/TournamentDetail';
 // the owner interfaces
 import OwnerTournaments from './components/Owners/Tournaments/Tournaments';
 import OwnerMyTournaments from './components/Owners/Tournaments/MyTournaments'
@@ -28,7 +28,8 @@ import OwnerReservation from './components/Owners/Reservations/Reservations';
 import About from './components/Owners/About/About';
 import OwnerTournament from './components/Owners/Tournaments/Tournament';
 import OwnerTournamentSaveMatch from './components/Owners/Tournaments/TournamentSaveMatch';
-
+import Facilities from './components/Owners/Facilities/Facilities';
+import CreatFacilities from './components/Owners/Facilities/CreatFacilities';
 function App() {
 
   const [userId, setUserId] = useState(0);
@@ -56,20 +57,21 @@ function App() {
   } else if(role === "USER"){
     return (
       <BrowserRouter>
-        <Navbar NavRole={role} /> 
+        <Navbar NavRole={role} setUserId={setUserId} /> 
         <Routes>
           <Route exact path='/Home' element = {<Homepage userId={userId} />} />
           <Route exact path='/reservations' element = {<Reservations/>} />
           <Route exact path='/teams' element = {<InviteMember userId={userId}/>} />
           <Route exact path='/create-team' element = { <Teams userId={userId} />} />
           <Route exact path='/incoming-invitations' element = {<IncomingInvitations userId={userId}/>} />
-          <Route exact path='/tournaments' element = {<Tournaments/>} />
+          <Route exact path='/tournaments' element = {<Tournaments userId={userId}/>} />
           <Route exact path='/profile' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><Profile userId={userId} /></div>} />
           <Route exact path='/my-posts' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyPosts userId={userId} /></div>} />
           <Route exact path='/my-appointments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyAppointments userId={userId} /></div>} />
           <Route exact path='/my-friends' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyFriends userId={userId} /></div>} />
           <Route exact path='/my-reservations' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyReservations userId={userId} /></div> } />
-          <Route exact path='/my-tournaments' element = {<div><Sidebar setUserId={setUserId} setRole={setRole}/><MyTournaments userId={userId} /></div> } />
+          <Route exact path='/my-tournaments' element = {<MyTournaments userId={userId} /> } />
+          <Route exact path='/my-tournament/:id' element = {<TournamentDetail userId={userId}/>}/>
         </Routes>
       </BrowserRouter>
       
@@ -79,26 +81,20 @@ function App() {
       <BrowserRouter> 
         <Navbar NavRole={role} /> 
         <Routes>
-          <Route exact path='/owner-tournaments' element = {<OwnerTournaments />} />
-          <Route exact path='/owner-reservations' element = {<OwnerReservation />} />
-          <Route exact path='/about' element = {<About />} />
-          <Route exact path='/OwnerTournaments' element = {<OwnerTournaments userId={userId} />} />
-          <Route exact path='/OwnerMyTournaments' element = {<OwnerMyTournaments userId={userId}/>} />
-          <Route exact path='/OwnerTournament/:id' element = {<OwnerTournament userId={userId}/>}/>
-           <Route exact path='/OwnerTournament/:id/saveMatches' element = {<OwnerTournamentSaveMatch userId={userId}/>}/>
+        
           <Route exact path='/OwnerReservations' element = {<OwnerReservation userId={userId}/>} />
           <Route exact path='/About' element = {<About userId={userId} />} />
 
-          <Route exact path='/owner-tournaments' element = {<OwnerTournaments />} />
-          <Route exact path='/owner-reservations' element = {<OwnerReservation />} />
-          <Route exact path='/about' element = {<About />} />
-
+          <Route exact path='/owner-tournaments' element = {<OwnerTournaments userId={userId} />} />
+          
+          <Route exact path='/creat-facilities' element = {<CreatFacilities userId={userId} />} />
           <Route exact path='/owner-tournament' element = {<OwnerTournaments userId={userId} />} />
           <Route exact path='/owner-mytournaments' element = {<OwnerMyTournaments userId={userId}/>} />
           <Route exact path='/owner-tournament/:id' element = {<OwnerTournament userId={userId}/>}/>
-           <Route exact path='/owner-tournament/:id/saveMatches' element = {<OwnerTournamentSaveMatch userId={userId}/>}/>
+           <Route exact path='/owner-tournament/save-matches/:id' element = {<OwnerTournamentSaveMatch userId={userId}/>}/>
           <Route exact path='/owner-reservations' element = {<OwnerReservation userId={userId}/>} />
           <Route exact path='/about' element = {<About userId={userId} />} />
+          <Route exact path='/sport-facilities' element = {<Facilities userId={userId} />} />
 
 
         </Routes>

@@ -3,13 +3,14 @@ import TournamentSidebar from "./TournamentsSidebar";
 import CreateTournamentForm from "./CreateTournamentForm";
 
 
-function Tournament(){
-
+function Tournament(props){
+    const {userId} = props
+    console.log(userId)
     return (
        
       <div style={{ display: "flex" }}>
         <TournamentSidebar/>
-        <CreateTournamentForm/>
+        <CreateTournamentForm userId={userId}/>
        
       </div>
     

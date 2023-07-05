@@ -9,7 +9,7 @@ function MyTournaments(props){
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() =>{
-        fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/"+1)
+        fetch("http://yelbogafatih-001-site1.btempurl.com/sport-facilities/tournaments/"+userId)
         .then((res) => {
             if (res.status === 204) {
               // Handle 204 No Content response
@@ -21,6 +21,7 @@ function MyTournaments(props){
         .then(
             (result) => {
                 setIsLoaded(true);
+                console.log(result)
                 setTournamentList(result);
             },
             (error) => {
@@ -29,8 +30,9 @@ function MyTournaments(props){
                 setError(error);
             }
         )
+        console.log(tournamentList)
 
-    },[userId])
+    },[])
     if(error){
         return <div>Error!..</div>
     } else if(!isLoaded){
@@ -44,22 +46,15 @@ function MyTournaments(props){
     return(
         <div style={{display:"flex"}}>
             <TournamentSidebar></TournamentSidebar>
-            
-            <TournamentCard/>
-            
+            {tournamentList.map((tournament) =>(
+                <TournamentCard 
+                    userId={userId}
+                    tournament={tournament}/>
+            ))}
         </div>
     )
     }
 
 }
 export default MyTournaments;
-/*{tournamentList.map((tournament) =>{
-                <TournamentCard 
-                    id={tournament.id} 
-                    name={tournament.name} 
-                    title={tournament.title} 
-                    description={tournament.description} 
-                    startingDate={tournament.startingDate} 
-                    endingDate={tournament.endingDate} 
-                    branch={tournament.branch}/>
-            })}*/
+/**/
