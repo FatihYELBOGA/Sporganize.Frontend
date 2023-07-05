@@ -3,6 +3,8 @@ import "./SignUp.css";
 import signUpPicture from "../../pictures/signUp.jpg"
 import { useNavigate } from "react-router-dom";
 
+import logo from "../../pictures/logo.svg"
+
 function SignUp () {
 
   const navigate = useNavigate();
@@ -72,6 +74,8 @@ function SignUp () {
         <img className="sign-up-img" src={signUpPicture} alt="person shooting football"></img>
       </div>
       <form onSubmit={handleSubmit} className="sign-up-form-part">
+        
+        <img src={logo} alt="logo" className="login-logo"></img>
         <div className="sign-up-form-header">Sign Up</div>
 
         <fieldset className="sign-up-double-group">

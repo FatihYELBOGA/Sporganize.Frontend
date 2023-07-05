@@ -3,6 +3,12 @@
   background-color: whitesmoke;
 }
 
+.login-logo {
+  background-color: inherit;
+  width: 40%;
+  height: auto;
+}
+
 .login-image-part {
   width: 40%;
 }

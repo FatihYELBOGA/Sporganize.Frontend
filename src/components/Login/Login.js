@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import loginPicture from "../../pictures/login.jpg"
 import { useNavigate } from "react-router-dom";
+import logo from "../../pictures/logo.svg"
 
 function Login (props) {
 
@@ -71,6 +72,7 @@ function Login (props) {
         <img className="login-img" src={loginPicture} alt="three people playing basketball"></img>
       </div>
       <form onSubmit={handleSubmit} className="login-form-part">
+        <img src={logo} alt="logo" className="login-logo"></img>
         <div className="login-form-header">Login</div>
         <div className="login-form-group">
           <label>E-mail</label>
