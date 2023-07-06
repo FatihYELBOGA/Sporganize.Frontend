@@ -219,7 +219,13 @@ const About = (props) =>
           <TextField 
             variant="outlined" 
             value={phone} 
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              const input = e.target.value;
+              const regex = /^[0-9\b]+$/; // Yalnızca sayılar ve geri silme (backspace) tuşu kabul edilir
+              if (input === '' || regex.test(input)) {
+                setPhone(input);
+              }
+            }}
             label="Phone"
             fullWidth
           />
