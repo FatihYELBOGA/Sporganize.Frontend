@@ -23,7 +23,9 @@ function TeamCard(props)
       method: "PUT",
       body: formData,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        alert("Team was rejected.")
+        res.json()})
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
   };
@@ -62,7 +64,9 @@ function TeamCard(props)
       method: "PUT",
       body: formData,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        res.json()
+      alert("Team was rejected!")})
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
     setChanges(!changes)
@@ -114,6 +118,7 @@ function TeamCard(props)
             if (!response.ok) {
               throw new Error('Request failed');
             }
+            alert("Request is sent.")
             return response.json();
           })
           .then(data => {
@@ -129,6 +134,7 @@ function TeamCard(props)
 
   }
   useEffect(()=>{
+    
     if(team.logo !== null){
     convertBase64ToFile(team.logo.content,team.logo.name)
     }
@@ -163,7 +169,7 @@ function TeamCard(props)
                         {isDetails ? "Hide Details" : "See Details"}</Button>
                     </Box>
                     {isDetails && (<Box display="flex" flexDirection="column" alignItems="flex-start" marginTop={2}>
-                        {type === "incoming" ? (<Typography variant="body2" sx={{ color: 'black',marginBottom:1  }}></Typography>) :(<Typography variant="body2" sx={{ color: 'black',marginBottom:1  }}>Location: {team.location.province+" "+team.location.street+"/"+team.location.district}</Typography>)}
+                    {type === "incoming" ? (<Typography variant="body2" sx={{ color: 'black',marginBottom:1  }}></Typography>) :(<Typography variant="body2" sx={{ color: 'black',marginBottom:1  }}>Location: {team.location.province+" "+team.location.street+"/"+team.location.district}</Typography>)}
                         <Typography variant="body2" sx={{ color: 'black'}}>Captain:</Typography>
                         <Typography variant="body2" sx={{ color: 'black',marginBottom:1  }}>{team.captain.firstName+" "+team.captain.lastName}</Typography>
                         <Typography variant="body2" sx={{ color: 'black' }}>Members: {team.players.map((player)=>(

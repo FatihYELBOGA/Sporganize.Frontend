@@ -257,7 +257,7 @@ const Profile = (props) =>
             />
           <Avatar sx={{ width: 80, height: 80}}src={avatarURL} />
           <Typography variant="h6" component="p" sx={{ color: '#000', textAlign: 'center', textShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)', fontFamily: 'Poppins', fontWeight: 300, fontSize: '32px' }}>{firstName + " " + lastName}</Typography>
-          <Button variant="contained" color="primary" size="small" sx={{ mt: 1 }} onClick={() => document.getElementById('avatar-upload').click()}>Edit Photo</Button>
+          <Button variant="contained" color="primary" size="small" sx={{ mt: 1,color:"white" }} onClick={() => document.getElementById('avatar-upload').click()}>Edit Photo</Button>
        </Box>
         <Grid container spacing={2} sx={{ mt: 3 }}>
           <Grid item xs={6}>
@@ -327,7 +327,7 @@ const Profile = (props) =>
           </Grid>
         </Grid>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 5 }}>
-          <Button sx={{ width: '50%', padding:'1%', marginRight:'25%' }} variant="contained" color="primary" onClick={handleSaveChanges}>Save Changes</Button>
+          <Button sx={{ width: '50%', padding:'1%', marginRight:'25%',color:"white" }} variant="contained" color="primary" onClick={handleSaveChanges}>Save Changes</Button>
         </Box>
       </Box>
     </ThemeProvider>

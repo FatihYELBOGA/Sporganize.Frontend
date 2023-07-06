@@ -70,6 +70,7 @@ function TournamentCard(props)
       .then(data => {
         // Handle the response data
         console.log('Response:', data);
+        alert("Team was joined successfully.")
         // Perform any additional actions with the data
       })
       .catch(error => {
@@ -145,7 +146,7 @@ function TournamentCard(props)
                   </Box>):
                   
                   (<Box textAlign="center" py={2}>
-                 <Button sx={{width:"90%"}} variant="contained" color="success" onClick={(event) => handleApplyClick(event)}>Apply</Button>
+                 <Button sx={{width:"90%"}} variant="contained" color="success" >Apply</Button>
                </Box>)}
                   
                 </CardContent>
