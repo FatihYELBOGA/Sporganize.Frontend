@@ -133,3 +133,8 @@ li {
 .nav__link:hover {
   color: black;
 }
+.nav__brand-logo {
+  width: 150px; /* Logonun genişliği */
+  height: 80px; /* Logonun yüksekliği */
+ 
+}

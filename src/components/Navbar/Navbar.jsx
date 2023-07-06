@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom'; 
 import { getTopNavOfUser, getTopNavOfOwner } from './navbars';
 import './Navbar.css';
-
+import logo2 from '../../pictures/logo2.svg'
+//import logo2 from "../../pictures/logo.svg"
 const Navbar = (props) => {
   const{setUserId} = props;
   const [NavRole, setNavRole] = useState(props.NavRole);
@@ -37,7 +38,7 @@ const Navbar = (props) => {
         <nav className="nav">
           <div className="nav__left">
             <div className="nav__brand-box">
-              <span className="nav__brand">SPORGANIZE</span>
+            <img src={logo2} alt="logo" className="nav__brand-logo" /> 
             </div>
             <div className={`toggler__icon ${collapse ? 'toggle' : ''}`} onClick={onToggle}>
               <div className="line__1"></div>
