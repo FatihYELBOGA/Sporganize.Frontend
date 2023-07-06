@@ -12,11 +12,17 @@ const TournamentTable = (props) => {
       .then((res) => res.json())
       .then((result) => {
         setTeams(result);
-
+        sortTeamsByPoints(result);
       })
       .catch((error) => console.log(error));
 
   }, []);
+ 
+  const sortTeamsByPoints = (teams) => {
+    const sortedTeams = [...teams].sort((a, b) => b.points - a.points);
+    setTeams(sortedTeams);
+  };
+
 
 
   const calculatePoints = (wins, draws,loss) => {

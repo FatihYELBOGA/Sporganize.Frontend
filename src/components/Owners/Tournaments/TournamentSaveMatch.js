@@ -55,12 +55,10 @@ const TournamentSaveMatch = () => {
 
 },[])
 
-    
-
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(teamAId,teamBId,scoreA,scoreB,parseInt(id))
     // Perform save operation with the selected teams and scores
     console.log('Saving match score:', teamA, scoreA, '-', teamB, scoreB);
     fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/league", {
@@ -71,9 +69,9 @@ const TournamentSaveMatch = () => {
       body: JSON.stringify({
         teamAId: teamAId,
         teamBId: teamBId,
-        date: "2000-10-01",
+        date: "2023-10-01-00-00-0",
         result: scoreA+"-"+scoreB,
-        tournamentId: id,
+        tournamentId: parseInt(id),
         
       }),
     })
