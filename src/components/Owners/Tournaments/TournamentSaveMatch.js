@@ -11,6 +11,9 @@ const TournamentSaveMatch = () => {
   const [teamB, setTeamB] = useState('');
   const [scoreA, setScoreA] = useState('');
   const [scoreB, setScoreB] = useState('');
+  const [teams,setTeams] = useState([])
+  const [teamAId,setTeamAId] = useState(0);
+  const [teamBId,setTeamBId] = useState(0);
 
   const handleTeamAChange = (event) => {
     setTeamA(event.target.value);
@@ -28,6 +31,30 @@ const TournamentSaveMatch = () => {
     setScoreB(event.target.value);
   };
  
+  useEffect(() =>{
+    fetch("http://yelbogafatih-001-site1.btempurl.com/tournaments/teams/"+id)
+    .then((res) => {
+        if (res.status === 204) {
+          // Handle 204 No Content response
+          return Promise.resolve(null);
+        } else {
+          return res.json();
+        }
+      })
+    .then(
+        (result) => {
+           
+            setTeams(result);
+        },
+        (error) => {
+            console.log(error);
+            
+        }
+    )
+   
+
+},[])
+
     
 
   
@@ -42,8 +69,8 @@ const TournamentSaveMatch = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        teamAId: "",
-        teamBId: "",
+        teamAId: teamAId,
+        teamBId: teamBId,
         date: "2000-10-01",
         result: scoreA+"-"+scoreB,
         tournamentId: id,
@@ -84,8 +111,8 @@ const TournamentSaveMatch = () => {
                 required
               >
                 {teams.map((team) => (
-                  <MenuItem key={team} value={team}>
-                    {team}
+                  <MenuItem key={team.id} value={team.name} onClick={()=>setTeamAId(team.id)}>
+                    {team.name}
                   </MenuItem>
                 ))}
               </TextField>
@@ -120,8 +147,8 @@ const TournamentSaveMatch = () => {
                 required
               >
                 {teams.map((team) => (
-                  <MenuItem key={team} value={team}>
-                    {team}
+                  <MenuItem key={team.id} value={team.name} onClick={()=>setTeamBId(team.id)}>
+                    {team.name}
                   </MenuItem>
                 ))}
               </TextField>
