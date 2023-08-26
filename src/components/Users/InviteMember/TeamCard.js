@@ -24,7 +24,7 @@ function TeamCard(props)
       body: formData,
     })
       .then((res) => {
-        alert("Team was rejected.")
+        alert("Team was accepted.")
         res.json()})
       .then((result) => console.log(result))
       .catch((err) => console.log(err));
@@ -47,7 +47,6 @@ function TeamCard(props)
           
           if(element.username === playerName){
             setPlayerId(element.id);
-            console.log("osman")
           } 
         });
         handleSendRequest();
@@ -102,7 +101,7 @@ function TeamCard(props)
   const handleSendRequest = () => {
     console.log(playerId)
     if(playerId===0){
-      alert("There is no user with this username!")
+
     }else{
       fetch('http://yelbogafatih-001-site1.btempurl.com/teams/invitation', {
           method: 'POST',

@@ -134,7 +134,7 @@ li {
   color: black;
 }
 .nav__brand-logo {
-  width: 150px; /* Logonun genişliği */
+  width: auto; /* Logonun genişliği */
   height: 80px; /* Logonun yüksekliği */
  
 }

@@ -146,7 +146,7 @@ function TournamentCard(props)
                   </Box>):
                   
                   (<Box textAlign="center" py={2}>
-                 <Button sx={{width:"90%"}} variant="contained" color="success" >Apply</Button>
+                 <Button sx={{width:"90%"}} variant="contained" color="success" onClick={(event) => handleApplyClick(event)} >Apply</Button>
                </Box>)}
                   
                 </CardContent>
