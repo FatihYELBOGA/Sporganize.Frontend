@@ -264,7 +264,13 @@ const Profile = (props) =>
             <TextField label="E-mail"  value={username} onChange={(e) => setUsername(e.target.value)} fullWidth/>
           </Grid>
           <Grid item xs={6}>
-            <TextField label="Phone"  value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth/>
+            <TextField label="Phone"  value={phone} onChange={(e) => {
+              const input = e.target.value;
+              const regex = /^[0-9\b]+$/; // Yalnızca sayılar ve geri silme (backspace) tuşu kabul edilir
+              if (input === '' || regex.test(input)) {
+                setPhone(input);
+              }
+            }} fullWidth/>
           </Grid>
           <Grid item xs={6}>
             <TextField label="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} fullWidth/>
